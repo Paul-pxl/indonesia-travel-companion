@@ -1,0 +1,1 @@
+const d=new Date('2026-07-15');const n=new Date();const days=Math.ceil((d-n)/86400000);const e=document.getElementById('count');if(e)e.textContent=days>0?`Nog ${days} dagen tot vertrek`:'Reis gestart';
