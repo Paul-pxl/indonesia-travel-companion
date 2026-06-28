@@ -1,10 +1,10 @@
 {
-  "name": "Indonesia Travel Companion 5.0",
+  "name": "Indonesia Travel Companion v6",
   "short_name": "Indonesia 2026",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f6faf8",
+  "background_color": "#f7fbfa",
   "theme_color": "#0f766e",
   "icons": [
     {
