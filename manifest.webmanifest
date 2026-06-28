@@ -1,23 +1,9 @@
 {
-  "name": "Indonesia Travel Companion v6.1",
+  "name": "Indonesia Travel Companion lite",
   "short_name": "Indonesia 2026",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#f7fbfa",
-  "theme_color": "#0f766e",
-  "icons": [
-    {
-      "src": "icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ]
+  "theme_color": "#0f766e"
 }
