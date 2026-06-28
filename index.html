@@ -7,307 +7,41 @@
 <title>Indonesië 2026</title>
 <style>
 :root {
-  --green:#006b5a;
-  --green2:#0b7f6f;
-  --soft:#e9f7f3;
-  --text:#071226;
-  --muted:#536176;
-  --card:#ffffff;
+  --green:#006b5a; --green2:#0b7f6f; --soft:#e9f7f3; --text:#071226; --muted:#536176; --card:#ffffff;
   --shadow:0 18px 48px rgba(11,127,111,.13);
 }
-* { box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body {
-  margin:0;
-  background:linear-gradient(180deg,#eef8f6 0%,#f9fcfb 60%);
-  color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-}
-.app {
-  width:100%;
-  max-width:430px;
-  min-height:100vh;
-  margin:0 auto;
-  background:#f8fcfb;
-  padding-bottom:96px;
-  overflow:hidden;
-  box-shadow:0 0 0 1px rgba(0,0,0,.04);
-}
-.next-card {
-  margin:24px 22px 34px;
-  display:grid;
-  grid-template-columns:132px 1fr 44px;
-  gap:18px;
-  align-items:center;
-  background:var(--card);
-  border-radius:30px;
-  padding:16px;
-  box-shadow:var(--shadow);
-}
-.next-card img {
-  width:132px;
-  height:132px;
-  object-fit:cover;
-  border-radius:24px;
-}
-.badge {
-  display:inline-flex;
-  background:#dff5ec;
-  color:var(--green);
-  padding:8px 15px;
-  border-radius:999px;
-  font-weight:900;
-  font-size:15px;
-  margin-bottom:10px;
-}
-.next-card h1 {
-  margin:0 0 10px;
-  font-size:34px;
-  line-height:1;
-  letter-spacing:-.04em;
-}
-.next-card p {
-  margin:0;
-  color:#354258;
-  line-height:1.45;
-  font-size:15px;
-}
-.next-card .go {
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  background:#e5f5f1;
-  color:var(--green);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:34px;
-  font-weight:900;
-}
-.header { padding:28px 24px 4px; }
-.header-row {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-.header h2 {
-  margin:0;
-  font-size:31px;
-  letter-spacing:-.04em;
-}
-.header-row a {
-  color:var(--green);
-  font-weight:900;
-  font-size:18px;
-}
-.timeline {
-  position:relative;
-  padding:0 22px 16px 46px;
-}
-.timeline::before {
-  content:"";
-  position:absolute;
-  left:25px;
-  top:14px;
-  bottom:18px;
-  width:3px;
-  background:var(--green);
-  border-radius:99px;
-}
-.route-card {
-  position:relative;
-  display:grid;
-  grid-template-columns:124px 1fr 22px;
-  gap:16px;
-  align-items:center;
-  background:#fff;
-  border-radius:26px;
-  padding:14px;
-  margin:14px 0;
-  box-shadow:0 14px 34px rgba(15,118,110,.09);
-  min-height:142px;
-}
-.timeline-dot {
-  position:absolute;
-  left:-39px;
-  top:50%;
-  transform:translateY(-50%);
-  width:43px;
-  height:43px;
-  border-radius:50%;
-  background:var(--green);
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:900;
-  font-size:20px;
-  box-shadow:0 8px 20px rgba(0,107,90,.25);
-}
-.photo-wrap {
-  width:124px;
-  height:104px;
-  border-radius:20px;
-  overflow:hidden;
-  background:#e5eee9;
-}
-.photo-wrap img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-.meta {
-  color:#536176;
-  font-size:15px;
-  margin-bottom:11px;
-}
-.route-copy h3 {
-  margin:0 0 8px;
-  font-size:25px;
-  letter-spacing:-.035em;
-}
-.route-copy p {
-  margin:0;
-  color:#536176;
-  font-size:16px;
-  line-height:1.35;
-}
-.chevron {
-  color:var(--green);
-  font-size:34px;
-  font-weight:900;
-}
-.detail-section-title {
-  padding:24px 24px 0;
-  font-size:28px;
-  letter-spacing:-.04em;
-}
-.detail-card {
-  margin:20px 22px 30px;
-  background:#fff;
-  border-radius:30px;
-  box-shadow:var(--shadow);
-  overflow:hidden;
-  scroll-margin-top:18px;
-}
-.detail-photo {
-  height:260px;
-  background-size:cover;
-  background-position:center;
-  color:white;
-  padding:18px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  position:relative;
-}
-.detail-photo::before {
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.68));
-}
-.detail-photo > * { position:relative; }
-.back-pill {
-  align-self:flex-start;
-  background:rgba(0,0,0,.32);
-  color:white;
-  padding:10px 14px;
-  border-radius:999px;
-  font-weight:900;
-  backdrop-filter:blur(10px);
-}
-.detail-meta {
-  font-weight:800;
-  opacity:.95;
-  margin-bottom:6px;
-}
-.detail-photo h2 {
-  font-size:38px;
-  line-height:1;
-  margin:0;
-  letter-spacing:-.04em;
-}
-.detail-body {
-  padding:18px;
-}
-.detail-body h3 {
-  color:var(--green);
-  margin:0 0 8px;
-  font-size:22px;
-}
-.detail-body p {
-  color:#39465a;
-  line-height:1.55;
-  font-size:16px;
-  margin:0 0 14px;
-}
-.chips {
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-bottom:16px;
-}
-.chips span {
-  background:#e7f7ef;
-  color:var(--green);
-  padding:8px 12px;
-  border-radius:999px;
-  font-weight:900;
-  font-size:13px;
-}
-.detail-nav {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-.detail-nav a {
-  background:var(--green);
-  color:white;
-  text-align:center;
-  padding:13px;
-  border-radius:16px;
-  font-weight:900;
-}
-nav {
-  position:fixed;
-  left:50%;
-  transform:translateX(-50%);
-  bottom:0;
-  width:100%;
-  max-width:430px;
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  background:rgba(255,255,255,.96);
-  border-top:1px solid rgba(0,0,0,.06);
-  backdrop-filter:blur(18px);
-  padding:10px 8px 18px;
-  z-index:20;
-}
-nav a {
-  text-align:center;
-  color:#445066;
-  text-decoration:none;
-  font-weight:800;
-  font-size:23px;
-}
-nav a.active { color:var(--green); }
-nav span {
-  display:block;
-  font-size:11px;
-  margin-top:3px;
-}
+* { box-sizing:border-box; } html { scroll-behavior:smooth; } body { margin:0; background:linear-gradient(180deg,#eef8f6 0%,#f9fcfb 60%); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; }
+.app { width:100%; max-width:430px; min-height:100vh; margin:0 auto; background:#f8fcfb; padding-bottom:96px; overflow:hidden; box-shadow:0 0 0 1px rgba(0,0,0,.04); }
+.next-card { margin:24px 22px 34px; display:grid; grid-template-columns:132px 1fr 44px; gap:18px; align-items:center; background:var(--card); border-radius:30px; padding:16px; box-shadow:var(--shadow); }
+.next-card img { width:132px; height:132px; object-fit:cover; border-radius:24px; }
+.badge { display:inline-flex; background:#dff5ec; color:var(--green); padding:8px 15px; border-radius:999px; font-weight:900; font-size:15px; margin-bottom:10px; }
+.next-card h1 { margin:0 0 10px; font-size:34px; line-height:1; letter-spacing:-.04em; }
+.next-card p { margin:0; color:#354258; line-height:1.45; font-size:15px; }
+.next-card .go { width:44px; height:44px; border-radius:50%; background:#e5f5f1; color:var(--green); display:flex; align-items:center; justify-content:center; font-size:34px; font-weight:900; text-decoration:none; }
+.header { padding:28px 24px 4px; } .header-row { display:flex; align-items:center; justify-content:space-between; } .header h2 { margin:0; font-size:31px; letter-spacing:-.04em; } .header-row a { color:var(--green); font-weight:900; font-size:18px; text-decoration:none; }
+.timeline { position:relative; padding:0 22px 16px 46px; } .timeline::before { content:""; position:absolute; left:25px; top:14px; bottom:18px; width:3px; background:var(--green); border-radius:99px; }
+.route-card { position:relative; display:grid; grid-template-columns:124px 1fr 22px; gap:16px; align-items:center; background:#fff; border-radius:26px; padding:14px; margin:14px 0; box-shadow:0 14px 34px rgba(15,118,110,.09); min-height:142px; text-decoration:none; color:inherit; }
+.timeline-dot { position:absolute; left:-39px; top:50%; transform:translateY(-50%); width:43px; height:43px; border-radius:50%; background:var(--green); color:white; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:20px; box-shadow:0 8px 20px rgba(0,107,90,.25); }
+.photo-wrap { width:124px; height:104px; border-radius:20px; overflow:hidden; background:#e5eee9; } .photo-wrap img { width:100%; height:100%; object-fit:cover; display:block; }
+.meta { color:#536176; font-size:15px; margin-bottom:11px; } .route-copy h3 { margin:0 0 8px; font-size:25px; letter-spacing:-.035em; } .route-copy p { margin:0; color:#536176; font-size:16px; line-height:1.35; } .chevron { color:var(--green); font-size:34px; font-weight:900; }
+.module-bar { margin:18px 22px; display:grid; grid-template-columns:1fr 1fr; gap:12px; } .module-bar a { background:white; border-radius:22px; padding:16px; box-shadow:0 12px 30px rgba(15,118,110,.09); color:var(--green); font-weight:900; text-decoration:none; }
+.detail-section-title { padding:24px 24px 0; font-size:28px; letter-spacing:-.04em; }
+.detail-card { margin:20px 22px 30px; background:#fff; border-radius:30px; box-shadow:var(--shadow); overflow:hidden; scroll-margin-top:18px; }
+.detail-photo { height:260px; background-size:cover; background-position:center; color:white; padding:18px; display:flex; flex-direction:column; justify-content:space-between; position:relative; }
+.detail-photo::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.68)); } .detail-photo > * { position:relative; }
+.back-pill { align-self:flex-start; background:rgba(0,0,0,.32); color:white; padding:10px 14px; border-radius:999px; font-weight:900; backdrop-filter:blur(10px); text-decoration:none; }
+.detail-meta { font-weight:800; opacity:.95; margin-bottom:6px; } .detail-photo h2 { font-size:38px; line-height:1; margin:0; letter-spacing:-.04em; }
+.detail-body { padding:18px; } .detail-body h3 { color:var(--green); margin:0 0 8px; font-size:22px; } .detail-body p { color:#39465a; line-height:1.55; font-size:16px; margin:0 0 14px; }
+.highlight-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; margin:14px 0; } .mini img { width:100%; height:92px; object-fit:cover; border-radius:15px; } .mini b { display:block; font-size:12px; margin-top:5px; color:#263348; }
+.info-card { background:#f5fbf9; border:1px solid #e3f2ee; border-radius:20px; padding:14px; margin:12px 0; } .info-card h4 { margin:0 0 8px; color:var(--green); font-size:18px; } .info-card p,.info-card li { color:#39465a; line-height:1.45; font-size:15px; } .info-card ul { margin:0; padding-left:19px; } .map-link { color:var(--green); font-weight:900; text-decoration:none; }
+.facts { display:flex; flex-wrap:wrap; gap:8px; } .facts span { background:white; color:var(--green); padding:8px 12px; border-radius:999px; font-weight:900; font-size:13px; }
+.detail-nav { display:grid; grid-template-columns:1fr 1fr; gap:10px; } .detail-nav a { background:var(--green); color:white; text-align:center; padding:13px; border-radius:16px; font-weight:900; text-decoration:none; }
+nav { position:fixed; left:50%; transform:translateX(-50%); bottom:0; width:100%; max-width:430px; display:grid; grid-template-columns:repeat(5,1fr); background:rgba(255,255,255,.96); border-top:1px solid rgba(0,0,0,.06); backdrop-filter:blur(18px); padding:10px 8px 18px; z-index:20; }
+nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800; font-size:23px; } nav a.active { color:var(--green); } nav span { display:block; font-size:11px; margin-top:3px; }
 @media(max-width:390px) {
-  .next-card { grid-template-columns:112px 1fr 38px; gap:13px; margin-left:16px; margin-right:16px; }
-  .next-card img { width:112px; height:112px; }
-  .next-card h1 { font-size:28px; }
-  .timeline { padding-left:42px; padding-right:16px; }
-  .route-card { grid-template-columns:102px 1fr 18px; gap:13px; }
-  .photo-wrap { width:102px; height:92px; }
-  .route-copy h3 { font-size:21px; }
-  .route-copy p { font-size:14px; }
-  .timeline-dot { left:-35px; }
+  .next-card { grid-template-columns:112px 1fr 38px; gap:13px; margin-left:16px; margin-right:16px; } .next-card img { width:112px; height:112px; } .next-card h1 { font-size:28px; }
+  .timeline { padding-left:42px; padding-right:16px; } .route-card { grid-template-columns:102px 1fr 18px; gap:13px; } .photo-wrap { width:102px; height:92px; } .route-copy h3 { font-size:21px; } .route-copy p { font-size:14px; } .timeline-dot { left:-35px; }
+  .highlight-grid { grid-template-columns:repeat(2,1fr); }
 }
 </style>
 </head>
@@ -315,23 +49,14 @@ nav span {
 <div class="app" id="top">
   <section class="next-card">
     <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80" alt="Bukit Lawang">
-    <div>
-      <div class="badge">Volgende stop</div>
-      <h1>Bukit Lawang</h1>
-      <p>📍 Sumatra · 17–19 juli · 🌥️ 24–31°C</p>
-    </div>
+    <div><div class="badge">Volgende stop</div><h1>Bukit Lawang</h1><p>📍 Sumatra · 17–19 juli · 🌥️ 24–31°C</p></div>
     <a class="go" href="#stop-2">›</a>
   </section>
-
-  <section class="header" id="route">
-    <div class="header-row">
-      <h2>Reisroute als verhaal</h2>
-      <a href="#details">Details ›</a>
-    </div>
+  <section class="module-bar">
+    <a href="#stop-11">🤿 Duikgids</a><a href="#stop-2">🐾 Wildlife</a><a href="#stop-8">🥾 Hikes</a><a href="#stop-1">✈️ Vluchten</a>
   </section>
-
+  <section class="header" id="route"><div class="header-row"><h2>Reisroute als verhaal</h2><a href="#details">Details ›</a></div></section>
   <section class="timeline">
-    
     <a class="route-card" href="#stop-1">
       <div class="timeline-dot">1</div>
       <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80" alt="Amsterdam → Jakarta" loading="lazy"></div>
@@ -501,9 +226,7 @@ nav span {
         <p>Via Jakarta en Shanghai naar Amsterdam.</p>
       </div>
       <div class="chevron">›</div>
-    </a>
-  </section>
-
+    </a></section>
   <h2 class="detail-section-title" id="details">Bestemmingen</h2>
   
     <section class="detail-card" id="stop-1">
@@ -517,8 +240,21 @@ nav span {
       <div class="detail-body">
         <h3>Waarom hierheen?</h3>
         <p>Lange reisdag. Doel: landen, slapen, acclimatiseren en zo weinig mogelijk gedoe.</p>
-        <div class="chips">
-          <span>Transit</span><span>15–16 jul</span><span>✈️ Highlight</span>
+        <div class="highlight-grid"><div class='mini'><img src='https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80'><b>Vlucht via Mumbai</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80'><b>Airport hotel</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80'><b>Rust pakken</b></div></div>
+        
+      <div class="info-card">
+        <h4>🏨 Verblijf</h4>
+        <p><b>FM7 Resort Hotel</b></p>
+        <p>Gekozen als logische basis voor deze stop: praktisch, passend bij het reisschema en dichtbij de belangrijkste activiteit.</p>
+        <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=FM7+Resort+Hotel+Indonesia">Open in Google Maps ›</a>
+      </div>
+        <div class="info-card">
+          <h4>💡 Slimme tips</h4>
+          <ul><li>Check stoelen/gates</li><li>Powerbank opladen</li><li>Vroege nacht</li></ul>
+        </div>
+        <div class="info-card">
+          <h4>📍 Quick facts</h4>
+          <div class="facts"><span>Transit</span><span>15–16 jul</span><span>✈️ Highlight</span></div>
         </div>
         <div class="detail-nav">
           <a href="#route">‹ Vorige</a>
@@ -537,8 +273,21 @@ nav span {
       <div class="detail-body">
         <h3>Waarom hierheen?</h3>
         <p>Eerste echte natuurstop. Verwacht jungle, riviergeluiden, kans op orang-oetans en een relaxte sfeer aan de Bohorok-rivier.</p>
-        <div class="chips">
-          <span>Sumatra</span><span>17–19 jul</span><span>🐒 Highlight</span>
+        <div class="highlight-grid"><div class='mini'><img src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80'><b>Orang-oetans</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80'><b>Jungle trek</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80'><b>Tubing</b></div></div>
+        
+      <div class="info-card">
+        <h4>🏨 Verblijf</h4>
+        <p><b>Ecotourism Bukit Lawang Bungalow</b></p>
+        <p>Gekozen als logische basis voor deze stop: praktisch, passend bij het reisschema en dichtbij de belangrijkste activiteit.</p>
+        <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Ecotourism+Bukit+Lawang+Bungalow+Indonesia">Open in Google Maps ›</a>
+      </div>
+        <div class="info-card">
+          <h4>💡 Slimme tips</h4>
+          <ul><li>DEET</li><li>Drybag</li><li>Waterschoenen</li></ul>
+        </div>
+        <div class="info-card">
+          <h4>📍 Quick facts</h4>
+          <div class="facts"><span>Sumatra</span><span>17–19 jul</span><span>🐒 Highlight</span></div>
         </div>
         <div class="detail-nav">
           <a href="#stop-1">‹ Vorige</a>
@@ -557,8 +306,21 @@ nav span {
       <div class="detail-body">
         <h3>Waarom hierheen?</h3>
         <p>Korte bergstop. Jullie komen in de middag aan en doen vroeg de Sibayak sunrise hike voordat jullie doorreizen.</p>
-        <div class="chips">
-          <span>Sumatra</span><span>19–20 jul</span><span>🌋 Highlight</span>
+        <div class="highlight-grid"><div class='mini'><img src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80'><b>Sibayak sunrise</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80'><b>Fruitmarkt</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80'><b>Koel klimaat</b></div></div>
+        
+      <div class="info-card">
+        <h4>🏨 Verblijf</h4>
+        <p><b>Kaesa Homestay</b></p>
+        <p>Gekozen als logische basis voor deze stop: praktisch, passend bij het reisschema en dichtbij de belangrijkste activiteit.</p>
+        <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kaesa+Homestay+Indonesia">Open in Google Maps ›</a>
+      </div>
+        <div class="info-card">
+          <h4>💡 Slimme tips</h4>
+          <ul><li>Trui mee</li><li>Vroeg slapen</li><li>Hike-schoenen</li></ul>
+        </div>
+        <div class="info-card">
+          <h4>📍 Quick facts</h4>
+          <div class="facts"><span>Sumatra</span><span>19–20 jul</span><span>🌋 Highlight</span></div>
         </div>
         <div class="detail-nav">
           <a href="#stop-2">‹ Vorige</a>
@@ -577,8 +339,21 @@ nav span {
       <div class="detail-body">
         <h3>Waarom hierheen?</h3>
         <p>De ruigste junglestop van de reis. Meerdaagse trek, basic slapen en de beste kans op wilde orang-oetans.</p>
-        <div class="chips">
-          <span>Sumatra</span><span>20–24 jul</span><span>🌿 Highlight</span>
+        <div class="highlight-grid"><div class='mini'><img src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80'><b>Jungle trek</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80'><b>Wilde orang-oetans</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80'><b>Rivierkamp</b></div></div>
+        
+      <div class="info-card">
+        <h4>🏨 Verblijf</h4>
+        <p><b>Pondok Wisata Ketambe</b></p>
+        <p>Gekozen als logische basis voor deze stop: praktisch, passend bij het reisschema en dichtbij de belangrijkste activiteit.</p>
+        <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Pondok+Wisata+Ketambe+Indonesia">Open in Google Maps ›</a>
+      </div>
+        <div class="info-card">
+          <h4>💡 Slimme tips</h4>
+          <ul><li>Drybag</li><li>Hoofdlamp</li><li>Lange kleding</li></ul>
+        </div>
+        <div class="info-card">
+          <h4>📍 Quick facts</h4>
+          <div class="facts"><span>Sumatra</span><span>20–24 jul</span><span>🌿 Highlight</span></div>
         </div>
         <div class="detail-nav">
           <a href="#stop-3">‹ Vorige</a>
@@ -597,8 +372,21 @@ nav span {
       <div class="detail-body">
         <h3>Waarom hierheen?</h3>
         <p>Bewust rustblok. Zwemmen, scooter rijden, Batak-cultuur en even herstellen na de jungle.</p>
-        <div class="chips">
-          <span>Sumatra</span><span>24–27 jul</span><span>🌊 Highlight</span>
+        <div class="highlight-grid"><div class='mini'><img src='https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80'><b>Zwemmen</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80'><b>Scooter</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80'><b>Batak cultuur</b></div></div>
+        
+      <div class="info-card">
+        <h4>🏨 Verblijf</h4>
+        <p><b>Romlan Guesthouse</b></p>
+        <p>Gekozen als logische basis voor deze stop: praktisch, passend bij het reisschema en dichtbij de belangrijkste activiteit.</p>
+        <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Romlan+Guesthouse+Indonesia">Open in Google Maps ›</a>
+      </div>
+        <div class="info-card">
+          <h4>💡 Slimme tips</h4>
+          <ul><li>Was doen</li><li>Rustdag nemen</li><li>Scooter voorzichtig</li></ul>
+        </div>
+        <div class="info-card">
+          <h4>📍 Quick facts</h4>
+          <div class="facts"><span>Sumatra</span><span>24–27 jul</span><span>🌊 Highlight</span></div>
         </div>
         <div class="detail-nav">
           <a href="#stop-4">‹ Vorige</a>
@@ -617,8 +405,21 @@ nav span {
       <div class="detail-body">
         <h3>Waarom hierheen?</h3>
         <p>Stadsstop met Sianok Canyon, Jam Gadang en Minangkabau-cultuur. Goede plek voor Nasi Kapau.</p>
-        <div class="chips">
-          <span>Sumatra</span><span>28–30 jul</span><span>🏞️ Highlight</span>
+        <div class="highlight-grid"><div class='mini'><img src='https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80'><b>Sianok Canyon</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80'><b>Jam Gadang</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80'><b>Nasi Kapau</b></div></div>
+        
+      <div class="info-card">
+        <h4>🏨 Verblijf</h4>
+        <p><b>Dacha</b></p>
+        <p>Gekozen als logische basis voor deze stop: praktisch, passend bij het reisschema en dichtbij de belangrijkste activiteit.</p>
+        <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Dacha+Indonesia">Open in Google Maps ›</a>
+      </div>
+        <div class="info-card">
+          <h4>💡 Slimme tips</h4>
+          <ul><li>Ga vroeg naar canyon</li><li>Cash</li><li>Food-stop</li></ul>
+        </div>
+        <div class="info-card">
+          <h4>📍 Quick facts</h4>
+          <div class="facts"><span>Sumatra</span><span>28–30 jul</span><span>🏞️ Highlight</span></div>
         </div>
         <div class="detail-nav">
           <a href="#stop-5">‹ Vorige</a>
@@ -637,8 +438,21 @@ nav span {
       <div class="detail-body">
         <h3>Waarom hierheen?</h3>
         <p>Rustige vallei tussen kalkstenen kliffen. Ideaal om op te laden voor Kerinci.</p>
-        <div class="chips">
-          <span>Sumatra</span><span>30 jul–2 aug</span><span>🌾 Highlight</span>
+        <div class="highlight-grid"><div class='mini'><img src='https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80'><b>Watervallen</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80'><b>Rijstvelden</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80'><b>Echo Valley</b></div></div>
+        
+      <div class="info-card">
+        <h4>🏨 Verblijf</h4>
+        <p><b>Livio Homestay</b></p>
+        <p>Gekozen als logische basis voor deze stop: praktisch, passend bij het reisschema en dichtbij de belangrijkste activiteit.</p>
+        <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Livio+Homestay+Indonesia">Open in Google Maps ›</a>
+      </div>
+        <div class="info-card">
+          <h4>💡 Slimme tips</h4>
+          <ul><li>Regenjas</li><li>Rust pakken</li><li>Wandelschoenen</li></ul>
+        </div>
+        <div class="info-card">
+          <h4>📍 Quick facts</h4>
+          <div class="facts"><span>Sumatra</span><span>30 jul–2 aug</span><span>🌾 Highlight</span></div>
         </div>
         <div class="detail-nav">
           <a href="#stop-6">‹ Vorige</a>
@@ -657,8 +471,21 @@ nav span {
       <div class="detail-body">
         <h3>Waarom hierheen?</h3>
         <p>De grote hike-uitdaging van Sumatra. Zwaar, maar waarschijnlijk één van de meest memorabele momenten.</p>
-        <div class="chips">
-          <span>Sumatra</span><span>2–5 aug</span><span>⛰️ Highlight</span>
+        <div class="highlight-grid"><div class='mini'><img src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80'><b>Mount Kerinci</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80'><b>Zonsopkomst</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80'><b>Saribu Rumah Gadang</b></div></div>
+        
+      <div class="info-card">
+        <h4>🏨 Verblijf</h4>
+        <p><b>Kerinci View Hotel</b></p>
+        <p>Gekozen als logische basis voor deze stop: praktisch, passend bij het reisschema en dichtbij de belangrijkste activiteit.</p>
+        <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Kerinci+View+Hotel+Indonesia">Open in Google Maps ›</a>
+      </div>
+        <div class="info-card">
+          <h4>💡 Slimme tips</h4>
+          <ul><li>Warme kleding</li><li>Trekkingstokken</li><li>Droge zak</li></ul>
+        </div>
+        <div class="info-card">
+          <h4>📍 Quick facts</h4>
+          <div class="facts"><span>Sumatra</span><span>2–5 aug</span><span>⛰️ Highlight</span></div>
         </div>
         <div class="detail-nav">
           <a href="#stop-7">‹ Vorige</a>
@@ -677,8 +504,21 @@ nav span {
       <div class="detail-body">
         <h3>Waarom hierheen?</h3>
         <p>Uniek karstlandschap bij Makassar. Mooie korte natuurstop voordat Toraja begint.</p>
-        <div class="chips">
-          <span>Zuid-Sulawesi</span><span>6–7 aug</span><span>🛶 Highlight</span>
+        <div class="highlight-grid"><div class='mini'><img src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80'><b>Boottocht</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80'><b>Karst</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80'><b>Rijstvelden</b></div></div>
+        
+      <div class="info-card">
+        <h4>🏨 Verblijf</h4>
+        <p><b>Eco-House Rammang-Rammang</b></p>
+        <p>Gekozen als logische basis voor deze stop: praktisch, passend bij het reisschema en dichtbij de belangrijkste activiteit.</p>
+        <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Eco-House+Rammang-Rammang+Indonesia">Open in Google Maps ›</a>
+      </div>
+        <div class="info-card">
+          <h4>💡 Slimme tips</h4>
+          <ul><li>Vroege boot</li><li>Cash</li><li>Camera klaar</li></ul>
+        </div>
+        <div class="info-card">
+          <h4>📍 Quick facts</h4>
+          <div class="facts"><span>Zuid-Sulawesi</span><span>6–7 aug</span><span>🛶 Highlight</span></div>
         </div>
         <div class="detail-nav">
           <a href="#stop-8">‹ Vorige</a>
@@ -697,8 +537,21 @@ nav span {
       <div class="detail-body">
         <h3>Waarom hierheen?</h3>
         <p>Cultureel hoogtepunt van Sulawesi: ceremonies, traditionele huizen, graven en berglandschap.</p>
-        <div class="chips">
-          <span>Zuid-Sulawesi</span><span>7–11 aug</span><span>🏡 Highlight</span>
+        <div class="highlight-grid"><div class='mini'><img src='https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80'><b>Kete Kesu</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80'><b>Londa/Lemo</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80'><b>Tongkonan</b></div></div>
+        
+      <div class="info-card">
+        <h4>🏨 Verblijf</h4>
+        <p><b>The Sanduk Homestay</b></p>
+        <p>Gekozen als logische basis voor deze stop: praktisch, passend bij het reisschema en dichtbij de belangrijkste activiteit.</p>
+        <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=The+Sanduk+Homestay+Indonesia">Open in Google Maps ›</a>
+      </div>
+        <div class="info-card">
+          <h4>💡 Slimme tips</h4>
+          <ul><li>Gids regelen</li><li>Respectvolle kleding</li><li>Ceremonies checken</li></ul>
+        </div>
+        <div class="info-card">
+          <h4>📍 Quick facts</h4>
+          <div class="facts"><span>Zuid-Sulawesi</span><span>7–11 aug</span><span>🏡 Highlight</span></div>
         </div>
         <div class="detail-nav">
           <a href="#stop-9">‹ Vorige</a>
@@ -717,8 +570,21 @@ nav span {
       <div class="detail-body">
         <h3>Waarom hierheen?</h3>
         <p>Offline eilanddagen. Duiken, snorkelen, rustig tempo en veel zee.</p>
-        <div class="chips">
-          <span>Togian Islands</span><span>12–17 aug</span><span>🤿 Highlight</span>
+        <div class="highlight-grid"><div class='mini'><img src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80'><b>Duiken</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80'><b>Snorkelen</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80'><b>Zonsondergang</b></div></div>
+        
+      <div class="info-card">
+        <h4>🏨 Verblijf</h4>
+        <p><b>Sanctum Una Una</b></p>
+        <p>Gekozen als logische basis voor deze stop: praktisch, passend bij het reisschema en dichtbij de belangrijkste activiteit.</p>
+        <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Sanctum+Una+Una+Indonesia">Open in Google Maps ›</a>
+      </div>
+        <div class="info-card">
+          <h4>💡 Slimme tips</h4>
+          <ul><li>Cash</li><li>Offline kaarten</li><li>Reef-safe sunscreen</li></ul>
+        </div>
+        <div class="info-card">
+          <h4>📍 Quick facts</h4>
+          <div class="facts"><span>Togian Islands</span><span>12–17 aug</span><span>🤿 Highlight</span></div>
         </div>
         <div class="detail-nav">
           <a href="#stop-10">‹ Vorige</a>
@@ -737,8 +603,21 @@ nav span {
       <div class="detail-body">
         <h3>Waarom hierheen?</h3>
         <p>Highland-stop met Mahawu, markt, warmwaterbronnen en een koeler klimaat.</p>
-        <div class="chips">
-          <span>Noord-Sulawesi</span><span>18–20 aug</span><span>🌋 Highlight</span>
+        <div class="highlight-grid"><div class='mini'><img src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80'><b>Mahawu</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80'><b>Tomohon Market</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80'><b>Warmwaterbronnen</b></div></div>
+        
+      <div class="info-card">
+        <h4>🏨 Verblijf</h4>
+        <p><b>Wawowow</b></p>
+        <p>Gekozen als logische basis voor deze stop: praktisch, passend bij het reisschema en dichtbij de belangrijkste activiteit.</p>
+        <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Wawowow+Indonesia">Open in Google Maps ›</a>
+      </div>
+        <div class="info-card">
+          <h4>💡 Slimme tips</h4>
+          <ul><li>Vroeg naar Mahawu</li><li>Regenjas</li><li>Markt bewust kiezen</li></ul>
+        </div>
+        <div class="info-card">
+          <h4>📍 Quick facts</h4>
+          <div class="facts"><span>Noord-Sulawesi</span><span>18–20 aug</span><span>🌋 Highlight</span></div>
         </div>
         <div class="detail-nav">
           <a href="#stop-11">‹ Vorige</a>
@@ -757,8 +636,21 @@ nav span {
       <div class="detail-body">
         <h3>Waarom hierheen?</h3>
         <p>Duikblok met steile wanden, schildpadden en ontspannen eilandritme bij Raja Laut.</p>
-        <div class="chips">
-          <span>Noord-Sulawesi</span><span>20–25 aug</span><span>🐢 Highlight</span>
+        <div class="highlight-grid"><div class='mini'><img src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80'><b>Rifduiken</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80'><b>Schildpadden</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80'><b>Nachtduik</b></div></div>
+        
+      <div class="info-card">
+        <h4>🏨 Verblijf</h4>
+        <p><b>Raja Laut Dive Resort</b></p>
+        <p>Gekozen als logische basis voor deze stop: praktisch, passend bij het reisschema en dichtbij de belangrijkste activiteit.</p>
+        <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Raja+Laut+Dive+Resort+Indonesia">Open in Google Maps ›</a>
+      </div>
+        <div class="info-card">
+          <h4>💡 Slimme tips</h4>
+          <ul><li>Hydrateren</li><li>Duikcomputer</li><li>Marine fee checken</li></ul>
+        </div>
+        <div class="info-card">
+          <h4>📍 Quick facts</h4>
+          <div class="facts"><span>Noord-Sulawesi</span><span>20–25 aug</span><span>🐢 Highlight</span></div>
         </div>
         <div class="detail-nav">
           <a href="#stop-12">‹ Vorige</a>
@@ -777,8 +669,21 @@ nav span {
       <div class="detail-body">
         <h3>Waarom hierheen?</h3>
         <p>Macrohoofdstad: frogfish, nudibranchs, octopussen en rustig speuren met gids.</p>
-        <div class="chips">
-          <span>Noord-Sulawesi</span><span>25–27 aug</span><span>🐙 Highlight</span>
+        <div class="highlight-grid"><div class='mini'><img src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80'><b>Frogfish</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80'><b>Nudibranchs</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80'><b>Octopussen</b></div></div>
+        
+      <div class="info-card">
+        <h4>🏨 Verblijf</h4>
+        <p><b>Cocotinos Lembeh</b></p>
+        <p>Gekozen als logische basis voor deze stop: praktisch, passend bij het reisschema en dichtbij de belangrijkste activiteit.</p>
+        <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Cocotinos+Lembeh+Indonesia">Open in Google Maps ›</a>
+      </div>
+        <div class="info-card">
+          <h4>💡 Slimme tips</h4>
+          <ul><li>Lamp mee</li><li>Rustig bewegen</li><li>Macro-instelling camera</li></ul>
+        </div>
+        <div class="info-card">
+          <h4>📍 Quick facts</h4>
+          <div class="facts"><span>Noord-Sulawesi</span><span>25–27 aug</span><span>🐙 Highlight</span></div>
         </div>
         <div class="detail-nav">
           <a href="#stop-13">‹ Vorige</a>
@@ -797,8 +702,21 @@ nav span {
       <div class="detail-body">
         <h3>Waarom hierheen?</h3>
         <p>Laatste wildlife-stop. Avondwandeling voor tarsiers en ochtendwandeling voor makaken.</p>
-        <div class="chips">
-          <span>Noord-Sulawesi</span><span>27–28 aug</span><span>🐒 Highlight</span>
+        <div class="highlight-grid"><div class='mini'><img src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80'><b>Tarsiers</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80'><b>Makaken</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80'><b>Hornbills</b></div></div>
+        
+      <div class="info-card">
+        <h4>🏨 Verblijf</h4>
+        <p><b>Tangkoko Gallery Guest House</b></p>
+        <p>Gekozen als logische basis voor deze stop: praktisch, passend bij het reisschema en dichtbij de belangrijkste activiteit.</p>
+        <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Tangkoko+Gallery+Guest+House+Indonesia">Open in Google Maps ›</a>
+      </div>
+        <div class="info-card">
+          <h4>💡 Slimme tips</h4>
+          <ul><li>Geen flits</li><li>Muggenmiddel</li><li>Vroege start</li></ul>
+        </div>
+        <div class="info-card">
+          <h4>📍 Quick facts</h4>
+          <div class="facts"><span>Noord-Sulawesi</span><span>27–28 aug</span><span>🐒 Highlight</span></div>
         </div>
         <div class="detail-nav">
           <a href="#stop-14">‹ Vorige</a>
@@ -817,8 +735,21 @@ nav span {
       <div class="detail-body">
         <h3>Waarom hierheen?</h3>
         <p>Douchen, spullen drogen, seafood eten en rustig voorbereiden op de terugreis.</p>
-        <div class="chips">
-          <span>Noord-Sulawesi</span><span>28–29 aug</span><span>🏙️ Highlight</span>
+        <div class="highlight-grid"><div class='mini'><img src='https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=900&q=80'><b>Seafood</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=900&q=80'><b>Bagage herpakken</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=900&q=80'><b>Goed slapen</b></div></div>
+        
+      <div class="info-card">
+        <h4>🏨 Verblijf</h4>
+        <p><b>Swiss Belhotel Maleosan Manado</b></p>
+        <p>Gekozen als logische basis voor deze stop: praktisch, passend bij het reisschema en dichtbij de belangrijkste activiteit.</p>
+        <a class="map-link" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Swiss+Belhotel+Maleosan+Manado+Indonesia">Open in Google Maps ›</a>
+      </div>
+        <div class="info-card">
+          <h4>💡 Slimme tips</h4>
+          <ul><li>Duikspullen drogen</li><li>Vlucht checken</li><li>Vroeg slapen</li></ul>
+        </div>
+        <div class="info-card">
+          <h4>📍 Quick facts</h4>
+          <div class="facts"><span>Noord-Sulawesi</span><span>28–29 aug</span><span>🏙️ Highlight</span></div>
         </div>
         <div class="detail-nav">
           <a href="#stop-15">‹ Vorige</a>
@@ -837,8 +768,15 @@ nav span {
       <div class="detail-body">
         <h3>Waarom hierheen?</h3>
         <p>Lange terugreis, maar overzichtelijk: Manado → Jakarta → Shanghai → Amsterdam.</p>
-        <div class="chips">
-          <span>Terugreis</span><span>29–30 aug</span><span>✈️ Highlight</span>
+        <div class="highlight-grid"><div class='mini'><img src='https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80'><b>Manado → Jakarta</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80'><b>Jakarta → Shanghai</b></div><div class='mini'><img src='https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80'><b>Shanghai → Amsterdam</b></div></div>
+        
+        <div class="info-card">
+          <h4>💡 Slimme tips</h4>
+          <ul><li>Schone kleding handbagage</li><li>Powerbank</li><li>Bagagelabels checken</li></ul>
+        </div>
+        <div class="info-card">
+          <h4>📍 Quick facts</h4>
+          <div class="facts"><span>Terugreis</span><span>29–30 aug</span><span>✈️ Highlight</span></div>
         </div>
         <div class="detail-nav">
           <a href="#stop-16">‹ Vorige</a>
@@ -846,14 +784,7 @@ nav span {
         </div>
       </div>
     </section>
-
-  <nav>
-    <a class="active" href="#top">🏠<span>Home</span></a>
-    <a href="#route">🗺️<span>Route</span></a>
-    <a href="#stop-11">🤿<span>Duiken</span></a>
-    <a href="#stop-2">🐾<span>Wildlife</span></a>
-    <a href="#details">•••<span>Meer</span></a>
-  </nav>
+  <nav><a class="active" href="#top">🏠<span>Home</span></a><a href="#route">🗺️<span>Route</span></a><a href="#stop-11">🤿<span>Duiken</span></a><a href="#stop-2">🐾<span>Wildlife</span></a><a href="#details">•••<span>Meer</span></a></nav>
 </div>
 </body>
 </html>
