@@ -43,21 +43,39 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
   .timeline { padding-left:42px; padding-right:16px; } .route-card { grid-template-columns:102px 1fr 18px; gap:13px; } .photo-wrap { width:102px; height:92px; } .route-copy h3 { font-size:21px; } .route-copy p { font-size:14px; } .timeline-dot { left:-35px; }
   .highlight-grid { grid-template-columns:repeat(2,1fr); }
 }
+
+.progress-wrap{margin-top:12px}
+.progress-label{display:flex;justify-content:space-between;gap:8px;font-size:12px;font-weight:900;color:#536176;margin-bottom:6px}
+.progress-track{height:8px;background:#e4f3ef;border-radius:999px;overflow:hidden}
+#progress-bar{height:100%;width:0%;background:linear-gradient(90deg,#006b5a,#12a58f);border-radius:999px;transition:width .35s ease}
+.route-card.is-past{opacity:.68}
+.route-card.is-past .timeline-dot{background:#17a673}
+.route-card.is-past .timeline-dot::after{content:"✓";font-size:18px}
+.route-card.is-past .timeline-dot{font-size:0}
+.route-card.is-current{outline:3px solid rgba(0,107,90,.18);transform:translateY(-1px)}
+.route-card.is-current .timeline-dot{background:#ffb020;color:#071226}
+.route-card.is-next .timeline-dot{box-shadow:0 0 0 7px rgba(0,107,90,.10),0 8px 20px rgba(0,107,90,.25)}
+
 </style>
 </head>
 <body>
 <div class="app" id="top">
-  <section class="next-card">
-    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80" alt="Bukit Lawang">
-    <div><div class="badge">Volgende stop</div><h1>Bukit Lawang</h1><p>📍 Sumatra · 17–19 juli · 🌥️ 24–31°C</p></div>
-    <a class="go" href="#stop-2">›</a>
+  <section class="next-card" id="next-card">
+    <img id="next-img" src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80" alt="Volgende stop">
+    <div>
+      <div class="badge" id="next-badge">Volgende stop</div>
+      <h1 id="next-title">Bukit Lawang</h1>
+      <p id="next-subtitle">📍 Sumatra · 17–19 juli · 🌥️ 24–31°C</p>
+      <div class="progress-wrap"><div class="progress-label"><span id="progress-text">Reisvoortgang</span><span id="progress-pct">0%</span></div><div class="progress-track"><div id="progress-bar"></div></div></div>
+    </div>
+    <a class="go" id="next-link" href="#stop-2">›</a>
   </section>
   <section class="module-bar">
     <a href="#stop-11">🤿 Duikgids</a><a href="#stop-2">🐾 Wildlife</a><a href="#stop-8">🥾 Hikes</a><a href="#stop-1">✈️ Vluchten</a>
   </section>
   <section class="header" id="route"><div class="header-row"><h2>Reisroute als verhaal</h2><a href="#details">Details ›</a></div></section>
   <section class="timeline">
-    <a class="route-card" href="#stop-1">
+    <a class="route-card" data-index="1" data-start="2026-07-15" data-end="2026-07-16" href="#stop-1">
       <div class="timeline-dot">1</div>
       <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80" alt="Amsterdam → Jakarta" loading="lazy"></div>
       <div class="route-copy">
@@ -67,7 +85,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
       </div>
       <div class="chevron">›</div>
     </a>
-    <a class="route-card" href="#stop-2">
+    <a class="route-card" data-index="2" data-start="2026-07-17" data-end="2026-07-19" href="#stop-2">
       <div class="timeline-dot">2</div>
       <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80" alt="Bukit Lawang" loading="lazy"></div>
       <div class="route-copy">
@@ -77,7 +95,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
       </div>
       <div class="chevron">›</div>
     </a>
-    <a class="route-card" href="#stop-3">
+    <a class="route-card" data-index="3" data-start="2026-07-19" data-end="2026-07-20" href="#stop-3">
       <div class="timeline-dot">3</div>
       <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80" alt="Berastagi" loading="lazy"></div>
       <div class="route-copy">
@@ -87,7 +105,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
       </div>
       <div class="chevron">›</div>
     </a>
-    <a class="route-card" href="#stop-4">
+    <a class="route-card" data-index="4" data-start="2026-07-20" data-end="2026-07-24" href="#stop-4">
       <div class="timeline-dot">4</div>
       <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80" alt="Ketambe" loading="lazy"></div>
       <div class="route-copy">
@@ -97,7 +115,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
       </div>
       <div class="chevron">›</div>
     </a>
-    <a class="route-card" href="#stop-5">
+    <a class="route-card" data-index="5" data-start="2026-07-24" data-end="2026-07-27" href="#stop-5">
       <div class="timeline-dot">5</div>
       <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80" alt="Lake Toba" loading="lazy"></div>
       <div class="route-copy">
@@ -107,7 +125,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
       </div>
       <div class="chevron">›</div>
     </a>
-    <a class="route-card" href="#stop-6">
+    <a class="route-card" data-index="6" data-start="2026-07-28" data-end="2026-07-30" href="#stop-6">
       <div class="timeline-dot">6</div>
       <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" alt="Bukittinggi" loading="lazy"></div>
       <div class="route-copy">
@@ -117,7 +135,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
       </div>
       <div class="chevron">›</div>
     </a>
-    <a class="route-card" href="#stop-7">
+    <a class="route-card" data-index="7" data-start="2026-07-30" data-end="2026-08-02" href="#stop-7">
       <div class="timeline-dot">7</div>
       <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" alt="Harau Valley" loading="lazy"></div>
       <div class="route-copy">
@@ -127,7 +145,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
       </div>
       <div class="chevron">›</div>
     </a>
-    <a class="route-card" href="#stop-8">
+    <a class="route-card" data-index="8" data-start="2026-08-02" data-end="2026-08-05" href="#stop-8">
       <div class="timeline-dot">8</div>
       <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80" alt="Kerinci" loading="lazy"></div>
       <div class="route-copy">
@@ -137,7 +155,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
       </div>
       <div class="chevron">›</div>
     </a>
-    <a class="route-card" href="#stop-9">
+    <a class="route-card" data-index="9" data-start="2026-08-06" data-end="2026-08-07" href="#stop-9">
       <div class="timeline-dot">9</div>
       <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80" alt="Rammang Rammang" loading="lazy"></div>
       <div class="route-copy">
@@ -147,7 +165,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
       </div>
       <div class="chevron">›</div>
     </a>
-    <a class="route-card" href="#stop-10">
+    <a class="route-card" data-index="10" data-start="2026-08-07" data-end="2026-08-11" href="#stop-10">
       <div class="timeline-dot">10</div>
       <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" alt="Tana Toraja" loading="lazy"></div>
       <div class="route-copy">
@@ -157,7 +175,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
       </div>
       <div class="chevron">›</div>
     </a>
-    <a class="route-card" href="#stop-11">
+    <a class="route-card" data-index="11" data-start="2026-08-12" data-end="2026-08-17" href="#stop-11">
       <div class="timeline-dot">11</div>
       <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80" alt="Togian" loading="lazy"></div>
       <div class="route-copy">
@@ -167,7 +185,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
       </div>
       <div class="chevron">›</div>
     </a>
-    <a class="route-card" href="#stop-12">
+    <a class="route-card" data-index="12" data-start="2026-08-18" data-end="2026-08-20" href="#stop-12">
       <div class="timeline-dot">12</div>
       <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80" alt="Tomohon" loading="lazy"></div>
       <div class="route-copy">
@@ -177,7 +195,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
       </div>
       <div class="chevron">›</div>
     </a>
-    <a class="route-card" href="#stop-13">
+    <a class="route-card" data-index="13" data-start="2026-08-20" data-end="2026-08-25" href="#stop-13">
       <div class="timeline-dot">13</div>
       <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80" alt="Bunaken" loading="lazy"></div>
       <div class="route-copy">
@@ -187,7 +205,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
       </div>
       <div class="chevron">›</div>
     </a>
-    <a class="route-card" href="#stop-14">
+    <a class="route-card" data-index="14" data-start="2026-08-25" data-end="2026-08-27" href="#stop-14">
       <div class="timeline-dot">14</div>
       <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80" alt="Lembeh" loading="lazy"></div>
       <div class="route-copy">
@@ -197,7 +215,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
       </div>
       <div class="chevron">›</div>
     </a>
-    <a class="route-card" href="#stop-15">
+    <a class="route-card" data-index="15" data-start="2026-08-27" data-end="2026-08-28" href="#stop-15">
       <div class="timeline-dot">15</div>
       <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80" alt="Tangkoko" loading="lazy"></div>
       <div class="route-copy">
@@ -207,7 +225,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
       </div>
       <div class="chevron">›</div>
     </a>
-    <a class="route-card" href="#stop-16">
+    <a class="route-card" data-index="16" data-start="2026-08-28" data-end="2026-08-29" href="#stop-16">
       <div class="timeline-dot">16</div>
       <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=900&q=80" alt="Manado" loading="lazy"></div>
       <div class="route-copy">
@@ -217,7 +235,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
       </div>
       <div class="chevron">›</div>
     </a>
-    <a class="route-card" href="#stop-17">
+    <a class="route-card" data-index="17" data-start="2026-08-29" data-end="2026-08-30" href="#stop-17">
       <div class="timeline-dot">17</div>
       <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80" alt="Terugreis" loading="lazy"></div>
       <div class="route-copy">
@@ -229,7 +247,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
     </a></section>
   <h2 class="detail-section-title" id="details">Bestemmingen</h2>
   
-    <section class="detail-card" id="stop-1">
+    <section class="detail-card" data-index="1" data-start="2026-07-15" data-end="2026-07-16" id="stop-1">
       <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80')">
         <a class="back-pill" href="#route">← Route</a>
         <div>
@@ -262,7 +280,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
         </div>
       </div>
     </section>
-    <section class="detail-card" id="stop-2">
+    <section class="detail-card" data-index="2" data-start="2026-07-17" data-end="2026-07-19" id="stop-2">
       <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80')">
         <a class="back-pill" href="#route">← Route</a>
         <div>
@@ -295,7 +313,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
         </div>
       </div>
     </section>
-    <section class="detail-card" id="stop-3">
+    <section class="detail-card" data-index="3" data-start="2026-07-19" data-end="2026-07-20" id="stop-3">
       <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80')">
         <a class="back-pill" href="#route">← Route</a>
         <div>
@@ -328,7 +346,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
         </div>
       </div>
     </section>
-    <section class="detail-card" id="stop-4">
+    <section class="detail-card" data-index="4" data-start="2026-07-20" data-end="2026-07-24" id="stop-4">
       <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80')">
         <a class="back-pill" href="#route">← Route</a>
         <div>
@@ -361,7 +379,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
         </div>
       </div>
     </section>
-    <section class="detail-card" id="stop-5">
+    <section class="detail-card" data-index="5" data-start="2026-07-24" data-end="2026-07-27" id="stop-5">
       <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80')">
         <a class="back-pill" href="#route">← Route</a>
         <div>
@@ -394,7 +412,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
         </div>
       </div>
     </section>
-    <section class="detail-card" id="stop-6">
+    <section class="detail-card" data-index="6" data-start="2026-07-28" data-end="2026-07-30" id="stop-6">
       <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80')">
         <a class="back-pill" href="#route">← Route</a>
         <div>
@@ -427,7 +445,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
         </div>
       </div>
     </section>
-    <section class="detail-card" id="stop-7">
+    <section class="detail-card" data-index="7" data-start="2026-07-30" data-end="2026-08-02" id="stop-7">
       <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80')">
         <a class="back-pill" href="#route">← Route</a>
         <div>
@@ -460,7 +478,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
         </div>
       </div>
     </section>
-    <section class="detail-card" id="stop-8">
+    <section class="detail-card" data-index="8" data-start="2026-08-02" data-end="2026-08-05" id="stop-8">
       <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80')">
         <a class="back-pill" href="#route">← Route</a>
         <div>
@@ -493,7 +511,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
         </div>
       </div>
     </section>
-    <section class="detail-card" id="stop-9">
+    <section class="detail-card" data-index="9" data-start="2026-08-06" data-end="2026-08-07" id="stop-9">
       <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80')">
         <a class="back-pill" href="#route">← Route</a>
         <div>
@@ -526,7 +544,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
         </div>
       </div>
     </section>
-    <section class="detail-card" id="stop-10">
+    <section class="detail-card" data-index="10" data-start="2026-08-07" data-end="2026-08-11" id="stop-10">
       <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80')">
         <a class="back-pill" href="#route">← Route</a>
         <div>
@@ -559,7 +577,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
         </div>
       </div>
     </section>
-    <section class="detail-card" id="stop-11">
+    <section class="detail-card" data-index="11" data-start="2026-08-12" data-end="2026-08-17" id="stop-11">
       <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80')">
         <a class="back-pill" href="#route">← Route</a>
         <div>
@@ -592,7 +610,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
         </div>
       </div>
     </section>
-    <section class="detail-card" id="stop-12">
+    <section class="detail-card" data-index="12" data-start="2026-08-18" data-end="2026-08-20" id="stop-12">
       <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80')">
         <a class="back-pill" href="#route">← Route</a>
         <div>
@@ -625,7 +643,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
         </div>
       </div>
     </section>
-    <section class="detail-card" id="stop-13">
+    <section class="detail-card" data-index="13" data-start="2026-08-20" data-end="2026-08-25" id="stop-13">
       <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80')">
         <a class="back-pill" href="#route">← Route</a>
         <div>
@@ -658,7 +676,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
         </div>
       </div>
     </section>
-    <section class="detail-card" id="stop-14">
+    <section class="detail-card" data-index="14" data-start="2026-08-25" data-end="2026-08-27" id="stop-14">
       <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80')">
         <a class="back-pill" href="#route">← Route</a>
         <div>
@@ -691,7 +709,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
         </div>
       </div>
     </section>
-    <section class="detail-card" id="stop-15">
+    <section class="detail-card" data-index="15" data-start="2026-08-27" data-end="2026-08-28" id="stop-15">
       <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80')">
         <a class="back-pill" href="#route">← Route</a>
         <div>
@@ -724,7 +742,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
         </div>
       </div>
     </section>
-    <section class="detail-card" id="stop-16">
+    <section class="detail-card" data-index="16" data-start="2026-08-28" data-end="2026-08-29" id="stop-16">
       <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=900&q=80')">
         <a class="back-pill" href="#route">← Route</a>
         <div>
@@ -757,7 +775,7 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
         </div>
       </div>
     </section>
-    <section class="detail-card" id="stop-17">
+    <section class="detail-card" data-index="17" data-start="2026-08-29" data-end="2026-08-30" id="stop-17">
       <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80')">
         <a class="back-pill" href="#route">← Route</a>
         <div>
@@ -786,5 +804,69 @@ nav a { text-align:center; color:#445066; text-decoration:none; font-weight:800;
     </section>
   <nav><a class="active" href="#top">🏠<span>Home</span></a><a href="#route">🗺️<span>Route</span></a><a href="#stop-11">🤿<span>Duiken</span></a><a href="#stop-2">🐾<span>Wildlife</span></a><a href="#details">•••<span>Meer</span></a></nav>
 </div>
+
+<script>
+(function(){
+  const stops = Array.from(document.querySelectorAll('.route-card')).map((el, i) => ({
+    el,
+    index: i + 1,
+    start: new Date(el.dataset.start + 'T00:00:00'),
+    end: new Date(el.dataset.end + 'T23:59:59'),
+    title: el.querySelector('h3')?.textContent?.trim() || '',
+    meta: el.querySelector('.meta')?.textContent?.trim() || '',
+    img: el.querySelector('img')?.src || '',
+    href: el.getAttribute('href') || '#'
+  }));
+
+  function todayNL(){
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  }
+
+  const today = todayNL();
+  let current = stops.find(s => today >= s.start && today <= s.end);
+  let next = stops.find(s => today < s.start);
+  let selected = next || current || stops[0];
+
+  if (current) selected = current;
+
+  stops.forEach(s => {
+    if (today > s.end) s.el.classList.add('is-past');
+    if (current && s.index === current.index) s.el.classList.add('is-current');
+    if (selected && s.index === selected.index && (!current || s.index !== current.index)) s.el.classList.add('is-next');
+  });
+
+  const tripStart = stops[0].start;
+  const tripEnd = stops[stops.length - 1].end;
+  const total = tripEnd - tripStart;
+  const done = Math.min(Math.max(today - tripStart, 0), total);
+  const pct = Math.round((done / total) * 100);
+
+  const img = document.getElementById('next-img');
+  const title = document.getElementById('next-title');
+  const subtitle = document.getElementById('next-subtitle');
+  const badge = document.getElementById('next-badge');
+  const link = document.getElementById('next-link');
+  const bar = document.getElementById('progress-bar');
+  const pctEl = document.getElementById('progress-pct');
+  const progressText = document.getElementById('progress-text');
+
+  if (selected) {
+    img.src = selected.img;
+    title.textContent = selected.title;
+    subtitle.textContent = selected.meta.replace(/^\S+\s*/, '📍 ');
+    link.href = selected.href;
+    badge.textContent = current ? 'Vandaag / huidige stop' : 'Volgende stop';
+  }
+  if (bar) bar.style.width = pct + '%';
+  if (pctEl) pctEl.textContent = pct + '%';
+  if (progressText) {
+    if (today < tripStart) progressText.textContent = 'Countdown tot vertrek';
+    else if (today > tripEnd) progressText.textContent = 'Reis afgerond';
+    else progressText.textContent = 'Reisvoortgang';
+  }
+})();
+</script>
+
 </body>
 </html>
