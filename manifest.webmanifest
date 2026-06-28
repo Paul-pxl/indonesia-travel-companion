@@ -1,6 +1,6 @@
 {
-  "name": "Indonesia Travel Companion v4",
-  "short_name": "Indonesië v4",
+  "name": "Indonesia Travel Companion v4.1",
+  "short_name": "Indonesië v4.1",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
