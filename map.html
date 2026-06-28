@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Kaart - Indonesië 2026</title>
+<title>Routekaart - Indonesië 2026</title>
 <style>
 
 :root{--green:#005a45;--green2:#007a61;--mint:#e7f5ef;--text:#071226;--muted:#566278;--shadow:0 18px 50px rgba(0,90,69,.13)}
@@ -22,70 +22,209 @@
 @media(max-width:390px){.brand h1{font-size:23px}.tabs a{font-size:12px}.hero-card{margin-left:16px;margin-right:16px}.hero-card h2{font-size:38px}.timeline{margin-left:18px;margin-right:16px;padding-left:34px}.stop{grid-template-columns:110px 1fr 16px}.stop img{width:110px;height:105px}.stop h3{font-size:20px}.stop p{font-size:14px}.num{left:-35px}.progress{margin-left:16px;margin-right:16px}}
 
 
-.map-shell{padding:18px 18px 110px}
-.map-hero{margin:18px 0;background:white;border-radius:26px;padding:18px;box-shadow:var(--shadow)}
-.map-hero h2{font-size:34px;line-height:1;margin:0 0 8px;letter-spacing:-.04em}
-.map-hero p{color:#536176;margin:0;line-height:1.45}
-.map-wrap{position:relative;height:520px;background:linear-gradient(180deg,#dff3f0,#eef8f4);border-radius:30px;overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(0,90,69,.08)}
+.map-page{background:linear-gradient(180deg,#eef8f6,#f8fcfb);min-height:100vh;padding-bottom:106px}
+.map-header{padding:22px 22px 14px}
+.map-header h2{font-size:36px;letter-spacing:-.055em;line-height:1;margin:0 0 8px;color:#071226}
+.map-header p{margin:0;color:#536176;line-height:1.45}
+.premium-map{margin:0 14px;border-radius:34px;height:610px;overflow:hidden;position:relative;background:linear-gradient(180deg,#dcefeb 0%,#ecf7f4 55%,#dcefeb 100%);box-shadow:0 26px 70px rgba(0,90,69,.18);border:1px solid rgba(0,90,69,.09)}
+.ocean-label{position:absolute;color:rgba(0,90,69,.28);font-weight:900;letter-spacing:.18em;font-size:11px;text-transform:uppercase}
+.ocean-label.one{left:24px;top:105px}.ocean-label.two{right:28px;top:210px}
 .map-svg{position:absolute;inset:0;width:100%;height:100%}
-.map-path{fill:none;stroke:#005a45;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:8 8;opacity:.85}
-.island{fill:rgba(255,255,255,.78);stroke:rgba(0,90,69,.15);stroke-width:1}
-.marker{position:absolute;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%;background:#005a45;color:white;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;box-shadow:0 8px 20px rgba(0,90,69,.28);border:3px solid white;cursor:pointer}
-.marker.active{background:#ffb020;color:#071226;transform:translate(-50%,-50%) scale(1.16);z-index:4}
-.marker.done{background:#16a673}
-.map-card{position:absolute;left:14px;right:14px;bottom:14px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-radius:22px;padding:16px;box-shadow:0 16px 40px rgba(0,0,0,.16)}
-.map-card small{color:#536176;font-weight:800}.map-card h3{font-size:26px;margin:5px 0 6px;letter-spacing:-.04em}.map-card p{margin:0 0 12px;color:#536176}.map-card a{display:inline-block;background:#005a45;color:white;padding:11px 14px;border-radius:14px;font-weight:900}
-.map-list{margin-top:18px;display:grid;gap:10px}.map-stop{background:white;border-radius:18px;padding:13px 14px;box-shadow:0 8px 22px rgba(0,90,69,.08);display:flex;gap:12px;align-items:center}.map-stop b{font-size:17px}.map-stop span{color:#536176;font-size:13px}
-.map-dot{width:34px;height:34px;border-radius:50%;background:#e4f5ef;display:flex;align-items:center;justify-content:center}
+.land{fill:#f6f0df;stroke:rgba(0,90,69,.16);stroke-width:1.2;filter:drop-shadow(0 10px 16px rgba(0,90,69,.10))}
+.land-shadow{fill:#d9eadb;opacity:.45}
+.route-glow{fill:none;stroke:rgba(255,255,255,.9);stroke-width:8;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 10px rgba(0,90,69,.35))}
+.route-line{fill:none;stroke:#006b50;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+.flight-arc{fill:none;stroke:#e9b949;stroke-width:2.2;stroke-dasharray:5 7;stroke-linecap:round;opacity:.9}
+.plane-icon{position:absolute;left:53%;top:49%;transform:rotate(32deg);font-size:24px;filter:drop-shadow(0 8px 12px rgba(0,0,0,.18))}
+.pin{position:absolute;transform:translate(-50%,-50%);width:29px;height:29px;border-radius:50%;border:2.5px solid white;background:#ffffff;color:#005a45;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 7px 18px rgba(0,90,69,.20);cursor:pointer;transition:transform .22s ease, background .22s ease, color .22s ease}
+.pin span{font-size:13px}
+.pin.active{background:#e9b949;color:#071226;transform:translate(-50%,-50%) scale(1.28);z-index:10;box-shadow:0 0 0 8px rgba(233,185,73,.24),0 14px 28px rgba(0,0,0,.18)}
+.pin.past{background:#006b50;color:#fff}
+.info-card{position:absolute;left:14px;right:14px;bottom:14px;background:rgba(255,255,255,.92);backdrop-filter:blur(18px);border-radius:28px;padding:14px;box-shadow:0 20px 55px rgba(0,0,0,.18);display:grid;grid-template-columns:90px 1fr;gap:14px;align-items:center}
+.info-card img{width:90px;height:90px;border-radius:21px;object-fit:cover;background:#e6f2ee}
+.info-card small{font-size:13px;color:#536176;font-weight:900}
+.info-card h3{font-size:27px;margin:4px 0 5px;letter-spacing:-.045em;line-height:1.02;color:#071226}
+.info-card p{margin:0 0 10px;color:#536176;line-height:1.35}
+.info-card a{display:inline-block;background:#005a45;color:white;padding:10px 13px;border-radius:14px;font-weight:900}
+.map-controls{display:flex;gap:10px;overflow-x:auto;padding:16px 14px 4px;scrollbar-width:none}
+.map-controls button{white-space:nowrap;border:0;background:white;color:#005a45;border-radius:999px;padding:10px 14px;font-weight:900;box-shadow:0 8px 18px rgba(0,90,69,.09)}
+.map-controls button.active{background:#005a45;color:white}
+.route-list{padding:12px 18px 0;display:grid;gap:10px}
+.route-row{border:0;background:white;border-radius:20px;padding:10px;display:grid;grid-template-columns:56px 1fr;gap:12px;text-align:left;align-items:center;box-shadow:0 10px 24px rgba(0,90,69,.08)}
+.route-row img{width:56px;height:56px;border-radius:15px;object-fit:cover;background:#eef5f2}
+.route-row b{display:block;font-size:16px;color:#071226}
+.route-row span{display:block;margin-top:3px;color:#536176;font-size:13px}
+@media(max-width:390px){.premium-map{height:570px}.info-card{grid-template-columns:76px 1fr}.info-card img{width:76px;height:76px}.info-card h3{font-size:23px}.pin{width:27px;height:27px}}
 
 </style>
 </head>
 <body>
-<div class="app">
+<div class="app map-page">
 <header class="sticky"><div class="sticky-top"><div class="brand"><div class="brand-icon">🌴</div><h1>Indonesië 2026</h1></div></div></header>
-<main class="map-shell">
-  <section class="map-hero">
-    <h2>Interactieve routekaart</h2>
-    <p>Tik op een marker om de stop te bekijken. De lijn volgt jullie route van Sumatra naar Sulawesi en terug naar Amsterdam.</p>
+
+<main>
+  <section class="map-header">
+    <h2>Routekaart</h2>
+    <p>Van de jungle van Sumatra naar de riffen van Noord-Sulawesi. Tik op een marker voor de bestemming.</p>
   </section>
-  <section class="map-wrap">
+
+  <section class="premium-map" id="premium-map">
+    <div class="ocean-label one">Indian Ocean</div>
+    <div class="ocean-label two">Sulawesi Sea</div>
     <svg class="map-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-      <path class="island" d="M5,22 C18,15 31,18 38,31 C33,43 28,59 20,78 C11,69 7,51 5,22 Z"></path>
-      <path class="island" d="M63,52 C70,42 83,38 94,48 C91,60 87,76 73,84 C64,76 58,64 63,52 Z"></path>
-      <polyline class="map-path" points="38.58,89.67 11.33,11.60 12.53,14.44 9.84,10.53 13.67,18.52 14.92,27.16 18.34,42.44 19.29,40.82 21.14,53.58 38.58,89.67 78.45,79.40 79.38,63.76 81.67,55.07 85.48,43.16 89.24,35.65 94.81,29.41 94.53,27.07 96.05,28.39 95.88,27.61 94.82,28.20 88.00,8.00"></polyline>
+      <path class="land-shadow" d="M4,19 C13,10 27,12 38,24 C36,38 31,55 22,82 C13,75 6,54 4,19 Z"></path>
+      <path class="land" d="M7,17 C17,11 29,15 37,27 C33,42 28,59 21,80 C12,70 8,51 7,17 Z"></path>
+      <path class="land-shadow" d="M59,48 C67,35 83,34 96,46 C92,60 89,78 73,87 C63,76 55,62 59,48 Z"></path>
+      <path class="land" d="M62,47 C70,38 82,39 93,48 C90,60 86,75 74,83 C65,76 58,62 62,47 Z"></path>
+      <polyline class="route-glow" points="38.61,89.75 10.65,12.30 11.89,15.12 9.13,11.24 13.06,19.17 14.34,27.74 17.85,42.90 18.82,41.29 20.72,53.94 38.61,89.75 79.50,79.57 80.45,64.05 82.80,55.42 86.71,43.61 90.57,36.16 96.28,29.97 95.99,27.65 97.00,28.96 97.00,28.18 96.29,28.77 91.00,8.00"></polyline>
+      <polyline class="route-line" points="38.61,89.75 10.65,12.30 11.89,15.12 9.13,11.24 13.06,19.17 14.34,27.74 17.85,42.90 18.82,41.29 20.72,53.94 38.61,89.75 79.50,79.57 80.45,64.05 82.80,55.42 86.71,43.61 90.57,36.16 96.28,29.97 95.99,27.65 97.00,28.96 97.00,28.18 96.29,28.77 91.00,8.00"></polyline>
+      <path class="flight-arc" d="M41,83 C53,62 57,53 64,75"></path>
     </svg>
-    <button class="marker" style="left:38.58%;top:89.67%" data-i="0" aria-label="Heenreis">1</button><button class="marker" style="left:11.33%;top:11.60%" data-i="1" aria-label="Bukit Lawang">2</button><button class="marker" style="left:12.53%;top:14.44%" data-i="2" aria-label="Berastagi">3</button><button class="marker" style="left:9.84%;top:10.53%" data-i="3" aria-label="Ketambe">4</button><button class="marker" style="left:13.67%;top:18.52%" data-i="4" aria-label="Lake Toba">5</button><button class="marker" style="left:14.92%;top:27.16%" data-i="5" aria-label="Sipirok">6</button><button class="marker" style="left:18.34%;top:42.44%" data-i="6" aria-label="Bukittinggi">7</button><button class="marker" style="left:19.29%;top:40.82%" data-i="7" aria-label="Harau Valley">8</button><button class="marker" style="left:21.14%;top:53.58%" data-i="8" aria-label="Kerinci">9</button><button class="marker" style="left:38.58%;top:89.67%" data-i="9" aria-label="Jakarta">10</button><button class="marker" style="left:78.45%;top:79.40%" data-i="10" aria-label="Rammang Rammang">11</button><button class="marker" style="left:79.38%;top:63.76%" data-i="11" aria-label="Tana Toraja">12</button><button class="marker" style="left:81.67%;top:55.07%" data-i="12" aria-label="Danau Poso">13</button><button class="marker" style="left:85.48%;top:43.16%" data-i="13" aria-label="Togian">14</button><button class="marker" style="left:89.24%;top:35.65%" data-i="14" aria-label="Gorontalo">15</button><button class="marker" style="left:94.81%;top:29.41%" data-i="15" aria-label="Tomohon">16</button><button class="marker" style="left:94.53%;top:27.07%" data-i="16" aria-label="Bunaken">17</button><button class="marker" style="left:96.05%;top:28.39%" data-i="17" aria-label="Lembeh">18</button><button class="marker" style="left:95.88%;top:27.61%" data-i="18" aria-label="Tangkoko">19</button><button class="marker" style="left:94.82%;top:28.20%" data-i="19" aria-label="Manado">20</button><button class="marker" style="left:88.00%;top:8.00%" data-i="20" aria-label="Terugreis">21</button>
-    <div class="map-card" id="map-card">
-      <small id="map-meta">Stop 1</small>
-      <h3 id="map-title">Heenreis</h3>
-      <p id="map-desc">Amsterdam → Mumbai → Jakarta</p>
-      <a id="map-link" href="amsterdam-jakarta.html">Open bestemming ›</a>
-    </div>
+    <div class="plane-icon">✈️</div>
+    <button class="pin" style="left:38.61%;top:89.75%" data-i="0"><span>1</span></button>
+<button class="pin" style="left:10.65%;top:12.30%" data-i="1"><span>2</span></button>
+<button class="pin" style="left:11.89%;top:15.12%" data-i="2"><span>3</span></button>
+<button class="pin" style="left:9.13%;top:11.24%" data-i="3"><span>4</span></button>
+<button class="pin" style="left:13.06%;top:19.17%" data-i="4"><span>5</span></button>
+<button class="pin" style="left:14.34%;top:27.74%" data-i="5"><span>6</span></button>
+<button class="pin" style="left:17.85%;top:42.90%" data-i="6"><span>7</span></button>
+<button class="pin" style="left:18.82%;top:41.29%" data-i="7"><span>8</span></button>
+<button class="pin" style="left:20.72%;top:53.94%" data-i="8"><span>9</span></button>
+<button class="pin" style="left:38.61%;top:89.75%" data-i="9"><span>10</span></button>
+<button class="pin" style="left:79.50%;top:79.57%" data-i="10"><span>11</span></button>
+<button class="pin" style="left:80.45%;top:64.05%" data-i="11"><span>12</span></button>
+<button class="pin" style="left:82.80%;top:55.42%" data-i="12"><span>13</span></button>
+<button class="pin" style="left:86.71%;top:43.61%" data-i="13"><span>14</span></button>
+<button class="pin" style="left:90.57%;top:36.16%" data-i="14"><span>15</span></button>
+<button class="pin" style="left:96.28%;top:29.97%" data-i="15"><span>16</span></button>
+<button class="pin" style="left:95.99%;top:27.65%" data-i="16"><span>17</span></button>
+<button class="pin" style="left:97.00%;top:28.96%" data-i="17"><span>18</span></button>
+<button class="pin" style="left:97.00%;top:28.18%" data-i="18"><span>19</span></button>
+<button class="pin" style="left:96.29%;top:28.77%" data-i="19"><span>20</span></button>
+<button class="pin" style="left:91.00%;top:8.00%" data-i="20"><span>21</span></button>
+
+    <article class="info-card">
+      <img id="card-img" src="">
+      <div>
+        <small id="card-meta">Stop 1</small>
+        <h3 id="card-title">Heenreis</h3>
+        <p id="card-desc">Amsterdam → Mumbai → Jakarta</p>
+        <a id="card-link" href="amsterdam-jakarta.html">Open bestemming ›</a>
+      </div>
+    </article>
   </section>
-  <section class="map-list">
-    <div class="map-stop" data-list="0"><div class="map-dot">✈️</div><div><b>1. Heenreis</b><br><span>15–16 jul · Transit</span></div></div><div class="map-stop" data-list="1"><div class="map-dot">🐒</div><div><b>2. Bukit Lawang</b><br><span>17–19 jul · Sumatra</span></div></div><div class="map-stop" data-list="2"><div class="map-dot">🌋</div><div><b>3. Berastagi</b><br><span>19–20 jul · Sumatra</span></div></div><div class="map-stop" data-list="3"><div class="map-dot">🌿</div><div><b>4. Ketambe</b><br><span>20–24 jul · Sumatra</span></div></div><div class="map-stop" data-list="4"><div class="map-dot">🌊</div><div><b>5. Lake Toba</b><br><span>24–27 jul · Sumatra</span></div></div><div class="map-stop" data-list="5"><div class="map-dot">🚗</div><div><b>6. Sipirok</b><br><span>27–28 jul · Sumatra</span></div></div><div class="map-stop" data-list="6"><div class="map-dot">🏞️</div><div><b>7. Bukittinggi</b><br><span>28–30 jul · Sumatra</span></div></div><div class="map-stop" data-list="7"><div class="map-dot">🌾</div><div><b>8. Harau Valley</b><br><span>30 jul–2 aug · Sumatra</span></div></div><div class="map-stop" data-list="8"><div class="map-dot">⛰️</div><div><b>9. Kerinci</b><br><span>2–5 aug · Sumatra</span></div></div><div class="map-stop" data-list="9"><div class="map-dot">✈️</div><div><b>10. Jakarta</b><br><span>5–6 aug · Transit</span></div></div><div class="map-stop" data-list="10"><div class="map-dot">🛶</div><div><b>11. Rammang Rammang</b><br><span>6–7 aug · Zuid-Sulawesi</span></div></div><div class="map-stop" data-list="11"><div class="map-dot">🏡</div><div><b>12. Tana Toraja</b><br><span>7–11 aug · Zuid-Sulawesi</span></div></div><div class="map-stop" data-list="12"><div class="map-dot">🌅</div><div><b>13. Danau Poso</b><br><span>11–12 aug · Centraal-Sulawesi</span></div></div><div class="map-stop" data-list="13"><div class="map-dot">🤿</div><div><b>14. Togian</b><br><span>12–17 aug · Togian Islands</span></div></div><div class="map-stop" data-list="14"><div class="map-dot">⛴️</div><div><b>15. Gorontalo</b><br><span>17–18 aug · Noord-Sulawesi</span></div></div><div class="map-stop" data-list="15"><div class="map-dot">🌋</div><div><b>16. Tomohon</b><br><span>18–20 aug · Noord-Sulawesi</span></div></div><div class="map-stop" data-list="16"><div class="map-dot">🐢</div><div><b>17. Bunaken</b><br><span>20–25 aug · Noord-Sulawesi</span></div></div><div class="map-stop" data-list="17"><div class="map-dot">🐙</div><div><b>18. Lembeh</b><br><span>25–27 aug · Noord-Sulawesi</span></div></div><div class="map-stop" data-list="18"><div class="map-dot">🐒</div><div><b>19. Tangkoko</b><br><span>27–28 aug · Noord-Sulawesi</span></div></div><div class="map-stop" data-list="19"><div class="map-dot">🏙️</div><div><b>20. Manado</b><br><span>28–29 aug · Noord-Sulawesi</span></div></div><div class="map-stop" data-list="20"><div class="map-dot">✈️</div><div><b>21. Terugreis</b><br><span>29–30 aug · Terugreis</span></div></div>
+
+  <section class="map-controls">
+    <button class="active" data-filter="all">Alles</button>
+    <button data-filter="Sumatra">Sumatra</button>
+    <button data-filter="Zuid-Sulawesi">Zuid-Sulawesi</button>
+    <button data-filter="Noord-Sulawesi">Noord-Sulawesi</button>
+    <button data-filter="Transit">Transit</button>
+  </section>
+
+  <section class="route-list">
+    <button class="route-row" data-list="0">
+      <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1000&q=80" alt="">
+      <div><b>1. Heenreis</b><span>15–16 jul · Transit</span></div>
+    </button><button class="route-row" data-list="1">
+      <img src="photo-01.jpg" alt="">
+      <div><b>2. Bukit Lawang</b><span>17–19 jul · Sumatra</span></div>
+    </button><button class="route-row" data-list="2">
+      <img src="photo-02.jpg" alt="">
+      <div><b>3. Berastagi</b><span>19–20 jul · Sumatra</span></div>
+    </button><button class="route-row" data-list="3">
+      <img src="photo-03.jpg" alt="">
+      <div><b>4. Ketambe</b><span>20–24 jul · Sumatra</span></div>
+    </button><button class="route-row" data-list="4">
+      <img src="photo-04.jpg" alt="">
+      <div><b>5. Lake Toba</b><span>24–27 jul · Sumatra</span></div>
+    </button><button class="route-row" data-list="5">
+      <img src="photo-05.jpg" alt="">
+      <div><b>6. Sipirok</b><span>27–28 jul · Sumatra</span></div>
+    </button><button class="route-row" data-list="6">
+      <img src="photo-06.jpg" alt="">
+      <div><b>7. Bukittinggi</b><span>28–30 jul · Sumatra</span></div>
+    </button><button class="route-row" data-list="7">
+      <img src="photo-07.jpg" alt="">
+      <div><b>8. Harau Valley</b><span>30 jul–2 aug · Sumatra</span></div>
+    </button><button class="route-row" data-list="8">
+      <img src="photo-08.jpg" alt="">
+      <div><b>9. Kerinci</b><span>2–5 aug · Sumatra</span></div>
+    </button><button class="route-row" data-list="9">
+      <img src="photo-09.jpg" alt="">
+      <div><b>10. Jakarta</b><span>5–6 aug · Transit</span></div>
+    </button><button class="route-row" data-list="10">
+      <img src="photo-10.jpg" alt="">
+      <div><b>11. Rammang Rammang</b><span>6–7 aug · Zuid-Sulawesi</span></div>
+    </button><button class="route-row" data-list="11">
+      <img src="photo-11.jpg" alt="">
+      <div><b>12. Tana Toraja</b><span>7–11 aug · Zuid-Sulawesi</span></div>
+    </button><button class="route-row" data-list="12">
+      <img src="photo-12.jpg" alt="">
+      <div><b>13. Danau Poso</b><span>11–12 aug · Centraal-Sulawesi</span></div>
+    </button><button class="route-row" data-list="13">
+      <img src="photo-13.jpg" alt="">
+      <div><b>14. Togian</b><span>12–17 aug · Togian Islands</span></div>
+    </button><button class="route-row" data-list="14">
+      <img src="photo-14.jpg" alt="">
+      <div><b>15. Gorontalo</b><span>17–18 aug · Noord-Sulawesi</span></div>
+    </button><button class="route-row" data-list="15">
+      <img src="photo-15.jpg" alt="">
+      <div><b>16. Tomohon</b><span>18–20 aug · Noord-Sulawesi</span></div>
+    </button><button class="route-row" data-list="16">
+      <img src="photo-16.jpg" alt="">
+      <div><b>17. Bunaken</b><span>20–25 aug · Noord-Sulawesi</span></div>
+    </button><button class="route-row" data-list="17">
+      <img src="photo-17.jpg" alt="">
+      <div><b>18. Lembeh</b><span>25–27 aug · Noord-Sulawesi</span></div>
+    </button><button class="route-row" data-list="18">
+      <img src="photo-18.jpg" alt="">
+      <div><b>19. Tangkoko</b><span>27–28 aug · Noord-Sulawesi</span></div>
+    </button><button class="route-row" data-list="19">
+      <img src="photo-19.jpg" alt="">
+      <div><b>20. Manado</b><span>28–29 aug · Noord-Sulawesi</span></div>
+    </button><button class="route-row" data-list="20">
+      <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1000&q=80" alt="">
+      <div><b>21. Terugreis</b><span>29–30 aug · Terugreis</span></div>
+    </button>
   </section>
 </main>
+
 <nav class="bottom"><a href="index.html">🏠<span>Home</span></a><a class="active" href="map.html">🗺️<span>Kaart</span></a><a href="bunaken.html">🤿<span>Duiken</span></a><a href="tangkoko.html">🐾<span>Wildlife</span></a><a href="terugreis.html">•••<span>Meer</span></a></nav>
 </div>
+
 <script>
-const stops = [{"slug": "amsterdam-jakarta", "title": "Heenreis", "date": "15–16 jul", "region": "Transit", "lat": -6.2088, "lng": 106.8456, "emoji": "✈️", "desc": "Amsterdam → Mumbai → Jakarta"}, {"slug": "bukit-lawang", "title": "Bukit Lawang", "date": "17–19 jul", "region": "Sumatra", "lat": 3.5497, "lng": 98.1242, "emoji": "🐒", "desc": "Jungle & orang-oetans"}, {"slug": "berastagi", "title": "Berastagi", "date": "19–20 jul", "region": "Sumatra", "lat": 3.1947, "lng": 98.5089, "emoji": "🌋", "desc": "Mount Sibayak"}, {"slug": "ketambe", "title": "Ketambe", "date": "20–24 jul", "region": "Sumatra", "lat": 3.6833, "lng": 97.65, "emoji": "🌿", "desc": "Gunung Leuser jungle"}, {"slug": "lake-toba", "title": "Lake Toba", "date": "24–27 jul", "region": "Sumatra", "lat": 2.6845, "lng": 98.8756, "emoji": "🌊", "desc": "Samosir & rust"}, {"slug": "sipirok", "title": "Sipirok", "date": "27–28 jul", "region": "Sumatra", "lat": 1.6047, "lng": 99.2731, "emoji": "🚗", "desc": "Tussenstop"}, {"slug": "bukittinggi", "title": "Bukittinggi", "date": "28–30 jul", "region": "Sumatra", "lat": -0.3056, "lng": 100.3692, "emoji": "🏞️", "desc": "Sianok Canyon"}, {"slug": "harau-valley", "title": "Harau Valley", "date": "30 jul–2 aug", "region": "Sumatra", "lat": -0.1025, "lng": 100.6714, "emoji": "🌾", "desc": "Kliffen & rijstvelden"}, {"slug": "kerinci", "title": "Kerinci", "date": "2–5 aug", "region": "Sumatra", "lat": -1.697, "lng": 101.264, "emoji": "⛰️", "desc": "Mount Kerinci"}, {"slug": "jakarta", "title": "Jakarta", "date": "5–6 aug", "region": "Transit", "lat": -6.2088, "lng": 106.8456, "emoji": "✈️", "desc": "Reset naar Sulawesi"}, {"slug": "rammang-rammang", "title": "Rammang Rammang", "date": "6–7 aug", "region": "Zuid-Sulawesi", "lat": -4.9253, "lng": 119.6038, "emoji": "🛶", "desc": "Karst & boottocht"}, {"slug": "tana-toraja", "title": "Tana Toraja", "date": "7–11 aug", "region": "Zuid-Sulawesi", "lat": -2.97, "lng": 119.9, "emoji": "🏡", "desc": "Tongkonan & cultuur"}, {"slug": "danau-poso", "title": "Danau Poso", "date": "11–12 aug", "region": "Centraal-Sulawesi", "lat": -1.8833, "lng": 120.6333, "emoji": "🌅", "desc": "Rustige tussenstop"}, {"slug": "togian", "title": "Togian", "date": "12–17 aug", "region": "Togian Islands", "lat": -0.395, "lng": 121.855, "emoji": "🤿", "desc": "Eilandrust & duiken"}, {"slug": "gorontalo", "title": "Gorontalo", "date": "17–18 aug", "region": "Noord-Sulawesi", "lat": 0.5435, "lng": 123.0568, "emoji": "⛴️", "desc": "Nachtboot"}, {"slug": "tomohon", "title": "Tomohon", "date": "18–20 aug", "region": "Noord-Sulawesi", "lat": 1.3234, "lng": 124.8392, "emoji": "🌋", "desc": "Mahawu"}, {"slug": "bunaken", "title": "Bunaken", "date": "20–25 aug", "region": "Noord-Sulawesi", "lat": 1.6167, "lng": 124.75, "emoji": "🐢", "desc": "Rifwanden"}, {"slug": "lembeh", "title": "Lembeh", "date": "25–27 aug", "region": "Noord-Sulawesi", "lat": 1.4515, "lng": 125.235, "emoji": "🐙", "desc": "Macro diving"}, {"slug": "tangkoko", "title": "Tangkoko", "date": "27–28 aug", "region": "Noord-Sulawesi", "lat": 1.5489, "lng": 125.1826, "emoji": "🐒", "desc": "Tarsiers"}, {"slug": "manado", "title": "Manado", "date": "28–29 aug", "region": "Noord-Sulawesi", "lat": 1.4748, "lng": 124.8421, "emoji": "🏙️", "desc": "Laatste nacht"}, {"slug": "terugreis", "title": "Terugreis", "date": "29–30 aug", "region": "Terugreis", "lat": 52.3676, "lng": 4.9041, "emoji": "✈️", "desc": "Via Jakarta & Shanghai"}];
-const markers = [...document.querySelectorAll('.marker')];
-const rows = [...document.querySelectorAll('.map-stop')];
+const stops = [{"slug": "amsterdam-jakarta", "title": "Heenreis", "date": "15–16 jul", "region": "Transit", "lat": -6.2088, "lng": 106.8456, "emoji": "✈️", "desc": "Amsterdam → Mumbai → Jakarta", "img": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1000&q=80"}, {"slug": "bukit-lawang", "title": "Bukit Lawang", "date": "17–19 jul", "region": "Sumatra", "lat": 3.5497, "lng": 98.1242, "emoji": "🐒", "desc": "Jungle & orang-oetans", "img": "photo-01.jpg"}, {"slug": "berastagi", "title": "Berastagi", "date": "19–20 jul", "region": "Sumatra", "lat": 3.1947, "lng": 98.5089, "emoji": "🌋", "desc": "Mount Sibayak", "img": "photo-02.jpg"}, {"slug": "ketambe", "title": "Ketambe", "date": "20–24 jul", "region": "Sumatra", "lat": 3.6833, "lng": 97.65, "emoji": "🌿", "desc": "Gunung Leuser jungle", "img": "photo-03.jpg"}, {"slug": "lake-toba", "title": "Lake Toba", "date": "24–27 jul", "region": "Sumatra", "lat": 2.6845, "lng": 98.8756, "emoji": "🌊", "desc": "Samosir & rust", "img": "photo-04.jpg"}, {"slug": "sipirok", "title": "Sipirok", "date": "27–28 jul", "region": "Sumatra", "lat": 1.6047, "lng": 99.2731, "emoji": "🚗", "desc": "Tussenstop", "img": "photo-05.jpg"}, {"slug": "bukittinggi", "title": "Bukittinggi", "date": "28–30 jul", "region": "Sumatra", "lat": -0.3056, "lng": 100.3692, "emoji": "🏞️", "desc": "Sianok Canyon", "img": "photo-06.jpg"}, {"slug": "harau-valley", "title": "Harau Valley", "date": "30 jul–2 aug", "region": "Sumatra", "lat": -0.1025, "lng": 100.6714, "emoji": "🌾", "desc": "Kliffen & rijstvelden", "img": "photo-07.jpg"}, {"slug": "kerinci", "title": "Kerinci", "date": "2–5 aug", "region": "Sumatra", "lat": -1.697, "lng": 101.264, "emoji": "⛰️", "desc": "Mount Kerinci", "img": "photo-08.jpg"}, {"slug": "jakarta", "title": "Jakarta", "date": "5–6 aug", "region": "Transit", "lat": -6.2088, "lng": 106.8456, "emoji": "✈️", "desc": "Reset naar Sulawesi", "img": "photo-09.jpg"}, {"slug": "rammang-rammang", "title": "Rammang Rammang", "date": "6–7 aug", "region": "Zuid-Sulawesi", "lat": -4.9253, "lng": 119.6038, "emoji": "🛶", "desc": "Karst & boottocht", "img": "photo-10.jpg"}, {"slug": "tana-toraja", "title": "Tana Toraja", "date": "7–11 aug", "region": "Zuid-Sulawesi", "lat": -2.97, "lng": 119.9, "emoji": "🏡", "desc": "Tongkonan & cultuur", "img": "photo-11.jpg"}, {"slug": "danau-poso", "title": "Danau Poso", "date": "11–12 aug", "region": "Centraal-Sulawesi", "lat": -1.8833, "lng": 120.6333, "emoji": "🌅", "desc": "Rustige tussenstop", "img": "photo-12.jpg"}, {"slug": "togian", "title": "Togian", "date": "12–17 aug", "region": "Togian Islands", "lat": -0.395, "lng": 121.855, "emoji": "🤿", "desc": "Eilandrust & duiken", "img": "photo-13.jpg"}, {"slug": "gorontalo", "title": "Gorontalo", "date": "17–18 aug", "region": "Noord-Sulawesi", "lat": 0.5435, "lng": 123.0568, "emoji": "⛴️", "desc": "Nachtboot", "img": "photo-14.jpg"}, {"slug": "tomohon", "title": "Tomohon", "date": "18–20 aug", "region": "Noord-Sulawesi", "lat": 1.3234, "lng": 124.8392, "emoji": "🌋", "desc": "Mahawu", "img": "photo-15.jpg"}, {"slug": "bunaken", "title": "Bunaken", "date": "20–25 aug", "region": "Noord-Sulawesi", "lat": 1.6167, "lng": 124.75, "emoji": "🐢", "desc": "Rifwanden", "img": "photo-16.jpg"}, {"slug": "lembeh", "title": "Lembeh", "date": "25–27 aug", "region": "Noord-Sulawesi", "lat": 1.4515, "lng": 125.235, "emoji": "🐙", "desc": "Macro diving", "img": "photo-17.jpg"}, {"slug": "tangkoko", "title": "Tangkoko", "date": "27–28 aug", "region": "Noord-Sulawesi", "lat": 1.5489, "lng": 125.1826, "emoji": "🐒", "desc": "Tarsiers", "img": "photo-18.jpg"}, {"slug": "manado", "title": "Manado", "date": "28–29 aug", "region": "Noord-Sulawesi", "lat": 1.4748, "lng": 124.8421, "emoji": "🏙️", "desc": "Laatste nacht", "img": "photo-19.jpg"}, {"slug": "terugreis", "title": "Terugreis", "date": "29–30 aug", "region": "Terugreis", "lat": 52.3676, "lng": 4.9041, "emoji": "✈️", "desc": "Via Jakarta & Shanghai", "img": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1000&q=80"}];
+const pins = [...document.querySelectorAll('.pin')];
+const rows = [...document.querySelectorAll('.route-row')];
+const controls = [...document.querySelectorAll('.map-controls button')];
+
 function selectStop(i){
   const s = stops[i];
-  markers.forEach(m=>m.classList.remove('active'));
+  pins.forEach(p=>p.classList.remove('active'));
   rows.forEach(r=>r.style.outline='none');
-  markers[i]?.classList.add('active');
-  if(rows[i]) rows[i].style.outline='3px solid rgba(0,90,69,.18)';
-  document.getElementById('map-meta').textContent = `Stop ${i+1} · ${s.date} · ${s.region}`;
-  document.getElementById('map-title').textContent = s.emoji + ' ' + s.title;
-  document.getElementById('map-desc').textContent = s.desc;
-  document.getElementById('map-link').href = s.slug + '.html';
+  pins[i]?.classList.add('active');
+  if(rows[i]) rows[i].style.outline='3px solid rgba(0,90,69,.16)';
+  document.getElementById('card-img').src = s.img || '';
+  document.getElementById('card-meta').textContent = `Stop ${i+1} · ${s.date} · ${s.region}`;
+  document.getElementById('card-title').textContent = s.emoji + ' ' + s.title;
+  document.getElementById('card-desc').textContent = s.desc;
+  document.getElementById('card-link').href = s.slug + '.html';
 }
-markers.forEach(m=>m.addEventListener('click',()=>selectStop(Number(m.dataset.i))));
+
+function filterRegion(region){
+  controls.forEach(b=>b.classList.toggle('active', b.dataset.filter === region));
+  stops.forEach((s,i)=>{
+    const show = region === 'all' || s.region === region;
+    pins[i].style.display = show ? 'flex' : 'none';
+    rows[i].style.display = show ? 'grid' : 'none';
+  });
+}
+
+pins.forEach(p=>p.addEventListener('click',()=>selectStop(Number(p.dataset.i))));
 rows.forEach(r=>r.addEventListener('click',()=>selectStop(Number(r.dataset.list))));
-selectStop(0);
+controls.forEach(b=>b.addEventListener('click',()=>filterRegion(b.dataset.filter)));
+selectStop(1);
 </script>
 </body>
 </html>
