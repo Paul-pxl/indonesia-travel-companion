@@ -13,7 +13,7 @@
   --text:#071226;
   --muted:#536176;
   --card:#ffffff;
-  --shadow:0 18px 48px rgba(11, 127, 111, .13);
+  --shadow:0 18px 48px rgba(11,127,111,.13);
 }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; }
@@ -84,24 +84,21 @@ body {
   font-size:34px;
   font-weight:900;
 }
-.header {
-  padding:28px 24px 4px;
+.header { padding:28px 24px 4px; }
+.header-row {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 .header h2 {
   margin:0;
   font-size:31px;
   letter-spacing:-.04em;
 }
-.header-row {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
 .header-row a {
   color:var(--green);
   font-weight:900;
   font-size:18px;
-  text-decoration:none;
 }
 .timeline {
   position:relative;
@@ -181,28 +178,96 @@ body {
   font-size:34px;
   font-weight:900;
 }
-.bottom-map {
-  margin:22px;
-  border-radius:26px;
-  overflow:hidden;
-  height:170px;
+.detail-section-title {
+  padding:24px 24px 0;
+  font-size:28px;
+  letter-spacing:-.04em;
+}
+.detail-card {
+  margin:20px 22px 30px;
+  background:#fff;
+  border-radius:30px;
   box-shadow:var(--shadow);
+  overflow:hidden;
+  scroll-margin-top:18px;
+}
+.detail-photo {
+  height:260px;
+  background-size:cover;
+  background-position:center;
+  color:white;
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
   position:relative;
 }
-.bottom-map img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter:saturate(1.1);
-}
-.bottom-map span {
+.detail-photo::before {
+  content:"";
   position:absolute;
-  left:16px;
-  bottom:16px;
-  background:white;
-  color:var(--green);
-  padding:10px 15px;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.68));
+}
+.detail-photo > * { position:relative; }
+.back-pill {
+  align-self:flex-start;
+  background:rgba(0,0,0,.32);
+  color:white;
+  padding:10px 14px;
   border-radius:999px;
+  font-weight:900;
+  backdrop-filter:blur(10px);
+}
+.detail-meta {
+  font-weight:800;
+  opacity:.95;
+  margin-bottom:6px;
+}
+.detail-photo h2 {
+  font-size:38px;
+  line-height:1;
+  margin:0;
+  letter-spacing:-.04em;
+}
+.detail-body {
+  padding:18px;
+}
+.detail-body h3 {
+  color:var(--green);
+  margin:0 0 8px;
+  font-size:22px;
+}
+.detail-body p {
+  color:#39465a;
+  line-height:1.55;
+  font-size:16px;
+  margin:0 0 14px;
+}
+.chips {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:16px;
+}
+.chips span {
+  background:#e7f7ef;
+  color:var(--green);
+  padding:8px 12px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:13px;
+}
+.detail-nav {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.detail-nav a {
+  background:var(--green);
+  color:white;
+  text-align:center;
+  padding:13px;
+  border-radius:16px;
   font-weight:900;
 }
 nav {
@@ -247,260 +312,547 @@ nav span {
 </style>
 </head>
 <body>
-<div class="app">
+<div class="app" id="top">
   <section class="next-card">
-    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80" alt="Bukit Lawang">
+    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80" alt="Bukit Lawang">
     <div>
       <div class="badge">Volgende stop</div>
       <h1>Bukit Lawang</h1>
       <p>📍 Sumatra · 17–19 juli · 🌥️ 24–31°C</p>
     </div>
-    <div class="go">›</div>
+    <a class="go" href="#stop-2">›</a>
   </section>
 
-  <section class="header">
+  <section class="header" id="route">
     <div class="header-row">
       <h2>Reisroute als verhaal</h2>
-      <a href="#all">Bekijk alles ›</a>
+      <a href="#details">Details ›</a>
     </div>
   </section>
 
-  <section class="timeline" id="all">
+  <section class="timeline">
     
-    <article class="route-card" data-stop="1">
+    <a class="route-card" href="#stop-1">
       <div class="timeline-dot">1</div>
-      <div class="photo-wrap">
-        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80" alt="Amsterdam → Jakarta" loading="lazy">
-      </div>
+      <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80" alt="Amsterdam → Jakarta" loading="lazy"></div>
       <div class="route-copy">
         <div class="meta"><span>✈️</span> 15–16 jul · Transit</div>
         <h3>Amsterdam → Jakarta</h3>
         <p>Aankomst in Jakarta en rusten bij FM7.</p>
       </div>
       <div class="chevron">›</div>
-    </article>
-    
-    <article class="route-card" data-stop="2">
+    </a>
+    <a class="route-card" href="#stop-2">
       <div class="timeline-dot">2</div>
-      <div class="photo-wrap">
-        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80" alt="Bukit Lawang" loading="lazy">
-      </div>
+      <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80" alt="Bukit Lawang" loading="lazy"></div>
       <div class="route-copy">
         <div class="meta"><span>🐒</span> 17–19 jul · Sumatra</div>
         <h3>Bukit Lawang</h3>
         <p>Jungle, orang-oetans en rivier.</p>
       </div>
       <div class="chevron">›</div>
-    </article>
-    
-    <article class="route-card" data-stop="3">
+    </a>
+    <a class="route-card" href="#stop-3">
       <div class="timeline-dot">3</div>
-      <div class="photo-wrap">
-        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80" alt="Berastagi" loading="lazy">
-      </div>
+      <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80" alt="Berastagi" loading="lazy"></div>
       <div class="route-copy">
         <div class="meta"><span>🌋</span> 19–20 jul · Sumatra</div>
         <h3>Berastagi</h3>
         <p>Vulkanen, hoogland en Sibayak.</p>
       </div>
       <div class="chevron">›</div>
-    </article>
-    
-    <article class="route-card" data-stop="4">
+    </a>
+    <a class="route-card" href="#stop-4">
       <div class="timeline-dot">4</div>
-      <div class="photo-wrap">
-        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80" alt="Ketambe" loading="lazy">
-      </div>
+      <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80" alt="Ketambe" loading="lazy"></div>
       <div class="route-copy">
         <div class="meta"><span>🌿</span> 20–24 jul · Sumatra</div>
         <h3>Ketambe</h3>
         <p>Diepe jungle en meerdaagse trek.</p>
       </div>
       <div class="chevron">›</div>
-    </article>
-    
-    <article class="route-card" data-stop="5">
+    </a>
+    <a class="route-card" href="#stop-5">
       <div class="timeline-dot">5</div>
-      <div class="photo-wrap">
-        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=80" alt="Lake Toba" loading="lazy">
-      </div>
+      <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80" alt="Lake Toba" loading="lazy"></div>
       <div class="route-copy">
         <div class="meta"><span>🌊</span> 24–27 jul · Sumatra</div>
         <h3>Lake Toba</h3>
         <p>Rust op Samosir na de jungle.</p>
       </div>
       <div class="chevron">›</div>
-    </article>
-    
-    <article class="route-card" data-stop="6">
+    </a>
+    <a class="route-card" href="#stop-6">
       <div class="timeline-dot">6</div>
-      <div class="photo-wrap">
-        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Bukittinggi" loading="lazy">
-      </div>
+      <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" alt="Bukittinggi" loading="lazy"></div>
       <div class="route-copy">
         <div class="meta"><span>🏞️</span> 28–30 jul · Sumatra</div>
         <h3>Bukittinggi</h3>
         <p>Canyon, cultuur en lokaal eten.</p>
       </div>
       <div class="chevron">›</div>
-    </article>
-    
-    <article class="route-card" data-stop="7">
+    </a>
+    <a class="route-card" href="#stop-7">
       <div class="timeline-dot">7</div>
-      <div class="photo-wrap">
-        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Harau Valley" loading="lazy">
-      </div>
+      <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" alt="Harau Valley" loading="lazy"></div>
       <div class="route-copy">
         <div class="meta"><span>🌾</span> 30 jul–2 aug · Sumatra</div>
         <h3>Harau Valley</h3>
         <p>Rijstvelden, kliffen en watervallen.</p>
       </div>
       <div class="chevron">›</div>
-    </article>
-    
-    <article class="route-card" data-stop="8">
+    </a>
+    <a class="route-card" href="#stop-8">
       <div class="timeline-dot">8</div>
-      <div class="photo-wrap">
-        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80" alt="Kerinci" loading="lazy">
-      </div>
+      <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80" alt="Kerinci" loading="lazy"></div>
       <div class="route-copy">
         <div class="meta"><span>⛰️</span> 2–5 aug · Sumatra</div>
         <h3>Kerinci</h3>
         <p>Mount Kerinci en Saribu Rumah Gadang.</p>
       </div>
       <div class="chevron">›</div>
-    </article>
-    
-    <article class="route-card" data-stop="9">
+    </a>
+    <a class="route-card" href="#stop-9">
       <div class="timeline-dot">9</div>
-      <div class="photo-wrap">
-        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80" alt="Rammang Rammang" loading="lazy">
-      </div>
+      <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80" alt="Rammang Rammang" loading="lazy"></div>
       <div class="route-copy">
         <div class="meta"><span>🛶</span> 6–7 aug · Zuid-Sulawesi</div>
         <h3>Rammang Rammang</h3>
         <p>Karstlandschap en boottocht.</p>
       </div>
       <div class="chevron">›</div>
-    </article>
-    
-    <article class="route-card" data-stop="10">
+    </a>
+    <a class="route-card" href="#stop-10">
       <div class="timeline-dot">10</div>
-      <div class="photo-wrap">
-        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Tana Toraja" loading="lazy">
-      </div>
+      <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" alt="Tana Toraja" loading="lazy"></div>
       <div class="route-copy">
         <div class="meta"><span>🏡</span> 7–11 aug · Zuid-Sulawesi</div>
         <h3>Tana Toraja</h3>
         <p>Tongkonan, rotsgraven en rijstterrassen.</p>
       </div>
       <div class="chevron">›</div>
-    </article>
-    
-    <article class="route-card" data-stop="11">
+    </a>
+    <a class="route-card" href="#stop-11">
       <div class="timeline-dot">11</div>
-      <div class="photo-wrap">
-        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" alt="Togian" loading="lazy">
-      </div>
+      <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80" alt="Togian" loading="lazy"></div>
       <div class="route-copy">
         <div class="meta"><span>🤿</span> 12–17 aug · Togian Islands</div>
         <h3>Togian</h3>
         <p>Eilandrust, duiken en snorkelen.</p>
       </div>
       <div class="chevron">›</div>
-    </article>
-    
-    <article class="route-card" data-stop="12">
+    </a>
+    <a class="route-card" href="#stop-12">
       <div class="timeline-dot">12</div>
-      <div class="photo-wrap">
-        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80" alt="Tomohon" loading="lazy">
-      </div>
+      <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80" alt="Tomohon" loading="lazy"></div>
       <div class="route-copy">
         <div class="meta"><span>🌋</span> 18–20 aug · Noord-Sulawesi</div>
         <h3>Tomohon</h3>
         <p>Koel vulkaangebied.</p>
       </div>
       <div class="chevron">›</div>
-    </article>
-    
-    <article class="route-card" data-stop="13">
+    </a>
+    <a class="route-card" href="#stop-13">
       <div class="timeline-dot">13</div>
-      <div class="photo-wrap">
-        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" alt="Bunaken" loading="lazy">
-      </div>
+      <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80" alt="Bunaken" loading="lazy"></div>
       <div class="route-copy">
         <div class="meta"><span>🐢</span> 20–25 aug · Noord-Sulawesi</div>
         <h3>Bunaken</h3>
         <p>Rifwanden, schildpadden en helder water.</p>
       </div>
       <div class="chevron">›</div>
-    </article>
-    
-    <article class="route-card" data-stop="14">
+    </a>
+    <a class="route-card" href="#stop-14">
       <div class="timeline-dot">14</div>
-      <div class="photo-wrap">
-        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" alt="Lembeh" loading="lazy">
-      </div>
+      <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80" alt="Lembeh" loading="lazy"></div>
       <div class="route-copy">
         <div class="meta"><span>🐙</span> 25–27 aug · Noord-Sulawesi</div>
         <h3>Lembeh</h3>
         <p>Macro en muck diving.</p>
       </div>
       <div class="chevron">›</div>
-    </article>
-    
-    <article class="route-card" data-stop="15">
+    </a>
+    <a class="route-card" href="#stop-15">
       <div class="timeline-dot">15</div>
-      <div class="photo-wrap">
-        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80" alt="Tangkoko" loading="lazy">
-      </div>
+      <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80" alt="Tangkoko" loading="lazy"></div>
       <div class="route-copy">
         <div class="meta"><span>🐒</span> 27–28 aug · Noord-Sulawesi</div>
         <h3>Tangkoko</h3>
         <p>Tarsiers en zwartkuifmakaken.</p>
       </div>
       <div class="chevron">›</div>
-    </article>
-    
-    <article class="route-card" data-stop="16">
+    </a>
+    <a class="route-card" href="#stop-16">
       <div class="timeline-dot">16</div>
-      <div class="photo-wrap">
-        <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=80" alt="Manado" loading="lazy">
-      </div>
+      <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=900&q=80" alt="Manado" loading="lazy"></div>
       <div class="route-copy">
         <div class="meta"><span>🏙️</span> 28–29 aug · Noord-Sulawesi</div>
         <h3>Manado</h3>
         <p>Comfortabele laatste nacht.</p>
       </div>
       <div class="chevron">›</div>
-    </article>
-    
-    <article class="route-card" data-stop="17">
+    </a>
+    <a class="route-card" href="#stop-17">
       <div class="timeline-dot">17</div>
-      <div class="photo-wrap">
-        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80" alt="Terugreis" loading="lazy">
-      </div>
+      <div class="photo-wrap"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80" alt="Terugreis" loading="lazy"></div>
       <div class="route-copy">
         <div class="meta"><span>✈️</span> 29–30 aug · Terugreis</div>
         <h3>Terugreis</h3>
         <p>Via Jakarta en Shanghai naar Amsterdam.</p>
       </div>
       <div class="chevron">›</div>
-    </article>
-    
+    </a>
   </section>
 
-  <section class="bottom-map">
-    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80" alt="Routekaart">
-    <span>Sumatra → Sulawesi</span>
-  </section>
+  <h2 class="detail-section-title" id="details">Bestemmingen</h2>
+  
+    <section class="detail-card" id="stop-1">
+      <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80')">
+        <a class="back-pill" href="#route">← Route</a>
+        <div>
+          <div class="detail-meta">✈️ 15–16 jul · Transit</div>
+          <h2>Amsterdam → Jakarta</h2>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h3>Waarom hierheen?</h3>
+        <p>Lange reisdag. Doel: landen, slapen, acclimatiseren en zo weinig mogelijk gedoe.</p>
+        <div class="chips">
+          <span>Transit</span><span>15–16 jul</span><span>✈️ Highlight</span>
+        </div>
+        <div class="detail-nav">
+          <a href="#route">‹ Vorige</a>
+          <a href="#stop-2">Volgende ›</a>
+        </div>
+      </div>
+    </section>
+    <section class="detail-card" id="stop-2">
+      <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80')">
+        <a class="back-pill" href="#route">← Route</a>
+        <div>
+          <div class="detail-meta">🐒 17–19 jul · Sumatra</div>
+          <h2>Bukit Lawang</h2>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h3>Waarom hierheen?</h3>
+        <p>Eerste echte natuurstop. Verwacht jungle, riviergeluiden, kans op orang-oetans en een relaxte sfeer aan de Bohorok-rivier.</p>
+        <div class="chips">
+          <span>Sumatra</span><span>17–19 jul</span><span>🐒 Highlight</span>
+        </div>
+        <div class="detail-nav">
+          <a href="#stop-1">‹ Vorige</a>
+          <a href="#stop-3">Volgende ›</a>
+        </div>
+      </div>
+    </section>
+    <section class="detail-card" id="stop-3">
+      <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80')">
+        <a class="back-pill" href="#route">← Route</a>
+        <div>
+          <div class="detail-meta">🌋 19–20 jul · Sumatra</div>
+          <h2>Berastagi</h2>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h3>Waarom hierheen?</h3>
+        <p>Korte bergstop. Jullie komen in de middag aan en doen vroeg de Sibayak sunrise hike voordat jullie doorreizen.</p>
+        <div class="chips">
+          <span>Sumatra</span><span>19–20 jul</span><span>🌋 Highlight</span>
+        </div>
+        <div class="detail-nav">
+          <a href="#stop-2">‹ Vorige</a>
+          <a href="#stop-4">Volgende ›</a>
+        </div>
+      </div>
+    </section>
+    <section class="detail-card" id="stop-4">
+      <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80')">
+        <a class="back-pill" href="#route">← Route</a>
+        <div>
+          <div class="detail-meta">🌿 20–24 jul · Sumatra</div>
+          <h2>Ketambe</h2>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h3>Waarom hierheen?</h3>
+        <p>De ruigste junglestop van de reis. Meerdaagse trek, basic slapen en de beste kans op wilde orang-oetans.</p>
+        <div class="chips">
+          <span>Sumatra</span><span>20–24 jul</span><span>🌿 Highlight</span>
+        </div>
+        <div class="detail-nav">
+          <a href="#stop-3">‹ Vorige</a>
+          <a href="#stop-5">Volgende ›</a>
+        </div>
+      </div>
+    </section>
+    <section class="detail-card" id="stop-5">
+      <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80')">
+        <a class="back-pill" href="#route">← Route</a>
+        <div>
+          <div class="detail-meta">🌊 24–27 jul · Sumatra</div>
+          <h2>Lake Toba</h2>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h3>Waarom hierheen?</h3>
+        <p>Bewust rustblok. Zwemmen, scooter rijden, Batak-cultuur en even herstellen na de jungle.</p>
+        <div class="chips">
+          <span>Sumatra</span><span>24–27 jul</span><span>🌊 Highlight</span>
+        </div>
+        <div class="detail-nav">
+          <a href="#stop-4">‹ Vorige</a>
+          <a href="#stop-6">Volgende ›</a>
+        </div>
+      </div>
+    </section>
+    <section class="detail-card" id="stop-6">
+      <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80')">
+        <a class="back-pill" href="#route">← Route</a>
+        <div>
+          <div class="detail-meta">🏞️ 28–30 jul · Sumatra</div>
+          <h2>Bukittinggi</h2>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h3>Waarom hierheen?</h3>
+        <p>Stadsstop met Sianok Canyon, Jam Gadang en Minangkabau-cultuur. Goede plek voor Nasi Kapau.</p>
+        <div class="chips">
+          <span>Sumatra</span><span>28–30 jul</span><span>🏞️ Highlight</span>
+        </div>
+        <div class="detail-nav">
+          <a href="#stop-5">‹ Vorige</a>
+          <a href="#stop-7">Volgende ›</a>
+        </div>
+      </div>
+    </section>
+    <section class="detail-card" id="stop-7">
+      <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80')">
+        <a class="back-pill" href="#route">← Route</a>
+        <div>
+          <div class="detail-meta">🌾 30 jul–2 aug · Sumatra</div>
+          <h2>Harau Valley</h2>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h3>Waarom hierheen?</h3>
+        <p>Rustige vallei tussen kalkstenen kliffen. Ideaal om op te laden voor Kerinci.</p>
+        <div class="chips">
+          <span>Sumatra</span><span>30 jul–2 aug</span><span>🌾 Highlight</span>
+        </div>
+        <div class="detail-nav">
+          <a href="#stop-6">‹ Vorige</a>
+          <a href="#stop-8">Volgende ›</a>
+        </div>
+      </div>
+    </section>
+    <section class="detail-card" id="stop-8">
+      <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80')">
+        <a class="back-pill" href="#route">← Route</a>
+        <div>
+          <div class="detail-meta">⛰️ 2–5 aug · Sumatra</div>
+          <h2>Kerinci</h2>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h3>Waarom hierheen?</h3>
+        <p>De grote hike-uitdaging van Sumatra. Zwaar, maar waarschijnlijk één van de meest memorabele momenten.</p>
+        <div class="chips">
+          <span>Sumatra</span><span>2–5 aug</span><span>⛰️ Highlight</span>
+        </div>
+        <div class="detail-nav">
+          <a href="#stop-7">‹ Vorige</a>
+          <a href="#stop-9">Volgende ›</a>
+        </div>
+      </div>
+    </section>
+    <section class="detail-card" id="stop-9">
+      <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80')">
+        <a class="back-pill" href="#route">← Route</a>
+        <div>
+          <div class="detail-meta">🛶 6–7 aug · Zuid-Sulawesi</div>
+          <h2>Rammang Rammang</h2>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h3>Waarom hierheen?</h3>
+        <p>Uniek karstlandschap bij Makassar. Mooie korte natuurstop voordat Toraja begint.</p>
+        <div class="chips">
+          <span>Zuid-Sulawesi</span><span>6–7 aug</span><span>🛶 Highlight</span>
+        </div>
+        <div class="detail-nav">
+          <a href="#stop-8">‹ Vorige</a>
+          <a href="#stop-10">Volgende ›</a>
+        </div>
+      </div>
+    </section>
+    <section class="detail-card" id="stop-10">
+      <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80')">
+        <a class="back-pill" href="#route">← Route</a>
+        <div>
+          <div class="detail-meta">🏡 7–11 aug · Zuid-Sulawesi</div>
+          <h2>Tana Toraja</h2>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h3>Waarom hierheen?</h3>
+        <p>Cultureel hoogtepunt van Sulawesi: ceremonies, traditionele huizen, graven en berglandschap.</p>
+        <div class="chips">
+          <span>Zuid-Sulawesi</span><span>7–11 aug</span><span>🏡 Highlight</span>
+        </div>
+        <div class="detail-nav">
+          <a href="#stop-9">‹ Vorige</a>
+          <a href="#stop-11">Volgende ›</a>
+        </div>
+      </div>
+    </section>
+    <section class="detail-card" id="stop-11">
+      <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80')">
+        <a class="back-pill" href="#route">← Route</a>
+        <div>
+          <div class="detail-meta">🤿 12–17 aug · Togian Islands</div>
+          <h2>Togian</h2>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h3>Waarom hierheen?</h3>
+        <p>Offline eilanddagen. Duiken, snorkelen, rustig tempo en veel zee.</p>
+        <div class="chips">
+          <span>Togian Islands</span><span>12–17 aug</span><span>🤿 Highlight</span>
+        </div>
+        <div class="detail-nav">
+          <a href="#stop-10">‹ Vorige</a>
+          <a href="#stop-12">Volgende ›</a>
+        </div>
+      </div>
+    </section>
+    <section class="detail-card" id="stop-12">
+      <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80')">
+        <a class="back-pill" href="#route">← Route</a>
+        <div>
+          <div class="detail-meta">🌋 18–20 aug · Noord-Sulawesi</div>
+          <h2>Tomohon</h2>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h3>Waarom hierheen?</h3>
+        <p>Highland-stop met Mahawu, markt, warmwaterbronnen en een koeler klimaat.</p>
+        <div class="chips">
+          <span>Noord-Sulawesi</span><span>18–20 aug</span><span>🌋 Highlight</span>
+        </div>
+        <div class="detail-nav">
+          <a href="#stop-11">‹ Vorige</a>
+          <a href="#stop-13">Volgende ›</a>
+        </div>
+      </div>
+    </section>
+    <section class="detail-card" id="stop-13">
+      <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80')">
+        <a class="back-pill" href="#route">← Route</a>
+        <div>
+          <div class="detail-meta">🐢 20–25 aug · Noord-Sulawesi</div>
+          <h2>Bunaken</h2>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h3>Waarom hierheen?</h3>
+        <p>Duikblok met steile wanden, schildpadden en ontspannen eilandritme bij Raja Laut.</p>
+        <div class="chips">
+          <span>Noord-Sulawesi</span><span>20–25 aug</span><span>🐢 Highlight</span>
+        </div>
+        <div class="detail-nav">
+          <a href="#stop-12">‹ Vorige</a>
+          <a href="#stop-14">Volgende ›</a>
+        </div>
+      </div>
+    </section>
+    <section class="detail-card" id="stop-14">
+      <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80')">
+        <a class="back-pill" href="#route">← Route</a>
+        <div>
+          <div class="detail-meta">🐙 25–27 aug · Noord-Sulawesi</div>
+          <h2>Lembeh</h2>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h3>Waarom hierheen?</h3>
+        <p>Macrohoofdstad: frogfish, nudibranchs, octopussen en rustig speuren met gids.</p>
+        <div class="chips">
+          <span>Noord-Sulawesi</span><span>25–27 aug</span><span>🐙 Highlight</span>
+        </div>
+        <div class="detail-nav">
+          <a href="#stop-13">‹ Vorige</a>
+          <a href="#stop-15">Volgende ›</a>
+        </div>
+      </div>
+    </section>
+    <section class="detail-card" id="stop-15">
+      <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80')">
+        <a class="back-pill" href="#route">← Route</a>
+        <div>
+          <div class="detail-meta">🐒 27–28 aug · Noord-Sulawesi</div>
+          <h2>Tangkoko</h2>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h3>Waarom hierheen?</h3>
+        <p>Laatste wildlife-stop. Avondwandeling voor tarsiers en ochtendwandeling voor makaken.</p>
+        <div class="chips">
+          <span>Noord-Sulawesi</span><span>27–28 aug</span><span>🐒 Highlight</span>
+        </div>
+        <div class="detail-nav">
+          <a href="#stop-14">‹ Vorige</a>
+          <a href="#stop-16">Volgende ›</a>
+        </div>
+      </div>
+    </section>
+    <section class="detail-card" id="stop-16">
+      <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=900&q=80')">
+        <a class="back-pill" href="#route">← Route</a>
+        <div>
+          <div class="detail-meta">🏙️ 28–29 aug · Noord-Sulawesi</div>
+          <h2>Manado</h2>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h3>Waarom hierheen?</h3>
+        <p>Douchen, spullen drogen, seafood eten en rustig voorbereiden op de terugreis.</p>
+        <div class="chips">
+          <span>Noord-Sulawesi</span><span>28–29 aug</span><span>🏙️ Highlight</span>
+        </div>
+        <div class="detail-nav">
+          <a href="#stop-15">‹ Vorige</a>
+          <a href="#stop-17">Volgende ›</a>
+        </div>
+      </div>
+    </section>
+    <section class="detail-card" id="stop-17">
+      <div class="detail-photo" style="background-image:url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=900&q=80')">
+        <a class="back-pill" href="#route">← Route</a>
+        <div>
+          <div class="detail-meta">✈️ 29–30 aug · Terugreis</div>
+          <h2>Terugreis</h2>
+        </div>
+      </div>
+      <div class="detail-body">
+        <h3>Waarom hierheen?</h3>
+        <p>Lange terugreis, maar overzichtelijk: Manado → Jakarta → Shanghai → Amsterdam.</p>
+        <div class="chips">
+          <span>Terugreis</span><span>29–30 aug</span><span>✈️ Highlight</span>
+        </div>
+        <div class="detail-nav">
+          <a href="#stop-16">‹ Vorige</a>
+          <a href="#top">Volgende ›</a>
+        </div>
+      </div>
+    </section>
 
   <nav>
-    <a class="active" href="#">🏠<span>Home</span></a>
-    <a href="#all">🗺️<span>Route</span></a>
-    <a href="#">🤿<span>Duiken</span></a>
-    <a href="#">🐾<span>Wildlife</span></a>
-    <a href="#">•••<span>Meer</span></a>
+    <a class="active" href="#top">🏠<span>Home</span></a>
+    <a href="#route">🗺️<span>Route</span></a>
+    <a href="#stop-11">🤿<span>Duiken</span></a>
+    <a href="#stop-2">🐾<span>Wildlife</span></a>
+    <a href="#details">•••<span>Meer</span></a>
   </nav>
 </div>
 </body>
