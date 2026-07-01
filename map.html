@@ -1,38 +1,39 @@
 <!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Interactieve routekaart</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="styles.css"></head><body><div class="app leaflet-shell">
-<section class="map-top">
-  <a class="back" href="index.html" style="color:white;background:rgba(255,255,255,.14)">‹ Route</a>
+<link rel="stylesheet" href="styles.css">
+</head><body class="map-page"><div class="app map-shell">
+
+<section class="map-hero-v11">
+  <a class="back" href="index.html">‹ Route</a>
   <h2>Interactieve routekaart</h2>
-  <p>Speel de reis af, filter highlights en klik op markers om direct naar de bestemming te gaan.</p>
+  <p>Een premium routeoverzicht met filters, afspeelmodus en directe links naar alle bestemmingen.</p>
 </section>
 
-<div id="routeMap"></div>
-
-<section class="map-panel">
-  <div class="map-stats">
-    <div class="map-stat"><b>22</b><small>stops</small></div>
-    <div class="map-stat"><b>2</b><small>eilanden</small></div>
-    <div class="map-stat"><b>6 wk</b><small>reis</small></div>
-  </div>
-  <div class="map-controls">
-    <button data-filter="all">Alles</button>
-    <button data-filter="dive">🤿 Duiken</button>
-    <button data-filter="wildlife">🐾 Wildlife</button>
-    <button data-filter="volcano">🌋 Vulkanen</button>
-  </div>
-  <div class="playbar">
-    <button id="play">▶</button>
-    <input id="routeRange" class="range" type="range" min="1" max="22" value="1">
-    <button id="fit">⌖</button>
+<section class="map-stage">
+  <div id="routeMap"></div>
+  <div class="map-floating-card">
+    <div class="map-stat-row">
+      <div class="map-stat"><b>22</b><small>Stops</small></div>
+      <div class="map-stat"><b>6</b><small>Weken</small></div>
+      <div class="map-stat"><b>2</b><small>Eilanden</small></div>
+      <div class="map-stat"><b>5</b><small>Duikdagen+</small></div>
+    </div>
+    <div class="map-legend map-controls">
+      <button data-filter="all">Alles</button>
+      <button data-filter="dive">🤿 Duiken</button>
+      <button data-filter="wildlife">🐾 Wildlife</button>
+      <button data-filter="volcano">🌋 Vulkanen</button>
+    </div>
+    <div class="map-control-row">
+      <button id="play">▶</button>
+      <input id="routeRange" class="range" type="range" min="1" max="22" value="1">
+      <button id="fit">⌖</button>
+    </div>
   </div>
 </section>
 
-<section class="map-panel"><h3 style="margin:0 0 10px;color:var(--green)">Reisdashboard</h3>
-<div class="map-stats"><div class="map-stat"><b>46</b><small>Dagen</small></div><div class="map-stat"><b>22</b><small>Bestemmingen</small></div><div class="map-stat"><b>9</b><small>Vluchten</small></div></div>
-<div class="map-stats" style="margin-top:8px"><div class="map-stat"><b>11</b><small>Hotels</small></div><div class="map-stat"><b>3</b><small>Jungle</small></div><div class="map-stat"><b>15+</b><small>Duiken</small></div></div>
-<div style="margin-top:12px;padding:12px;border-radius:16px;background:#f1faf6"><b style="color:var(--green)">Legenda</b><br>🦧 Wildlife &nbsp; 🌋 Vulkanen &nbsp; 🤿 Duiken &nbsp; ✈️ Vluchten &nbsp; 🏨 Verblijf</div></section>
+<h3 class="route-list-title">Route-tijdlijn</h3>
 <section class="route-list"><button class="route-card" data-id="1">
   <span class="num">1</span><div><b>Amsterdam → Jakarta</b><small>15–16 jul · Transit</small></div>
 </button>
@@ -99,6 +100,7 @@
 <button class="route-card" data-id="22">
   <span class="num">22</span><div><b>Jakarta → Shanghai → Amsterdam</b><small>29–30 aug · Terugreis</small></div>
 </button></section>
+
 <nav class="bottom"><a href="index.html">🏠<span>Home</span></a><a class="active" href="map.html">🗺️<span>Kaart</span></a><a href="vluchten.html">✈️<span>Vluchten</span></a><a href="verblijf.html">🏨<span>Verblijf</span></a><a href="terugreis.html">•••<span>Meer</span></a></nav>
 </div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -112,16 +114,14 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 const colors = {sumatra:'#0f8a5f', sulawesi:'#f97316', flight:'#2563eb', transfer:'#64748b'};
-const lineLayers = [];
 DATA.segments.forEach(seg => {
-  const line = L.polyline(seg.coords, {
+  L.polyline(seg.coords, {
     color: colors[seg.mode] || '#0f8a5f',
     weight: seg.mode==='flight'?3:5,
-    opacity:.82,
+    opacity:.84,
     dashArray: seg.mode==='flight'?'8 10':null,
     smoothFactor:1
   }).addTo(map);
-  lineLayers.push(line);
 });
 const markers = new Map();
 function markerIcon(s){
@@ -164,4 +164,4 @@ document.querySelectorAll('.map-controls button').forEach(btn=>btn.addEventListe
   });
 }));
 </script>
-<button onclick="map.fitBounds(bounds.pad(.18))" style="position:fixed;right:18px;bottom:90px;border:none;border-radius:50%;width:56px;height:56px;background:#005a45;color:white;font-size:24px;box-shadow:0 10px 24px rgba(0,0,0,.25);z-index:999">⌖</button></body></html>
+</body></html>
