@@ -523,3 +523,18 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid rgba(
 .weather-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
 .weather-actions button{border:0;border-radius:16px;background:var(--green);color:white;padding:12px;font-weight:900}
 .weather-note{background:#fff8e6;border:1px solid #f0d98b;border-radius:18px;padding:14px;color:#4a3b13;line-height:1.5;margin-top:12px}
+
+
+/* ===== v11 Weer 2.0 hourly forecast ===== */
+.weather-source{font-size:13px;color:#667085;line-height:1.45;margin-top:8px}
+.hourly-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:12px}
+.hourly-table{width:100%;min-width:760px;border-collapse:separate;border-spacing:0 8px;font-size:13px}
+.hourly-table th{text-align:left;color:var(--green);font-size:11px;text-transform:uppercase;letter-spacing:.04em;padding:0 8px 4px}
+.hourly-table td{background:#f1faf6;color:#263b35;padding:10px 8px;vertical-align:middle;line-height:1.35}
+.hourly-table td:first-child{border-radius:14px 0 0 14px;font-weight:900;color:var(--green)}
+.hourly-table td:last-child{border-radius:0 14px 14px 0}
+.rain-bars{display:grid;gap:7px;margin-top:12px}
+.rain-bar{display:grid;grid-template-columns:52px 1fr 54px;gap:9px;align-items:center;color:#163b32;font-size:13px;font-weight:800}
+.rain-track{height:10px;background:#e7f5ef;border-radius:999px;overflow:hidden}
+.rain-fill{height:100%;background:var(--green);border-radius:999px;min-width:2px}
+.weather-advice{background:linear-gradient(135deg,#e7f7ef,#ffffff);border-radius:20px;padding:15px;border:1px solid #d8efe5;color:#244238;line-height:1.55;margin-top:12px}

@@ -6,7 +6,7 @@
 <section class="weather-hero">
   <a class="back" href="index.html">‹ Route</a>
   <h2>Weer</h2>
-  <p>Live weersverwachting per bestemming. De data wordt opgehaald via Open-Meteo wanneer je online bent.</p>
+  <p>Live weersverwachting per bestemming. Bron: Open-Meteo, wanneer je online bent.</p>
 </section>
 
 <section class="weather-card">
@@ -51,6 +51,24 @@
   </div>
 </section>
 
+
+<section class="weather-card">
+  <h3>Vandaag · weerbericht per uur</h3>
+  <p class="weather-source">Bron: <b>Open-Meteo</b>. Uurlijkse data: temperatuur, neerslag, neerslagkans, bewolking, wind en luchtvochtigheid.</p>
+  <div class="hourly-scroll">
+    <table class="hourly-table">
+      <thead><tr><th>Tijd</th><th>Weer</th><th>Temp</th><th>Bewolking</th><th>Regen</th><th>Regenkans</th><th>Wind</th><th>Vocht</th></tr></thead>
+      <tbody id="hourlyTable"></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="weather-card">
+  <h3>Regen per uur</h3>
+  <div class="rain-bars" id="rainBars"></div>
+  <div class="weather-advice" id="weatherAdvice">Advies wordt geladen...</div>
+</section>
+
 <section class="weather-card">
   <h3>7-daagse verwachting</h3>
   <div class="forecast-list" id="forecastList"></div>
@@ -65,6 +83,23 @@ const weatherCodes = {
   51:'Lichte motregen',53:'Motregen',55:'Dichte motregen',61:'Lichte regen',63:'Regen',65:'Zware regen',
   80:'Lichte buien',81:'Buien',82:'Zware buien',95:'Onweer',96:'Onweer met hagel',99:'Zwaar onweer'
 };
+
+function weatherIcon(code, rain, cloud) {
+  if (rain && rain > 0.2) return '🌧️';
+  if ([61,63,65,80,81,82,95,96,99].includes(code)) return '🌧️';
+  if ([45,48].includes(code)) return '🌫️';
+  if (cloud >= 75) return '☁️';
+  if (cloud >= 35) return '⛅';
+  return '☀️';
+}
+function hourLabel(s) {
+  return new Date(s).toLocaleTimeString('nl-NL', {hour:'2-digit', minute:'2-digit'});
+}
+function todayHourlyIndexes(times) {
+  const today = new Date().toLocaleDateString('sv-SE');
+  return times.map((t,i)=>[t,i]).filter(([t])=>t.slice(0,10)===today).map(([,i])=>i);
+}
+
 function fmtDate(s) {
   const d = new Date(s + 'T00:00:00');
   return d.toLocaleDateString('nl-NL', {weekday:'short', day:'numeric', month:'short'});
@@ -73,17 +108,45 @@ async function loadWeather(lat, lon, name) {
   const status = document.getElementById('weatherStatus');
   status.textContent = 'Weer wordt geladen...';
   try {
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,uv_index_max&timezone=auto`;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,relative_humidity_2m,cloud_cover,precipitation&hourly=temperature_2m,apparent_temperature,precipitation,precipitation_probability,cloud_cover,wind_speed_10m,relative_humidity_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,uv_index_max,sunrise,sunset&timezone=auto&forecast_days=7`;
     const r = await fetch(url);
     if(!r.ok) throw new Error('Weerdata niet beschikbaar');
     const d = await r.json();
     document.getElementById('nowLocation').textContent = name;
-    document.getElementById('nowDesc').textContent = weatherCodes[d.current.weather_code] || 'Weerdata';
+    document.getElementById('nowDesc').textContent = (weatherCodes[d.current.weather_code] || 'Weerdata') + ' · bewolking ' + d.current.cloud_cover + '% · vocht ' + d.current.relative_humidity_2m + '%';
     document.getElementById('nowTemp').textContent = Math.round(d.current.temperature_2m) + '°';
     document.getElementById('apparent').textContent = Math.round(d.current.apparent_temperature) + '°C';
     document.getElementById('rainChance').textContent = d.daily.precipitation_probability_max[0] + '%';
     document.getElementById('wind').textContent = Math.round(d.current.wind_speed_10m) + ' km/u';
     document.getElementById('uv').textContent = Math.round(d.daily.uv_index_max[0]);
+    const hourlyIdx = todayHourlyIndexes(d.hourly.time).slice(0, 24);
+    const hourlyRows = hourlyIdx.map(i => {
+      const code = d.hourly.weather_code[i];
+      const rain = d.hourly.precipitation[i];
+      const cloud = d.hourly.cloud_cover[i];
+      const icon = weatherIcon(code, rain, cloud);
+      return `<tr><td>${hourLabel(d.hourly.time[i])}</td><td>${icon} ${weatherCodes[code] || 'Weer'}</td><td>${Math.round(d.hourly.temperature_2m[i])}°</td><td>${cloud}%</td><td>${rain.toFixed(1)} mm</td><td>${d.hourly.precipitation_probability[i]}%</td><td>${Math.round(d.hourly.wind_speed_10m[i])} km/u</td><td>${d.hourly.relative_humidity_2m[i]}%</td></tr>`;
+    }).join('');
+    document.getElementById('hourlyTable').innerHTML = hourlyRows || '<tr><td colspan="8">Geen uurlijkse data beschikbaar voor vandaag.</td></tr>';
+
+    const rainBars = hourlyIdx.filter((_,k)=>k%2===0).map(i => {
+      const rain = d.hourly.precipitation[i];
+      const prob = d.hourly.precipitation_probability[i];
+      const width = Math.min(100, Math.max(prob, rain * 25));
+      return `<div class="rain-bar"><span>${hourLabel(d.hourly.time[i])}</span><div class="rain-track"><div class="rain-fill" style="width:${width}%"></div></div><span>${rain.toFixed(1)} mm</span></div>`;
+    }).join('');
+    document.getElementById('rainBars').innerHTML = rainBars || 'Geen regeninformatie beschikbaar.';
+
+    const maxRainProb = Math.max(...hourlyIdx.map(i => d.hourly.precipitation_probability[i]));
+    const maxRain = Math.max(...hourlyIdx.map(i => d.hourly.precipitation[i]));
+    const maxCloud = Math.max(...hourlyIdx.map(i => d.hourly.cloud_cover[i]));
+    let advice = 'Prima dag om flexibel te plannen.';
+    if (maxRainProb >= 70 || maxRain >= 2) advice = '🌧️ Grote kans op regen vandaag. Plan hikes/bootmomenten vroeg en neem regenbescherming mee.';
+    else if (maxRainProb >= 40) advice = '🌦️ Wisselvallig. Houd een drybag/regenkleding klaar en plan buitenactiviteiten vroeg.';
+    else if (maxCloud >= 80) advice = '☁️ Veel bewolking. Goed voor wandelen, minder ideaal voor zonsondergangsfoto’s.';
+    else advice = '☀️ Relatief gunstig weer. Let op zonkracht, hitte en hydratatie.';
+    document.getElementById('weatherAdvice').textContent = advice + ` Zonsopkomst: ${d.daily.sunrise[0]?.slice(11,16) || '—'} · zonsondergang: ${d.daily.sunset[0]?.slice(11,16) || '—'}.`;
+
     const rows = d.daily.time.map((day,i)=>`<div class="forecast-row"><div><b>${fmtDate(day)}</b><small>${weatherCodes[d.daily.weather_code[i]] || 'Weer'}</small></div><span>${Math.round(d.daily.temperature_2m_min[i])}° / ${Math.round(d.daily.temperature_2m_max[i])}° · ${d.daily.precipitation_probability_max[i]}%</span></div>`).join('');
     document.getElementById('forecastList').innerHTML = rows;
     status.textContent = 'Laatst bijgewerkt: ' + new Date().toLocaleString('nl-NL');
