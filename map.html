@@ -2,6 +2,11 @@
 <title>Interactieve routekaart</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="styles.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#005a45">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Indonesia 2026">
+<link rel="apple-touch-icon" href="icon.svg">
 </head><body class="map-page"><div class="app map-shell">
 
 <section class="map-hero-v11">
@@ -290,4 +295,6 @@ requestAnimationFrame(() => {
   setTimeout(() => map.invalidateSize(), 400);
 });
 </script>
+<div class="install-banner" id="installBanner"><div><b>Installeer als app</b><small>Zet de reisgids op je beginscherm en gebruik hem offline.</small></div><button onclick="installPWA()">Installeer</button></div>
+<script src="app.js"></script>
 </body></html>

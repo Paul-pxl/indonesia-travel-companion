@@ -1,4 +1,9 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Harau Valley</title><link rel="stylesheet" href="styles.css"></head><body><div class="app"><header class="sticky"><div class="sticky-top"><div class="brand"><div class="brand-icon">🌴</div><h1>Indonesië 2026</h1></div></div></header>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Harau Valley</title><link rel="stylesheet" href="styles.css"><link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#005a45">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Indonesia 2026">
+<link rel="apple-touch-icon" href="icon.svg">
+</head><body><div class="app"><header class="sticky"><div class="sticky-top"><div class="brand"><div class="brand-icon">🌴</div><h1>Indonesië 2026</h1></div></div></header>
     <section class="detail-hero" style="background-image:url('photo-07.jpg')">
       <a class="back" href="index.html">← Reisroute</a>
       <div><h2>Harau Valley</h2><p>🌾 30 jul–2 aug · Sumatra</p></div>
@@ -149,4 +154,6 @@
  const daysLeft=Math.ceil((end-today)/86400000); document.getElementById('left').textContent=today<start?Math.ceil((start-today)/86400000)+' dagen tot vertrek':(today>end?'Reis afgerond':daysLeft+' dagen te gaan');
 })();
 </script>
+<div class="install-banner" id="installBanner"><div><b>Installeer als app</b><small>Zet de reisgids op je beginscherm en gebruik hem offline.</small></div><button onclick="installPWA()">Installeer</button></div>
+<script src="app.js"></script>
 </body></html>

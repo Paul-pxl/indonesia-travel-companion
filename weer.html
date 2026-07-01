@@ -1,6 +1,11 @@
 <!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Weer</title>
 <link rel="stylesheet" href="styles.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#005a45">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Indonesia 2026">
+<link rel="apple-touch-icon" href="icon.svg">
 </head><body class="weather-page"><div class="app weather-shell">
 
 <section class="weather-hero">
@@ -184,4 +189,6 @@ document.getElementById('useMyLocation').addEventListener('click', () => {
 });
 loadSelected();
 </script>
-</div></body></html>
+</div><div class="install-banner" id="installBanner"><div><b>Installeer als app</b><small>Zet de reisgids op je beginscherm en gebruik hem offline.</small></div><button onclick="installPWA()">Installeer</button></div>
+<script src="app.js"></script>
+</body></html>

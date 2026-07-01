@@ -1,0 +1,42 @@
+{
+  "name": "Indonesia Travel Companion 2026",
+  "short_name": "Indonesia 2026",
+  "description": "Offline reisapp voor Sumatra en Sulawesi met route, kaart, vluchten, verblijven en weer.",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#eef7f2",
+  "theme_color": "#005a45",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "maskable-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Kaart",
+      "short_name": "Kaart",
+      "url": "map.html"
+    },
+    {
+      "name": "Vluchten",
+      "short_name": "Vluchten",
+      "url": "vluchten.html"
+    },
+    {
+      "name": "Weer",
+      "short_name": "Weer",
+      "url": "weer.html"
+    }
+  ]
+}
