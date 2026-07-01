@@ -15,6 +15,13 @@
 .popup-card{width:218px}.popup-card img{width:100%;height:94px;object-fit:cover;border-radius:14px;margin-bottom:8px}.popup-card b{font-size:16px;color:#0f2b23}.popup-card p{margin:6px 0;color:#4b5563;line-height:1.35}.popup-tags{display:flex;flex-wrap:wrap;gap:5px;margin:7px 0}.popup-tags span{background:#e7f5ef;color:var(--green);border-radius:999px;padding:4px 7px;font-weight:800;font-size:11px}.popup-card a{display:block;background:var(--green);color:white;text-align:center;border-radius:12px;padding:9px;margin-top:8px;font-weight:900}
 .leaflet-popup-content-wrapper{border-radius:18px}.leaflet-popup-content{margin:10px}.leaflet-control-attribution{font-size:9px}
 @media(max-width:430px){#routeMap{height:56vh;min-height:390px}.map-controls{grid-template-columns:repeat(2,1fr)}.map-top h2{font-size:28px}}
+
+/* V11 Sprint1 */
+*{box-sizing:border-box}
+img{max-width:100%;display:block}
+a{-webkit-tap-highlight-color:transparent}
+body{scroll-behavior:smooth}
+
 </style></head><body><div class="app leaflet-shell">
 <section class="map-top">
   <a class="back" href="index.html" style="color:white;background:rgba(255,255,255,.14)">‹ Route</a>
@@ -43,6 +50,10 @@
   </div>
 </section>
 
+<section class="map-panel"><h3 style="margin:0 0 10px;color:var(--green)">Reisdashboard</h3>
+<div class="map-stats"><div class="map-stat"><b>46</b><small>Dagen</small></div><div class="map-stat"><b>22</b><small>Bestemmingen</small></div><div class="map-stat"><b>9</b><small>Vluchten</small></div></div>
+<div class="map-stats" style="margin-top:8px"><div class="map-stat"><b>11</b><small>Hotels</small></div><div class="map-stat"><b>3</b><small>Jungle</small></div><div class="map-stat"><b>15+</b><small>Duiken</small></div></div>
+<div style="margin-top:12px;padding:12px;border-radius:16px;background:#f1faf6"><b style="color:var(--green)">Legenda</b><br>🦧 Wildlife &nbsp; 🌋 Vulkanen &nbsp; 🤿 Duiken &nbsp; ✈️ Vluchten &nbsp; 🏨 Verblijf</div></section>
 <section class="route-list"><button class="route-card" data-id="1">
   <span class="num">1</span><div><b>Amsterdam → Jakarta</b><small>15–16 jul · Transit</small></div>
 </button>
@@ -174,4 +185,4 @@ document.querySelectorAll('.map-controls button').forEach(btn=>btn.addEventListe
   });
 }));
 </script>
-</body></html>
+<button onclick="map.fitBounds(bounds.pad(.18))" style="position:fixed;right:18px;bottom:90px;border:none;border-radius:50%;width:56px;height:56px;background:#005a45;color:white;font-size:24px;box-shadow:0 10px 24px rgba(0,0,0,.25);z-index:999">⌖</button></body></html>
