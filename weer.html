@@ -1,0 +1,112 @@
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Weer</title>
+<link rel="stylesheet" href="styles.css">
+</head><body><div class="app">
+
+<section class="weather-hero">
+  <a class="back" href="index.html">‹ Route</a>
+  <h2>Weer</h2>
+  <p>Live weersverwachting per bestemming. De data wordt opgehaald via Open-Meteo wanneer je online bent.</p>
+</section>
+
+<section class="weather-card">
+  <h3>Bestemming</h3>
+  <select class="weather-select" id="locationSelect"><option value="0">Jakarta</option>
+<option value="1">Bukit Lawang</option>
+<option value="2">Berastagi</option>
+<option value="3">Ketambe</option>
+<option value="4">Lake Toba</option>
+<option value="5">Sipirok</option>
+<option value="6">Bukittinggi</option>
+<option value="7">Harau Valley</option>
+<option value="8">Kerinci</option>
+<option value="9">Rammang Rammang</option>
+<option value="10">Tana Toraja</option>
+<option value="11">Danau Poso</option>
+<option value="12">Togian Islands</option>
+<option value="13">Gorontalo</option>
+<option value="14">Tomohon</option>
+<option value="15">Bunaken</option>
+<option value="16">Lembeh</option>
+<option value="17">Tangkoko</option>
+<option value="18">Manado</option></select>
+  <div class="weather-actions">
+    <button id="refreshWeather">Ververs weer</button>
+    <button id="useMyLocation">Gebruik mijn locatie</button>
+  </div>
+  <div class="weather-note" id="weatherStatus">Kies een bestemming of gebruik je huidige locatie.</div>
+</section>
+
+<section class="weather-card">
+  <h3>Nu</h3>
+  <div class="weather-now">
+    <div><b id="nowLocation">—</b><small id="nowDesc">Weer laden...</small></div>
+    <div class="weather-temp" id="nowTemp">—°</div>
+  </div>
+  <div class="weather-grid">
+    <div class="weather-tile"><b>Gevoel</b><span id="apparent">—</span></div>
+    <div class="weather-tile"><b>Regenkans</b><span id="rainChance">—</span></div>
+    <div class="weather-tile"><b>Wind</b><span id="wind">—</span></div>
+    <div class="weather-tile"><b>UV-index</b><span id="uv">—</span></div>
+  </div>
+</section>
+
+<section class="weather-card">
+  <h3>7-daagse verwachting</h3>
+  <div class="forecast-list" id="forecastList"></div>
+</section>
+
+<nav class="bottom"><a href="index.html">🏠<span>Home</span></a><a href="map.html">🗺️<span>Kaart</span></a><a href="vluchten.html">✈️<span>Vluchten</span></a><a href="verblijf.html">🏨<span>Verblijf</span></a><a class="active" href="weer.html">🌦️<span>Weer</span></a></nav>
+
+<script>
+const LOCATIONS = [["Jakarta", -6.2088, 106.8456], ["Bukit Lawang", 3.549, 98.128], ["Berastagi", 3.1947, 98.5089], ["Ketambe", 3.6833, 97.65], ["Lake Toba", 2.61, 98.86], ["Sipirok", 1.6, 99.2833], ["Bukittinggi", -0.3056, 100.3692], ["Harau Valley", -0.1, 100.66], ["Kerinci", -1.697, 101.264], ["Rammang Rammang", -4.9167, 119.6], ["Tana Toraja", -2.97, 119.9], ["Danau Poso", -1.76, 120.65], ["Togian Islands", -0.35, 121.9], ["Gorontalo", 0.5435, 123.0568], ["Tomohon", 1.3244, 124.8385], ["Bunaken", 1.623, 124.76], ["Lembeh", 1.46, 125.24], ["Tangkoko", 1.55, 125.16], ["Manado", 1.4748, 124.8421]];
+const weatherCodes = {
+  0:'Helder',1:'Overwegend helder',2:'Half bewolkt',3:'Bewolkt',45:'Mist',48:'Rijpmist',
+  51:'Lichte motregen',53:'Motregen',55:'Dichte motregen',61:'Lichte regen',63:'Regen',65:'Zware regen',
+  80:'Lichte buien',81:'Buien',82:'Zware buien',95:'Onweer',96:'Onweer met hagel',99:'Zwaar onweer'
+};
+function fmtDate(s) {
+  const d = new Date(s + 'T00:00:00');
+  return d.toLocaleDateString('nl-NL', {weekday:'short', day:'numeric', month:'short'});
+}
+async function loadWeather(lat, lon, name) {
+  const status = document.getElementById('weatherStatus');
+  status.textContent = 'Weer wordt geladen...';
+  try {
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,uv_index_max&timezone=auto`;
+    const r = await fetch(url);
+    if(!r.ok) throw new Error('Weerdata niet beschikbaar');
+    const d = await r.json();
+    document.getElementById('nowLocation').textContent = name;
+    document.getElementById('nowDesc').textContent = weatherCodes[d.current.weather_code] || 'Weerdata';
+    document.getElementById('nowTemp').textContent = Math.round(d.current.temperature_2m) + '°';
+    document.getElementById('apparent').textContent = Math.round(d.current.apparent_temperature) + '°C';
+    document.getElementById('rainChance').textContent = d.daily.precipitation_probability_max[0] + '%';
+    document.getElementById('wind').textContent = Math.round(d.current.wind_speed_10m) + ' km/u';
+    document.getElementById('uv').textContent = Math.round(d.daily.uv_index_max[0]);
+    const rows = d.daily.time.map((day,i)=>`<div class="forecast-row"><div><b>${fmtDate(day)}</b><small>${weatherCodes[d.daily.weather_code[i]] || 'Weer'}</small></div><span>${Math.round(d.daily.temperature_2m_min[i])}° / ${Math.round(d.daily.temperature_2m_max[i])}° · ${d.daily.precipitation_probability_max[i]}%</span></div>`).join('');
+    document.getElementById('forecastList').innerHTML = rows;
+    status.textContent = 'Laatst bijgewerkt: ' + new Date().toLocaleString('nl-NL');
+  } catch(e) {
+    status.textContent = 'Weer kon niet worden geladen. Controleer internetverbinding of probeer opnieuw.';
+  }
+}
+function loadSelected() {
+  const i = +document.getElementById('locationSelect').value;
+  const [name, lat, lon] = LOCATIONS[i];
+  loadWeather(lat, lon, name);
+}
+document.getElementById('locationSelect').addEventListener('change', loadSelected);
+document.getElementById('refreshWeather').addEventListener('click', loadSelected);
+document.getElementById('useMyLocation').addEventListener('click', () => {
+  if(!navigator.geolocation) return;
+  document.getElementById('weatherStatus').textContent = 'Locatie wordt bepaald...';
+  navigator.geolocation.getCurrentPosition(pos => {
+    loadWeather(pos.coords.latitude, pos.coords.longitude, 'Huidige locatie');
+  }, () => {
+    document.getElementById('weatherStatus').textContent = 'Locatie kon niet worden bepaald.';
+  });
+});
+loadSelected();
+</script>
+</div></body></html>
