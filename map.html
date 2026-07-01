@@ -26,27 +26,13 @@
       <button data-filter="volcano">🌋 Vulkanen</button>
     </div>
     <div class="engine-status"><span class="engine-dot"></span><span id="engineStatus">Kaart klaar · snelle rendering</span></div>
-    <div class="map-search"><input id="mapSearch" placeholder="Zoek bestemming..." autocomplete="off"><button id="searchBtn">⌕</button></div>
     <div class="map-control-row">
       <button id="play">▶</button>
       <input id="routeRange" class="range" type="range" min="1" max="22" value="1">
       <button id="fit">⌖</button>
     </div>
   </div>
-  <div class="map-premium-tools">
-    <select id="baseSelect" title="Kaartlaag">
-      <option value="osm">Kaart</option>
-      <option value="terrain">Terrain</option>
-      <option value="satellite">Satelliet</option>
-    </select>
-    <button id="printMap">🖨️ Print</button>
-  </div>
 </section>
-
-<div class="print-card">
-  <h1>Indonesië 2026 · Routekaart</h1>
-  <p>Sumatra & Sulawesi route met alle hoofdstoppen, vluchten, overlandtrajecten, duikgebieden en wildlife-bestemmingen.</p>
-</div>
 
 <h3 class="route-list-title">Route-tijdlijn</h3>
 <section class="route-list"><button class="route-card" data-id="1">
@@ -132,26 +118,21 @@ const map = L.map('routeMap', {
 }).setView([-2,112],5);
 L.control.zoom({position:'topright'}).addTo(map);
 
-const layers = {
-  osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom:18, updateWhenIdle:true, updateWhenZooming:false, keepBuffer:3, attribution:'&copy; OpenStreetMap'
-  }),
-  terrain: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-    maxZoom:17, updateWhenIdle:true, updateWhenZooming:false, keepBuffer:3, attribution:'&copy; OpenTopoMap'
-  }),
-  satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    maxZoom:18, updateWhenIdle:true, updateWhenZooming:false, keepBuffer:3, attribution:'Tiles &copy; Esri'
-  })
-};
-let currentBase = layers.osm.addTo(map);
+const baseLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom:18,
+  updateWhenIdle:true,
+  updateWhenZooming:false,
+  keepBuffer:3,
+  attribution:'&copy; OpenStreetMap'
+}).addTo(map);
 
 const colors = {sumatra:'#0f8a5f', sulawesi:'#f97316', flight:'#2563eb', transfer:'#64748b'};
 const markerLayer = L.layerGroup().addTo(map);
 const routeLayer = L.layerGroup().addTo(map);
 const progressLayer = L.layerGroup().addTo(map);
-const labelLayer = L.layerGroup().addTo(map);
 
 const markers = new Map();
+const routeLines = [];
 let activeFilter = 'all';
 let animationTimer = null;
 let activeStopId = 1;
@@ -173,48 +154,39 @@ function popupHtml(s){
     <p><strong>${s.date}</strong> · ${s.region}</p>
     <p>${s.desc}</p>
     <div class="popup-tags">${s.tags.map(t=>`<span>${t}</span>`).join('')}</div>
-    <div class="map-distance">${s.type==='flight'?'✈️ Vlucht / transit':s.type==='dive'?'🤿 Duikstop':s.type==='wildlife'?'🐾 Wildlife':s.type==='volcano'?'🌋 Vulkaan / hike':'📍 Routepunt'}</div>
     <a href="${s.href}">Open bestemming</a>
   </div>`;
 }
 
 function initMarkers(){
-  markerLayer.clearLayers();
+  const frag = [];
   DATA.stops.forEach(s => {
-    const m = L.marker([s.lat,s.lng], { icon: markerIcon(s), title:s.title, riseOnHover:true })
-      .bindPopup(() => popupHtml(s), {maxWidth:290, autoPanPadding:[24,80]});
+    const m = L.marker([s.lat,s.lng], {
+      icon: markerIcon(s),
+      title: s.title,
+      riseOnHover:true
+    }).bindPopup(() => popupHtml(s), {maxWidth:280, autoPanPadding:[24,80]});
     m.on('click', () => setActiveStop(s.n, false, false));
     markers.set(s.n, m);
-    markerLayer.addLayer(m);
+    frag.push(m);
   });
+  markerLayer.clearLayers();
+  frag.forEach(m => markerLayer.addLayer(m));
 }
 
 function initRoutes(){
   routeLayer.clearLayers();
-  DATA.segments.forEach(seg => {
-    L.polyline(seg.coords, {
+  routeLines.length = 0;
+  DATA.segments.forEach((seg, idx) => {
+    const line = L.polyline(seg.coords, {
       color: colors[seg.mode] || '#0f8a5f',
       weight: seg.mode==='flight'?3:5,
-      opacity:.80,
+      opacity:.78,
       dashArray: seg.mode==='flight'?'8 10':null,
-      smoothFactor:1.3
+      smoothFactor:1.3,
+      bubblingMouseEvents:false
     }).addTo(routeLayer);
-  });
-}
-
-function initLabels(){
-  labelLayer.clearLayers();
-  const labels = [
-    {name:'SUMATRA', lat:0.9, lng:99.6},
-    {name:'SULAWESI', lat:-1.1, lng:121.8},
-    {name:'JAVA / JAKARTA', lat:-6.4, lng:106.8},
-    {name:'NOORD-SULAWESI', lat:1.25, lng:124.9}
-  ];
-  labels.forEach(l => {
-    L.marker([l.lat,l.lng], {
-      icon:L.divIcon({className:'', html:`<div class="map-label">${l.name}</div>`, iconSize:[120,24], iconAnchor:[60,12]}),
-      interactive:false
-    }).addTo(labelLayer);
+    routeLines.push(line);
   });
 }
 
@@ -260,8 +232,6 @@ function setActiveStop(id, open=true, fly=true){
     c.classList.toggle('passed', cid<id);
     c.classList.toggle('next', cid===id+1);
   });
-  const activeCard = document.querySelector(`.route-card[data-id="${id}"]`);
-  if(activeCard) activeCard.scrollIntoView({block:'nearest', behavior:'smooth'});
   drawProgress(id);
   const range = document.getElementById('routeRange');
   if(range) range.value = id;
@@ -293,14 +263,7 @@ function playJourney(){
       animationTimer = null;
       play.textContent = '▶';
     }
-  }, 1100);
-}
-
-function searchStop(){
-  const q = (document.getElementById('mapSearch')?.value || '').trim().toLowerCase();
-  if(!q) return;
-  const s = DATA.stops.find(x => x.title.toLowerCase().includes(q) || x.region.toLowerCase().includes(q) || x.tags.join(' ').toLowerCase().includes(q));
-  if(s) setActiveStop(s.n, true, true);
+  }, 1150);
 }
 
 function bindUi(){
@@ -310,13 +273,6 @@ function bindUi(){
   document.getElementById('routeRange')?.addEventListener('input', e => setActiveStop(+e.target.value, false, true));
   document.getElementById('fit')?.addEventListener('click', fitAll);
   document.getElementById('play')?.addEventListener('click', playJourney);
-  document.getElementById('searchBtn')?.addEventListener('click', searchStop);
-  document.getElementById('mapSearch')?.addEventListener('keydown', e => { if(e.key==='Enter') searchStop(); });
-  document.getElementById('printMap')?.addEventListener('click', () => window.print());
-  document.getElementById('baseSelect')?.addEventListener('change', e => {
-    map.removeLayer(currentBase);
-    currentBase = layers[e.target.value].addTo(map);
-  });
   document.querySelectorAll('.map-controls button').forEach(btn => btn.addEventListener('click', () => {
     const f = btn.dataset.filter;
     document.querySelectorAll('.map-controls button').forEach(b => b.classList.toggle('off', b!==btn && f!=='all'));
@@ -328,7 +284,6 @@ function bindUi(){
 requestAnimationFrame(() => {
   initRoutes();
   initMarkers();
-  initLabels();
   bindUi();
   fitAll();
   setTimeout(() => setActiveStop(1, false, false), 250);
