@@ -461,3 +461,13 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid rgba(
   .map-floating-card,.route-list,.route-list-title{display:none!important}
   #routeMap{height:70vh!important}
 }
+
+
+/* ===== v11 Sprint 2B map engine ===== */
+.engine-status{display:flex;gap:8px;align-items:center;margin-top:9px;color:#667085;font-size:11px;font-weight:900}
+.engine-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(0,90,69,.12)}
+.map-line-active{filter:drop-shadow(0 5px 8px rgba(0,90,69,.25))}
+.marker-dot.is-active{transform:scale(1.22);box-shadow:0 12px 25px rgba(0,0,0,.32),0 0 0 6px rgba(255,255,255,.7)}
+.route-card.passed{opacity:.72}
+.route-card.next{outline:2px dashed rgba(0,90,69,.25)}
+.leaflet-container{font-family:inherit}
