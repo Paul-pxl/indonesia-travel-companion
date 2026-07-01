@@ -552,3 +552,9 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid rgba(
 
 /* ===== BL-1: Bukit Lawang aligned to Lake Toba structure ===== */
 .love-box{background:linear-gradient(135deg,#e7f7ef,#ffffff);border-radius:20px;padding:16px;border:1px solid #d8efe5;color:#244238;line-height:1.55}
+
+
+/* ===== BL-5: Bukit Lawang final polish ===== */
+.love-box{background:linear-gradient(135deg,#e7f7ef,#ffffff);border-radius:20px;padding:16px;border:1px solid #d8efe5;color:#244238;line-height:1.55;font-weight:700}
+.bukit-lawang-polish .guide-section{scroll-margin-top:16px}
+.guide-section .guide-list li b{color:#163b32}
