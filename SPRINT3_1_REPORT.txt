@@ -1,0 +1,16 @@
+Sprint 3.1 verwerkt
+Pagina's:
+- Heenreis
+- Jakarta
+- Bukit Lawang
+- Berastagi
+- Ketambe
+
+Toegevoegd/verbeterd:
+- Restaurants en cafés met Google Maps-links
+- Accommodatieblokken met plus- en minpunten
+- Tips uit reisblogs/reiservaringen
+- Praktische tips
+- Niet missen
+- Goed om te weten
+- Consistente guide-section structuur
