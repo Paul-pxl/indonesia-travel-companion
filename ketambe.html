@@ -1,69 +1,180 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Ketambe</title><link rel="stylesheet" href="styles.css"><link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#005a45">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Indonesia 2026">
-<link rel="apple-touch-icon" href="icon.svg">
-</head><body><div class="app"><header class="sticky"><div class="sticky-top"><div class="brand"><div class="brand-icon">🌴</div><h1>Indonesië 2026</h1></div></div></header>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Ketambe</title><style>
+:root{--green:#005a45;--green2:#007a61;--mint:#e7f5ef;--text:#071226;--muted:#566278;--shadow:0 18px 50px rgba(0,90,69,.13)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#edf7f3;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}a{text-decoration:none;color:inherit}
+.app{max-width:430px;margin:0 auto;background:#f9fcfb;min-height:100vh;padding-bottom:92px;box-shadow:0 0 0 1px rgba(0,0,0,.04)}
+.sticky{position:sticky;top:0;z-index:50;background:linear-gradient(135deg,#004832,#006b50);color:white;padding:20px 22px 18px;border-radius:0 0 0 0;box-shadow:0 8px 26px rgba(0,72,50,.22)}
+.sticky-top{display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:12px}.brand-icon{font-size:31px}.brand h1{font-size:28px;letter-spacing:.02em;margin:0;text-transform:uppercase}.menu{font-size:34px;font-weight:900}.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}.tabs a{padding:11px 4px 14px;text-align:center;color:rgba(255,255,255,.86);font-size:13px;font-weight:800;border-bottom:4px solid transparent}.tabs a.active{color:white;border-bottom-color:white}
+.hero-card{margin:20px 24px 22px;border-radius:26px;overflow:hidden;min-height:306px;background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;color:white}.hero-card:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.25),rgba(0,0,0,.12))}.hero-inner{position:relative;padding:22px;height:100%;min-height:306px;display:flex;flex-direction:column;justify-content:space-between}.pill{align-self:flex-start;background:rgba(0,108,84,.92);padding:9px 14px;border-radius:999px;font-size:13px;text-transform:uppercase;font-weight:900;letter-spacing:.04em}.hero-card h2{font-size:44px;letter-spacing:-.05em;line-height:1;margin:0 0 18px}.hero-details{display:grid;gap:10px;font-size:17px;font-weight:650}.hero-go{position:absolute;right:22px;bottom:38px;width:58px;height:58px;border-radius:50%;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:42px}
+.progress{background:white;margin:0 24px 28px;border-radius:22px;padding:18px;box-shadow:var(--shadow)}.progress h3{margin:0 0 16px;font-size:19px}.progress-row{display:flex;justify-content:space-between;color:#465168;font-size:14px;margin-bottom:9px}.track{height:10px;background:#e4ebe8;border-radius:99px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,#006b50,#0da77f);border-radius:99px}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:26px 24px 14px}.section-head h2{font-size:28px;letter-spacing:-.04em;margin:0}.section-head a{color:var(--green);font-weight:900}
+.timeline{position:relative;margin:0 24px 20px;padding-left:38px}.timeline:before{content:"";position:absolute;left:15px;top:10px;bottom:20px;width:3px;background:var(--green);border-radius:99px}
+.stop{position:relative;display:grid;grid-template-columns:132px 1fr 20px;gap:14px;background:white;border-radius:23px;padding:12px;margin:14px 0;min-height:148px;box-shadow:0 14px 35px rgba(0,90,69,.10)}.num{position:absolute;left:-39px;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:var(--green);color:white;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900}.stop img{width:132px;height:120px;object-fit:cover;border-radius:18px}.stop small{display:block;color:#5d687c;font-size:14px;margin-bottom:8px}.stop h3{font-size:23px;letter-spacing:-.04em;margin:0 0 6px}.stop p{margin:0;color:#536176;font-size:15px;line-height:1.35}.arr{color:var(--green);font-size:32px;font-weight:900;align-self:center}.status{display:inline-block;background:#dff5ec;color:var(--green);font-weight:900;padding:3px 8px;border-radius:8px;margin-left:6px;font-size:12px}
+.stop.is-past{opacity:.68}.stop.is-past .num{font-size:0;background:#16a673}.stop.is-past .num:after{content:"✓";font-size:20px}.stop.is-current{outline:3px solid rgba(0,90,69,.18)}
+.detail-hero{height:330px;background-size:cover;background-position:center;position:relative;color:white;padding:20px;display:flex;flex-direction:column;justify-content:space-between}.detail-hero:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.68))}.detail-hero>*{position:relative}.back{align-self:flex-start;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:10px 14px;font-weight:900}.detail-hero h2{font-size:42px;line-height:1;letter-spacing:-.05em;margin:0}.detail-hero p{font-weight:800;margin:8px 0 0}.card{background:white;border-radius:24px;margin:18px 22px;padding:18px;box-shadow:var(--shadow)}.card h3{margin:0 0 10px;color:var(--green);font-size:22px}.card p{color:#3e4a5d;line-height:1.55}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mini{background:#f1faf6;border-radius:16px;padding:13px;color:var(--green);font-weight:900}.nav2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.nav2 a{background:var(--green);color:white;padding:14px;text-align:center;border-radius:16px;font-weight:900}
+.bottom{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:100%;max-width:430px;background:rgba(255,255,255,.96);backdrop-filter:blur(18px);border-top:1px solid rgba(0,0,0,.06);display:grid;grid-template-columns:repeat(5,1fr);padding:10px 8px 18px;z-index:60}.bottom a{text-align:center;color:#445066;font-size:22px;font-weight:900}.bottom span{display:block;font-size:11px;margin-top:3px}.bottom .active{color:var(--green)}
+@media(max-width:390px){.brand h1{font-size:23px}.tabs a{font-size:12px}.hero-card{margin-left:16px;margin-right:16px}.hero-card h2{font-size:38px}.timeline{margin-left:18px;margin-right:16px;padding-left:34px}.stop{grid-template-columns:110px 1fr 16px}.stop img{width:110px;height:105px}.stop h3{font-size:20px}.stop p{font-size:14px}.num{left:-35px}.progress{margin-left:16px;margin-right:16px}}
+
+.card.rich-card{padding:20px 18px}
+.card.rich-card h3{font-size:23px;margin-bottom:12px}
+.card.rich-card p{margin:0 0 13px;color:#3e4a5d;line-height:1.62;font-size:16px}
+.card.rich-card ul{margin:0;padding-left:20px;color:#3e4a5d;line-height:1.55;font-size:16px}
+.plan-list{list-style:none!important;padding-left:0!important;display:grid;gap:12px}
+.plan-list li{background:#f1faf6;border-radius:16px;padding:13px 14px}
+.plan-list b{display:block;color:var(--green);margin-bottom:5px}
+.plan-list span{display:block}
+.tip-list li{margin-bottom:8px}
+.rich-mini{color:#005a45!important;background:#f1faf6!important;line-height:1.35}
+
+
+.guide-section{background:white;border-radius:24px;margin:18px 22px;padding:20px 18px;box-shadow:var(--shadow)}
+.guide-section h3{margin:0 0 12px;color:var(--green);font-size:23px;letter-spacing:-.03em}
+.guide-section p{margin:0 0 13px;color:#3e4a5d;line-height:1.62;font-size:16px}
+.guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.guide-tile{background:#f1faf6;border-radius:17px;padding:13px;color:#163b32;line-height:1.35}
+.guide-tile b{display:block;color:var(--green);margin-bottom:5px}
+.guide-list{margin:0;padding-left:20px;color:#3e4a5d;line-height:1.55;font-size:16px}
+.guide-list li{margin-bottom:8px}
+.day-plan{display:grid;gap:10px}.day{background:#f1faf6;border-radius:17px;padding:14px}
+.day b{display:block;color:var(--green);margin-bottom:5px}
+.note-box{background:#fff8e6;border:1px solid #f0d98b;border-radius:18px;padding:14px;color:#4a3b13;line-height:1.5}
+.love-box{background:linear-gradient(135deg,#e7f7ef,#ffffff);border-radius:20px;padding:16px;border:1px solid #d8efe5;color:#244238;line-height:1.55}
+
+
+.link-list a{color:var(--green);font-weight:900;text-decoration:underline}
+.procon{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.procon-card{background:#f1faf6;border-radius:16px;padding:14px}
+.procon-card.warn{background:#fff8e6}
+</style></head><body><div class="app"><header class="sticky"><div class="sticky-top"><div class="brand"><div class="brand-icon">🌴</div><h1>Indonesië 2026</h1></div></div></header>
     <section class="detail-hero" style="background-image:url('photo-03.jpg')">
       <a class="back" href="index.html">← Reisroute</a>
       <div><h2>Ketambe</h2><p>🌿 20–24 jul · Sumatra</p></div>
     </section>
+
 <section class="guide-section"><h3>Waarom deze bestemming?</h3>
-<p>Ketambe is de ruigere junglestop van jullie Sumatra-route. Waar Bukit Lawang toegankelijk en populair is, voelt Ketambe wilder, stiller en minder geregisseerd. Hier draait het om echte jungle, meerdaagse trekking en een grotere kans op een diepere natuurervaring.</p>
-<p>Voor jullie route is Ketambe een kernbestemming. Het is intensiever dan Bukit Lawang, maar waarschijnlijk ook memorabeler als jullie openstaan voor basic comfort, modder, vocht en lange dagen.</p>
+<p>Ketambe is de plek waar jullie Sumatra-route echt wilder wordt. Bukit Lawang is de toegankelijke introductie tot Gunung Leuser; Ketambe is de diepere jungle-ervaring. Minder cafés, minder reizigers, minder comfort — maar daardoor ook meer stilte, meer avontuur en een veel sterker gevoel dat je echt aan de rand van het regenwoud zit.</p>
+<p>Deze stop past perfect in jullie route omdat jullie na Bukit Lawang en Berastagi al gewend zijn aan Sumatra, maar nog vóór Lake Toba een serieuze natuurervaring hebben. Ketambe is geen bestemming die je kiest voor gemak. Je kiest het omdat je orang-oetans, gibbons, hornbills, rivieren en jungle niet als dagtrip wilt beleven, maar als meerdere dagen waarin je tempo vanzelf omlaag gaat.</p>
+<p>Het belangrijkste verschil met Bukit Lawang: in Ketambe voelt de jungle minder als decor en meer als hoofdpersoon. De logistiek is iets minder soepel en het comfort is basic, maar dat maakt de ervaring juist sterker.</p>
 </section>
+
 <section class="guide-section"><h3>Jullie planning</h3><div class="day-plan">
-<div class="day"><b>20 juli</b>Aankomst vanuit Berastagi. Inchecken bij Pondok Wisata, gids en trekkingdetails bevestigen.</div>
-<div class="day"><b>21 juli</b>Start jungle trek. Rustig tempo, wildlife zoeken, wennen aan warmte/vocht.</div>
-<div class="day"><b>22 juli</b>Jungle trek. Focus op natuur, geluiden, sporen en kampbeleving.</div>
-<div class="day"><b>23 juli</b>Transfer/herstel na jungle. Spullen drogen, eten, rust.</div>
+<div class="day"><b>20 juli</b>Aankomst vanuit Berastagi. Inchecken bij Pondok Wisata, gids en trekkingdetails bevestigen, tassen herpakken en vroeg slapen. Dit is de avond waarop je bepaalt wat wel en niet mee de jungle in gaat.</div>
+<div class="day"><b>21 juli</b>Start jungle trek. Rustig tempo, veel luisteren en kijken, eerste kans op orang-oetans, gibbons en neushoornvogels. Overnachten basic in of bij de jungle, afhankelijk van jullie exacte trekking.</div>
+<div class="day"><b>22 juli</b>Diepere jungledag. Dit is waarschijnlijk de meest intense dag: vocht, modder, riviermomenten, wildlife zoeken en wennen aan het ritme van het bos.</div>
+<div class="day"><b>23 juli</b>Laatste trekkingdeel en terug richting Ketambe. Douchen, droog worden, rustig eten en niets ambitieus plannen.</div>
+<div class="day"><b>24 juli</b>Doorreis richting Lake Toba. Na Ketambe is Toba bewust als herstelblok gekozen: zwemmen, slapen, wassen en weer opladen.</div>
 </div></section>
-<section class="guide-section"><h3>Restaurants & cafés</h3>
-<ul class="guide-list link-list">
-<li><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=restaurants+Ketambe">Restaurants in Ketambe</a></li>
-<li><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=warung+Ketambe">Warungs in Ketambe</a></li>
-<li><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=coffee+Ketambe">Koffie in Ketambe</a></li>
-<li><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=Pondok+Wisata+Ketambe">Pondok Wisata op Google Maps</a></li>
-</ul>
-<p class="source-note">Horeca is hier eenvoudig. Eten via verblijf of lokale warung is meestal de meest praktische keuze.</p>
-</section>
-<section class="guide-section"><h3>Verblijf</h3>
-<p><b>Pondok Wisata</b> is vooral sterk als jungle-basis: eenvoudig, lokaal, dicht bij de natuur en praktisch voor gidsen/trekking. Verwacht geen luxe, maar wel de juiste setting.</p>
-<div class="procon">
-<div class="procon-card"><b>Pluspunten</b>Goede ligging voor jungle, lokale sfeer, hulp met gidsen, basic maar passend bij de bestemming.</div>
-<div class="procon-card warn"><b>Aandachtspunten</b>Eenvoudige kamers, vocht, insecten, wisselende wifi en beperkte horeca horen bij deze plek.</div>
-</div>
-</section>
-<section class="guide-section"><h3>Tips uit reisblogs</h3>
-<p>Reisblogs over Ketambe benadrukken dat dit minder gepolijst is dan Bukit Lawang. Dat is precies de kracht. Verwacht minder garanties, maar meer gevoel van echte jungle. Goede gidskeuze, realistische verwachtingen en respect voor dieren zijn essentieel.</p>
+
+<section class="guide-section"><h3>Wat reisblogs benadrukken</h3>
+<p>Reisblogs over Ketambe benadrukken bijna altijd dat je deze plek niet moet vergelijken met Bukit Lawang alsof het twee versies van hetzelfde zijn. Bukit Lawang is makkelijker, socialer en toeristischer; Ketambe is rustiger, primitiever en vaak authentieker. Juist daarom wordt Ketambe vaak aangeraden aan reizigers die al weten dat ze wat comfort willen inleveren voor een intensere natuurervaring.</p>
+<p>Een terugkerend advies is om veel aandacht te besteden aan je gidskeuze. In Ketambe is de gids niet alleen iemand die de route kent, maar ook degene die het tempo bepaalt, wildlife spot, veiligheid inschat bij rivieren of modderige paden en de sfeer van de trek maakt. Een goede gids laat dieren met rust, voert niet, houdt afstand en legt onderweg uit wat je hoort en ziet.</p>
+<p>Ook schrijven veel reizigers dat Ketambe vooral beloont als je verwachtingen goed staan: reken op basic slapen, natte kleding, insecten, weinig bereik en soms vermoeiende omstandigheden. Maar juist daardoor voelt een ontmoeting met een wilde orang-oetan, het geluid van gibbons in de ochtend of een stille rivierbocht veel waardevoller.</p>
 <div class="guide-grid">
-<div class="guide-tile"><b>Gidskwaliteit</b>Vraag naar ervaring, route, kampmateriaal en wildlife-etiquette.</div>
-<div class="guide-tile"><b>Drybag</b>Bescherm kleding, camera en powerbank tegen vocht.</div>
-<div class="guide-tile"><b>Tempo</b>Langzaam lopen levert vaak meer wildlife op.</div>
-<div class="guide-tile"><b>Comfort loslaten</b>Basic omstandigheden zijn onderdeel van de ervaring.</div>
+<div class="guide-tile"><b>Beste keuze</b>Kies een meerdaagse trek met rustig tempo en duidelijke afspraken over afstand tot wildlife.</div>
+<div class="guide-tile"><b>Niet vergelijken</b>Ketambe is geen “minder comfortabel Bukit Lawang”; het is een wildere ervaring met een andere beloning.</div>
+<div class="guide-tile"><b>Realistisch beeld</b>Basic comfort, vocht, modder en weinig voorzieningen horen bij de charme én de uitdaging.</div>
+<div class="guide-tile"><b>Belangrijkste tip</b>Neem minder mee dan je denkt, maar bescherm alles wat droog moet blijven.</div>
 </div>
+<p class="source-note">Samengevat uit terugkerende thema’s in reisblogs en gidsen over Ketambe, Gunung Leuser en jungle trekking in Zuidoost-Azië: gidskeuze, wildlife-ethiek, basic comfort, meerdaagse junglebeleving en het verschil met Bukit Lawang.</p>
 </section>
-<section class="guide-section"><h3>Praktisch</h3>
+
+<section class="guide-section"><h3>Hoogtepunten</h3><div class="guide-grid">
+<div class="guide-tile"><b>Wilde orang-oetans</b>De grootste trekpleister. In Ketambe voelt een ontmoeting vaak minder geregisseerd dan in drukkere junglegebieden.</div>
+<div class="guide-tile"><b>Gibbons in de ochtend</b>Het geluid van gibbons draagt ver door de jungle en is misschien net zo indrukwekkend als wat je ziet.</div>
+<div class="guide-tile"><b>Riviermomenten</b>Rivieren zijn hier geen decor maar onderdeel van de ervaring: afkoelen, oversteken, pauzeren en luisteren.</div>
+<div class="guide-tile"><b>Hornbills & jungleklanken</b>Veel van Ketambe zit in details: vleugels boven je, geritsel, insecten, vogels en lagen groen.</div>
+<div class="guide-tile"><b>Basic junglekamp</b>Niet comfortabel, wel memorabel. Slapen met junglegeluiden is een van de redenen om dit te doen.</div>
+<div class="guide-tile"><b>Gunung Leuser</b>Een van de belangrijkste regenwouden van Indonesië en een plek die steeds zeldzamer wordt.</div>
+</div></section>
+
+<section class="guide-section"><h3>Activiteiten</h3>
 <ul class="guide-list">
-<li>Neem genoeg cash mee; pinmogelijkheden zijn beperkt.</li>
-<li>Gebruik lichte lange kleding tegen insecten en planten.</li>
-<li>Check of slaapmat, klamboe, eten en water inbegrepen zijn in de trek.</li>
-<li>Laat droge kleding achter voor na de jungle.</li>
+<li><b>Meerdaagse jungle trek:</b> de kern van Ketambe. Reken niet alleen op wandelen, maar op observeren, wachten, luisteren en soms langzaam voortbewegen door nat terrein.</li>
+<li><b>Wildlife spotten:</b> orang-oetans zijn het bekendst, maar kijk ook naar gibbons, makaken, hornbills, grote vlinders, insecten en sporen op de grond.</li>
+<li><b>Rivierpauzes:</b> ideaal om af te koelen, maar alleen doen als de gids aangeeft dat stroming en plek veilig zijn.</li>
+<li><b>Junglekamp ervaren:</b> zie het kamp niet als ongemak, maar als onderdeel van de reis. Hier voel je pas echt hoe levend het bos ’s avonds is.</li>
+<li><b>Rustige avond in Ketambe:</b> na terugkomst geen plannen maken. Douchen, droge kleding, eten en vroeg slapen is precies goed.</li>
 </ul>
 </section>
+
+<section class="guide-section"><h3>Restaurants & cafés</h3>
+<p>Ketambe is geen plek met een lange restaurantlijst. De beste strategie is simpel: eet bij jullie accommodatie of bij lokale warungs die door de host of gids worden aangeraden. Belangrijker dan “het beste restaurant” is dat het eten vers is, dichtbij zit en past bij jullie trekkingplanning.</p>
+<ul class="guide-list link-list">
+<li><a href="https://www.google.com/maps/search/?api=1&query=Pondok+Wisata+Ketambe" target="_blank">Pondok Wisata Ketambe</a> — handigste plek voor maaltijden, trekkingvoorbereiding en afstemming met gidsen.</li>
+<li><a href="https://www.google.com/maps/search/?api=1&query=restaurants+Ketambe+Aceh+Tenggara" target="_blank">Restaurants in Ketambe</a> — actuele zoeklink voor lokale opties in de buurt.</li>
+<li><a href="https://www.google.com/maps/search/?api=1&query=warung+Ketambe+Aceh" target="_blank">Lokale warungs in Ketambe</a> — beste kans op simpele Indonesische maaltijden.</li>
+<li><a href="https://www.google.com/maps/search/?api=1&query=coffee+Ketambe+Aceh" target="_blank">Koffie in Ketambe</a> — handig als jullie vóór of na de trek een eenvoudige koffiestop zoeken.</li>
+<li><a href="https://www.google.com/maps/search/?api=1&query=Kutacane+restaurants" target="_blank">Kutacane restaurants</a> — back-up als jullie onderweg of vóór Ketambe meer keuze nodig hebben.</li>
+</ul>
+<p class="source-note">Voor Ketambe zijn Google Maps-resultaten wisselender dan in toeristische plaatsen. Check lokaal altijd wat open is en vraag jullie accommodatie om de meest actuele optie.</p>
+</section>
+
+<section class="guide-section"><h3>Jullie accommodatie</h3>
+<p><b>Pondok Wisata Ketambe</b> is vooral waardevol als junglebase. Het hoeft geen luxe verblijf te zijn; de kwaliteit zit in ligging, gidsennetwerk, praktische hulp en het feit dat je hier eenvoudig kunt schakelen tussen slapen, eten en de trek organiseren.</p>
+<p>Voor jullie route is dit precies het juiste type accommodatie: laagdrempelig, dicht bij de natuur en functioneel voor meerdere dagen trekking. De verwachting moet wel goed staan: dit is geen boutique lodge, maar een eenvoudige uitvalsbasis voor avontuur.</p>
+<div class="procon">
+<div class="procon-card"><b>Pluspunten uit reviews</b>Terugkerende pluspunten zijn de ligging bij de jungle, vriendelijke en behulpzame mensen, goede hulp bij trekking, ontspannen sfeer, eenvoudige maaltijden en sterke prijs-kwaliteit voor avontuurlijke reizigers.</div>
+<div class="procon-card warn"><b>Aandachtspunten</b>Kamers en badkamers zijn basic, voorzieningen kunnen eenvoudig zijn en comfort hangt deels af van weer, stroom, waterdruk en verwachtingen. Wie luxe zoekt, zit hier niet goed.</div>
+</div>
+<p class="source-note">Gebaseerd op terugkerende reviewthema’s voor eenvoudige jungle-accommodaties in Ketambe: locatie en gidsen zijn de grootste plus; comfort en afwerking zijn de belangrijkste concessie.</p>
+</section>
+
+<section class="guide-section"><h3>Fotospots</h3>
+<ul class="guide-list">
+<li>Rivierbochten met jungle aan beide kanten, vooral bij zacht ochtendlicht.</li>
+<li>Junglepad met grote wortels, lianen en lagen groen.</li>
+<li>Ochtendmist of damp boven de rivier.</li>
+<li>Silhouetten van bomen en kamp in de vroege avond.</li>
+<li>Orang-oetans, gibbons of hornbills alleen met afstand, zonder flits en zonder de groep op te jagen.</li>
+<li>Details: modderige schoenen, natte bladeren, handen bij het kampvuur, kookmomenten en regendruppels op bladeren.</li>
+</ul>
+</section>
+
+<section class="guide-section"><h3>Paklijst</h3><div class="guide-grid">
+<div class="guide-tile">Drybag</div>
+<div class="guide-tile">Hoofdlamp</div>
+<div class="guide-tile">DEET</div>
+<div class="guide-tile">ORS</div>
+<div class="guide-tile">Sneldrogend shirt</div>
+<div class="guide-tile">Dunne lange broek</div>
+<div class="guide-tile">Lange sokken</div>
+<div class="guide-tile">Powerbank</div>
+<div class="guide-tile">Regenhoes</div>
+<div class="guide-tile">Kleine handdoek</div>
+<div class="guide-tile">Waterproof zakjes</div>
+<div class="guide-tile">Snacks</div>
+</div></section>
+
+<section class="guide-section"><h3>Insider tips</h3>
+<ul class="guide-list">
+<li>Bespreek vooraf hoe zwaar jullie de trek willen maken. “Avontuurlijk” kan in Ketambe veel betekenen.</li>
+<li>Neem alleen mee wat je echt nodig hebt. Alles wat je meeneemt wordt zwaar, nat of allebei.</li>
+<li>Stop paspoort, telefoon, powerbank en droge kleding altijd in een drybag of dubbele plastic zak.</li>
+<li>Vraag je gids om rustig te lopen en veel te stoppen. Wildlife zie je vaak juist als je niet te snel beweegt.</li>
+<li>Wees voorzichtig met verwachtingen rond orang-oetans. De mooiste ontmoeting is een wilde ontmoeting, niet een gegarandeerde.</li>
+<li>Neem ORS serieus. Door warmte en vocht verlies je meer vocht dan je denkt.</li>
+<li>Plan na terugkomst geen lange calls, werk of ingewikkelde logistiek. Je wilt douchen, eten en slapen.</li>
+</ul>
+</section>
+
+<section class="guide-section"><h3>Aandachtspunten</h3>
+<div class="note-box">Ketambe kan fysiek pittig zijn door vocht, warmte, modder, insecten en basic voorzieningen. Dat betekent niet dat het extreem hoeft te zijn, maar wel dat je flexibel moet blijven. Veiligheid, weer en gidsadvies gaan altijd vóór het oorspronkelijke plan.</div>
+</section>
+
 <section class="guide-section"><h3>Niet missen</h3>
 <ul class="guide-list">
-<li>Vroege ochtendgeluiden in de jungle.</li>
-<li>Wildlife zoeken zonder haast.</li>
-<li>Een avond in of bij het kamp.</li>
-<li>Na afloop douchen, eten en niets hoeven.</li>
+<li>Een vroege ochtend in de jungle voordat het warm en luid wordt.</li>
+<li>Een lange rivierpauze, als de omstandigheden veilig zijn.</li>
+<li>Stil staan en alleen luisteren naar gibbons, insecten en vogels.</li>
+<li>De overgang terug naar comfort: douchen en droge kleding na meerdere dagen jungle.</li>
 </ul>
 </section>
-<section class="guide-section"><h3>Goed om te weten</h3>
-<div class="note-box">Ketambe is geen comfortabele excursie, maar een echte junglestop. Als je dat accepteert, kan dit een van de beste ervaringen van de reis worden.</div>
+
+<section class="guide-section"><h3>Waarom deze plek bijzonder is</h3>
+<div class="love-box">Ketambe is waarschijnlijk een van de meest avontuurlijke onderdelen van jullie reis. Niet omdat alles perfect geregeld voelt, maar omdat je hier echt even onderdeel wordt van de jungle. Juist de combinatie van ongemak, stilte, wildlife en eenvoud maakt deze stop waardevol.</div>
 </section>
+
 <section class="card"><div class="nav2"><a href="berastagi.html">‹ Vorige</a><a href="lake-toba.html">Volgende ›</a></div></section>
-<nav class="bottom"><a href="index.html">🏠<span>Home</span></a><a href="map.html">🗺️<span>Kaart</span></a><a href="vluchten.html">✈️<span>Vluchten</span></a><a href="verblijf.html">🏨<span>Verblijf</span></a><a href="weer.html">🌦️<span>Weer</span></a></nav></div>
+<nav class="bottom"><a class="" href="index.html">🏠<span>Home</span></a><a href="map.html">🗺️<span>Kaart</span></a><a href="bunaken.html">🤿<span>Duiken</span></a><a href="tangkoko.html">🐾<span>Wildlife</span></a><a href="terugreis.html">•••<span>Meer</span></a></nav></div>
 <script>
 (function(){
  const stops=[...document.querySelectorAll('.stop')].map((el,i)=>({el,i:i+1,start:new Date(el.dataset.start+'T00:00:00'),end:new Date(el.dataset.end+'T23:59:59'),title:el.dataset.title,img:el.querySelector('img')?.src,href:el.href,region:el.dataset.region,date:el.dataset.date,nights:el.dataset.nights}));
@@ -84,6 +195,4 @@
  const daysLeft=Math.ceil((end-today)/86400000); document.getElementById('left').textContent=today<start?Math.ceil((start-today)/86400000)+' dagen tot vertrek':(today>end?'Reis afgerond':daysLeft+' dagen te gaan');
 })();
 </script>
-<div class="install-banner" id="installBanner"><div><b>Installeer als app</b><small>Zet de reisgids op je beginscherm en gebruik hem offline.</small></div><button onclick="installPWA()">Installeer</button></div>
-<script src="app.js"></script>
 </body></html>
