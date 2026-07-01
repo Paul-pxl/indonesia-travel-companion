@@ -1,0 +1,7 @@
+BL-1 uitgevoerd: Bukit Lawang heeft nu dezelfde guide-section ritmiek en wrapper/classes als Lake Toba.
+bukit_guide_sections: 13
+lake_guide_sections: 13
+bukit_procon: 1
+lake_procon: 1
+bukit_guide_grid: 3
+lake_guide_grid: 3

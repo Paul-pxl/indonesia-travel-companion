@@ -1,0 +1,5 @@
+amsterdam-jakarta.html: guide-sections=7, procon=1, guide-grid=1
+bukit-lawang.html: guide-sections=8, procon=1, guide-grid=1
+berastagi.html: guide-sections=8, procon=1, guide-grid=1
+ketambe.html: guide-sections=8, procon=1, guide-grid=1
+lake-toba.html: guide-sections=13, procon=1, guide-grid=3
