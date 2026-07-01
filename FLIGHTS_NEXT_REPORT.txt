@@ -1,0 +1,2 @@
+Vluchten-tab bijgewerkt: bovenaan automatische 'Volgende vlucht' kaart op basis van huidige datum/tijd, met vluchtnummer placeholder, tijden, terminal/vertrekhal-info indien bekend, statuscheck-links en volledige vluchtentijdlijn.
+Let op: echte on-time status vereist een externe vluchtstatus-API of handmatige check; daarom zijn live check-links toegevoegd.

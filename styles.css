@@ -558,3 +558,34 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid rgba(
 .love-box{background:linear-gradient(135deg,#e7f7ef,#ffffff);border-radius:20px;padding:16px;border:1px solid #d8efe5;color:#244238;line-height:1.55;font-weight:700}
 .bukit-lawang-polish .guide-section{scroll-margin-top:16px}
 .guide-section .guide-list li b{color:#163b32}
+
+
+/* ===== v13 Flights next flight dashboard ===== */
+.flights-page{background:#eef7f2;min-height:100vh;padding-bottom:96px}
+.flights-hero{margin:14px;border-radius:30px;background:linear-gradient(135deg,#003f31,#007a61);color:white;padding:18px;box-shadow:var(--shadow)}
+.flights-hero .back{display:inline-flex;margin-bottom:10px;background:rgba(255,255,255,.14);color:white;border-radius:999px;padding:8px 12px;font-weight:900;text-decoration:none}
+.flights-hero h2{margin:0 0 6px;font-size:30px;line-height:1;letter-spacing:-.04em}
+.flights-hero p{margin:0;color:rgba(255,255,255,.88);line-height:1.45;font-size:14px}
+.next-flight,.flight-section{background:white;border-radius:24px;margin:14px;padding:16px;box-shadow:var(--shadow)}
+.next-label{display:inline-flex;background:#e7f5ef;color:var(--green);font-weight:950;border-radius:999px;padding:8px 12px;margin-bottom:10px}
+.next-flight h3,.flight-section h3{margin:0 0 6px;color:var(--green);font-size:24px;letter-spacing:-.03em}
+.next-date{color:#667085;font-weight:900;margin-bottom:12px}
+.next-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.next-grid div{background:#f1faf6;border-radius:17px;padding:13px;color:#163b32;line-height:1.35}
+.next-grid b{display:block;color:var(--green);margin-bottom:5px;font-size:12px;text-transform:uppercase;letter-spacing:.03em}
+.next-grid span{font-weight:900}
+.flight-note{margin:12px 0 0;color:#667085;line-height:1.45;font-size:13px}
+.flight-list{display:grid;gap:10px;margin-top:12px}
+.flight-card{background:#f8fcfa;border:1px solid #d8efe5;border-radius:20px;padding:14px;color:#163b32}
+.flight-card.is-next{background:#e7f7ef;border-color:#99d8c4;box-shadow:0 10px 26px rgba(0,90,69,.12)}
+.flight-date{font-weight:950;color:var(--green);font-size:13px;margin-bottom:4px}
+.flight-card h3{margin:0 0 10px;color:#10251f;font-size:18px;letter-spacing:-.02em}
+.flight-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.flight-meta span{background:white;border-radius:14px;padding:10px;color:#334155;line-height:1.35}
+.flight-meta b{display:block;color:var(--green);font-size:11px;text-transform:uppercase;letter-spacing:.03em;margin-bottom:3px}
+.flight-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.flight-actions a{display:block;background:var(--green);color:white;text-align:center;border-radius:15px;padding:11px 10px;font-weight:900;text-decoration:none}
+@media(max-width:430px){
+  .flights-hero,.next-flight,.flight-section{margin:10px}
+  .next-grid,.flight-meta,.flight-actions{grid-template-columns:1fr}
+}

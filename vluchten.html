@@ -1,49 +1,221 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Vluchten</title><link rel="stylesheet" href="styles.css"><link rel="manifest" href="manifest.json">
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Vluchten</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#005a45">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Indonesia 2026">
-<link rel="apple-touch-icon" href="icon.svg">
-</head><body><div class="app">
-<section class="detail-hero" style="background-image:url('photo-01.jpg')"><div><a class="back" href="index.html">‹ Route</a><h2>Vluchten</h2><p>✈️ Overzicht · Indonesië 2026</p></div></section>
+</head><body><div class="app flights-page">
 
-<section class="guide-section"><h3>Vluchtgegevens</h3>
-<p>Overzicht van alle bekende vluchten en transitmomenten in jullie route.</p>
-<div class="flight-scroll"><table class="flight-table">
-<thead><tr><th>Datum</th><th>Van</th><th>Naar</th><th>Vertrek</th><th>Aankomst</th><th>Opmerking</th></tr></thead>
-<tbody>
-<tr><td>15 jul</td><td>Amsterdam (AMS)</td><td>Mumbai (BOM)</td><td>14:00</td><td>02:35 +1</td><td>Heenreis</td></tr>
-<tr><td>16 jul</td><td>Mumbai (BOM)</td><td>Jakarta (CGK)</td><td>06:35</td><td>14:50</td><td>Heenreis</td></tr>
-<tr><td>17 jul</td><td>Jakarta (CGK)</td><td>Medan (KNO)</td><td>09:05</td><td>11:20</td><td>Door naar Bukit Lawang</td></tr>
-<tr><td>5 aug</td><td>Kerinci / Padang</td><td>Jakarta (CGK)</td><td>17:15</td><td>19:10</td><td>Transit naar Sulawesi</td></tr>
-<tr><td>6 aug</td><td>Jakarta (CGK)</td><td>Makassar (UPG)</td><td>08:35</td><td>12:00</td><td>Door naar Rammang Rammang</td></tr>
-<tr><td>18 aug</td><td>Gorontalo (GTO)</td><td>Manado (MDC)</td><td>13:20</td><td>14:25</td><td>Door naar Tomohon</td></tr>
-<tr><td>29 aug</td><td>Manado (MDC)</td><td>Jakarta (CGK)</td><td>07:20</td><td>09:40</td><td>Terugreis</td></tr>
-<tr><td>29 aug</td><td>Jakarta (CGK)</td><td>Shanghai (PVG)</td><td>23:30</td><td>07:10 +1</td><td>Internationale terugvlucht</td></tr>
-<tr><td>30 aug</td><td>Shanghai (PVG)</td><td>Amsterdam (AMS)</td><td>12:30</td><td>18:30</td><td>Aankomst Nederland</td></tr>
-</tbody></table></div>
+<section class="flights-hero">
+  <a class="back" href="index.html">‹ Route</a>
+  <h2>Vluchten</h2>
+  <p>Automatisch overzicht van de eerstvolgende vlucht op basis van de huidige datum en tijd.</p>
 </section>
 
-<section class="guide-section"><h3>Belangrijkste aandachtspunten</h3>
-<ul class="guide-list">
-<li><b>Jakarta → Medan:</b> belangrijke vlucht voor de start van Bukit Lawang.</li>
-<li><b>Kerinci → Jakarta → Sulawesi:</b> dit is logistiek gevoelig, dus houd voldoende marge.</li>
-<li><b>Gorontalo → Manado:</b> vanaf Manado door naar Tomohon.</li>
-<li><b>Manado → Jakarta → Shanghai → Amsterdam:</b> lange terugreis; documenten en powerbanks in handbagage.</li>
-<li><b>Duiken:</b> let op no-fly-tijd na Bunaken/Lembeh.</li>
-</ul>
+<section class="next-flight" id="nextFlight">
+  <div class="next-label">✈️ Volgende vlucht</div>
+  <h3 id="nextTitle">Wordt geladen...</h3>
+  <div class="next-date" id="nextDate">—</div>
+  <div class="next-grid">
+    <div><b>Vlucht</b><span id="nextNo">—</span></div>
+    <div><b>Vertrek</b><span id="nextDepart">—</span></div>
+    <div><b>Aankomst</b><span id="nextArrive">—</span></div>
+    <div><b>Vertrekhal</b><span id="nextTerminal">—</span></div>
+    <div><b>Status</b><span id="nextStatus">🟡 Live check nodig</span></div>
+    <div><b>Advies</b><span id="nextAdvice">—</span></div>
+  </div>
+  <div class="flight-actions">
+    <a id="nextStatusLink" target="_blank" href="#">Check live vluchtstatus</a>
+    <a id="nextAirportLink" target="_blank" href="#">Check vertrekhal/gate</a>
+  </div>
+  <p class="flight-note">Live status, gate en vertrekhal worden meestal pas kort voor vertrek betrouwbaar vrijgegeven. Daarom verwijst de knop naar een actuele vluchtstatuscheck.</p>
 </section>
 
-<section class="guide-section"><h3>Reischecklist</h3>
-<div class="guide-grid">
-<div class="guide-tile"><b>Handbagage</b>Paspoort, powerbank, medicijnen, camera, waardevolle spullen.</div>
-<div class="guide-tile"><b>Ruimbagage</b>Geen losse lithiumbatterijen of powerbanks.</div>
-<div class="guide-tile"><b>Transfers</b>Check terminal, ophaaltijd en verkeersmarge.</div>
-<div class="guide-tile"><b>Back-up</b>Maak screenshots van tickets en hoteladressen.</div>
-</div>
+<section class="flight-section">
+  <h3>Alle vluchten</h3>
+  <div class="flight-list">
+    <article class="flight-card" data-flight-date="2026-07-15" data-flight-time="14:00">
+  <div class="flight-date">15 juli</div>
+  <h3>Amsterdam → Mumbai</h3>
+  <div class="flight-meta">
+    <span><b>Vlucht</b>Nog invullen</span>
+    <span><b>Vertrek</b>14:00</span>
+    <span><b>Aankomst</b>02:35 +1</span>
+    <span><b>Vertrekhal/terminal</b>Schiphol vertrekhal/terminal: check Schiphol app</span>
+  </div>
+  <div class="flight-actions">
+    <a target="_blank" href="https://www.google.com/search?q=flight+status+AMS+to+BOM+2026-07-15">Check live status</a>
+    <a target="_blank" href="https://www.google.com/search?q=AMS+airport+departures+2026-07-15">Vertrekhal/gate check</a>
+  </div>
+</article>
+<article class="flight-card" data-flight-date="2026-07-16" data-flight-time="06:35">
+  <div class="flight-date">16 juli</div>
+  <h3>Mumbai → Jakarta</h3>
+  <div class="flight-meta">
+    <span><b>Vlucht</b>Nog invullen</span>
+    <span><b>Vertrek</b>06:35</span>
+    <span><b>Aankomst</b>14:50</span>
+    <span><b>Vertrekhal/terminal</b>Mumbai terminal: check airline/app</span>
+  </div>
+  <div class="flight-actions">
+    <a target="_blank" href="https://www.google.com/search?q=flight+status+BOM+to+CGK+2026-07-16">Check live status</a>
+    <a target="_blank" href="https://www.google.com/search?q=BOM+airport+departures+2026-07-16">Vertrekhal/gate check</a>
+  </div>
+</article>
+<article class="flight-card" data-flight-date="2026-07-17" data-flight-time="09:05">
+  <div class="flight-date">17 juli</div>
+  <h3>Jakarta → Medan</h3>
+  <div class="flight-meta">
+    <span><b>Vlucht</b>Nog invullen</span>
+    <span><b>Vertrek</b>09:05</span>
+    <span><b>Aankomst</b>11:20</span>
+    <span><b>Vertrekhal/terminal</b>CGK terminal: check airline/app</span>
+  </div>
+  <div class="flight-actions">
+    <a target="_blank" href="https://www.google.com/search?q=flight+status+CGK+to+KNO+2026-07-17">Check live status</a>
+    <a target="_blank" href="https://www.google.com/search?q=CGK+airport+departures+2026-07-17">Vertrekhal/gate check</a>
+  </div>
+</article>
+<article class="flight-card" data-flight-date="2026-08-05" data-flight-time="17:15">
+  <div class="flight-date">5 augustus</div>
+  <h3>Kerinci → Jakarta</h3>
+  <div class="flight-meta">
+    <span><b>Vlucht</b>Nog invullen</span>
+    <span><b>Vertrek</b>17:15</span>
+    <span><b>Aankomst</b>19:10</span>
+    <span><b>Vertrekhal/terminal</b>KRC/Padang terminal: check airline/app</span>
+  </div>
+  <div class="flight-actions">
+    <a target="_blank" href="https://www.google.com/search?q=flight+status+KRC/PDG+to+CGK+2026-08-05">Check live status</a>
+    <a target="_blank" href="https://www.google.com/search?q=KRC/PDG+airport+departures+2026-08-05">Vertrekhal/gate check</a>
+  </div>
+</article>
+<article class="flight-card" data-flight-date="2026-08-06" data-flight-time="08:35">
+  <div class="flight-date">6 augustus</div>
+  <h3>Jakarta → Makassar → Rammang Rammang</h3>
+  <div class="flight-meta">
+    <span><b>Vlucht</b>Nog invullen</span>
+    <span><b>Vertrek</b>08:35</span>
+    <span><b>Aankomst</b>12:00</span>
+    <span><b>Vertrekhal/terminal</b>CGK terminal: check airline/app</span>
+  </div>
+  <div class="flight-actions">
+    <a target="_blank" href="https://www.google.com/search?q=flight+status+CGK+to+UPG+2026-08-06">Check live status</a>
+    <a target="_blank" href="https://www.google.com/search?q=CGK+airport+departures+2026-08-06">Vertrekhal/gate check</a>
+  </div>
+</article>
+<article class="flight-card" data-flight-date="2026-08-18" data-flight-time="13:20">
+  <div class="flight-date">18 augustus</div>
+  <h3>Gorontalo → Manado → Tomohon</h3>
+  <div class="flight-meta">
+    <span><b>Vlucht</b>Nog invullen</span>
+    <span><b>Vertrek</b>13:20</span>
+    <span><b>Aankomst</b>14:25</span>
+    <span><b>Vertrekhal/terminal</b>GTO terminal: check airline/app</span>
+  </div>
+  <div class="flight-actions">
+    <a target="_blank" href="https://www.google.com/search?q=flight+status+GTO+to+MDC+2026-08-18">Check live status</a>
+    <a target="_blank" href="https://www.google.com/search?q=GTO+airport+departures+2026-08-18">Vertrekhal/gate check</a>
+  </div>
+</article>
+<article class="flight-card" data-flight-date="2026-08-29" data-flight-time="07:20">
+  <div class="flight-date">29 augustus</div>
+  <h3>Manado → Jakarta</h3>
+  <div class="flight-meta">
+    <span><b>Vlucht</b>Nog invullen</span>
+    <span><b>Vertrek</b>07:20</span>
+    <span><b>Aankomst</b>09:40</span>
+    <span><b>Vertrekhal/terminal</b>MDC terminal: check airline/app</span>
+  </div>
+  <div class="flight-actions">
+    <a target="_blank" href="https://www.google.com/search?q=flight+status+MDC+to+CGK+2026-08-29">Check live status</a>
+    <a target="_blank" href="https://www.google.com/search?q=MDC+airport+departures+2026-08-29">Vertrekhal/gate check</a>
+  </div>
+</article>
+<article class="flight-card" data-flight-date="2026-08-29" data-flight-time="23:30">
+  <div class="flight-date">29 augustus</div>
+  <h3>Jakarta → Shanghai</h3>
+  <div class="flight-meta">
+    <span><b>Vlucht</b>Nog invullen</span>
+    <span><b>Vertrek</b>23:30</span>
+    <span><b>Aankomst</b>07:10 +1</span>
+    <span><b>Vertrekhal/terminal</b>CGK international terminal: check airline/app</span>
+  </div>
+  <div class="flight-actions">
+    <a target="_blank" href="https://www.google.com/search?q=flight+status+CGK+to+PVG/SHA+2026-08-29">Check live status</a>
+    <a target="_blank" href="https://www.google.com/search?q=CGK+airport+departures+2026-08-29">Vertrekhal/gate check</a>
+  </div>
+</article>
+<article class="flight-card" data-flight-date="2026-08-30" data-flight-time="12:30">
+  <div class="flight-date">30 augustus</div>
+  <h3>Shanghai → Amsterdam</h3>
+  <div class="flight-meta">
+    <span><b>Vlucht</b>Nog invullen</span>
+    <span><b>Vertrek</b>12:30</span>
+    <span><b>Aankomst</b>18:30</span>
+    <span><b>Vertrekhal/terminal</b>Shanghai terminal: check airline/app</span>
+  </div>
+  <div class="flight-actions">
+    <a target="_blank" href="https://www.google.com/search?q=flight+status+PVG/SHA+to+AMS+2026-08-30">Check live status</a>
+    <a target="_blank" href="https://www.google.com/search?q=PVG/SHA+airport+departures+2026-08-30">Vertrekhal/gate check</a>
+  </div>
+</article>
+  </div>
 </section>
 
-<section class="card"><div class="nav2"><a href="index.html">‹ Home</a><a href="amsterdam-jakarta.html">Heenreis ›</a></div></section>
 <nav class="bottom"><a href="index.html">🏠<span>Home</span></a><a href="map.html">🗺️<span>Kaart</span></a><a class="active" href="vluchten.html">✈️<span>Vluchten</span></a><a href="verblijf.html">🏨<span>Verblijf</span></a><a href="weer.html">🌦️<span>Weer</span></a></nav>
-</div><div class="install-banner" id="installBanner"><div><b>Installeer als app</b><small>Zet de reisgids op je beginscherm en gebruik hem offline.</small></div><button onclick="installPWA()">Installeer</button></div>
+
+<script>
+const FLIGHTS = [{"date": "2026-07-15", "label": "15 juli", "from": "Amsterdam", "to": "Mumbai", "depart": "14:00", "arrive": "02:35 +1", "flightNo": "Nog invullen", "terminal": "Schiphol vertrekhal/terminal: check Schiphol app", "airportFrom": "AMS", "airportTo": "BOM", "status": "Live check nodig"}, {"date": "2026-07-16", "label": "16 juli", "from": "Mumbai", "to": "Jakarta", "depart": "06:35", "arrive": "14:50", "flightNo": "Nog invullen", "terminal": "Mumbai terminal: check airline/app", "airportFrom": "BOM", "airportTo": "CGK", "status": "Live check nodig"}, {"date": "2026-07-17", "label": "17 juli", "from": "Jakarta", "to": "Medan", "depart": "09:05", "arrive": "11:20", "flightNo": "Nog invullen", "terminal": "CGK terminal: check airline/app", "airportFrom": "CGK", "airportTo": "KNO", "status": "Live check nodig"}, {"date": "2026-08-05", "label": "5 augustus", "from": "Kerinci", "to": "Jakarta", "depart": "17:15", "arrive": "19:10", "flightNo": "Nog invullen", "terminal": "KRC/Padang terminal: check airline/app", "airportFrom": "KRC/PDG", "airportTo": "CGK", "status": "Live check nodig"}, {"date": "2026-08-06", "label": "6 augustus", "from": "Jakarta", "to": "Makassar → Rammang Rammang", "depart": "08:35", "arrive": "12:00", "flightNo": "Nog invullen", "terminal": "CGK terminal: check airline/app", "airportFrom": "CGK", "airportTo": "UPG", "status": "Live check nodig"}, {"date": "2026-08-18", "label": "18 augustus", "from": "Gorontalo", "to": "Manado → Tomohon", "depart": "13:20", "arrive": "14:25", "flightNo": "Nog invullen", "terminal": "GTO terminal: check airline/app", "airportFrom": "GTO", "airportTo": "MDC", "status": "Live check nodig"}, {"date": "2026-08-29", "label": "29 augustus", "from": "Manado", "to": "Jakarta", "depart": "07:20", "arrive": "09:40", "flightNo": "Nog invullen", "terminal": "MDC terminal: check airline/app", "airportFrom": "MDC", "airportTo": "CGK", "status": "Live check nodig"}, {"date": "2026-08-29", "label": "29 augustus", "from": "Jakarta", "to": "Shanghai", "depart": "23:30", "arrive": "07:10 +1", "flightNo": "Nog invullen", "terminal": "CGK international terminal: check airline/app", "airportFrom": "CGK", "airportTo": "PVG/SHA", "status": "Live check nodig"}, {"date": "2026-08-30", "label": "30 augustus", "from": "Shanghai", "to": "Amsterdam", "depart": "12:30", "arrive": "18:30", "flightNo": "Nog invullen", "terminal": "Shanghai terminal: check airline/app", "airportFrom": "PVG/SHA", "airportTo": "AMS", "status": "Live check nodig"}];
+
+function parseFlightDate(f) {
+  const [h,m] = f.depart.split(':').map(Number);
+  const d = new Date(f.date + 'T00:00:00');
+  d.setHours(h, m || 0, 0, 0);
+  return d;
+}
+
+function formatDate(d) {
+  return d.toLocaleDateString('nl-NL', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+}
+
+function getNextFlight() {
+  const now = new Date();
+  return FLIGHTS.find(f => parseFlightDate(f) >= now) || FLIGHTS[FLIGHTS.length - 1];
+}
+
+function hoursUntil(d) {
+  return Math.round((d - new Date()) / 36e5);
+}
+
+function renderNextFlight() {
+  const f = getNextFlight();
+  const dt = parseFlightDate(f);
+  const hrs = hoursUntil(dt);
+  document.getElementById('nextTitle').textContent = f.from + ' → ' + f.to;
+  document.getElementById('nextDate').textContent = formatDate(dt);
+  document.getElementById('nextNo').textContent = f.flightNo;
+  document.getElementById('nextDepart').textContent = f.depart;
+  document.getElementById('nextArrive').textContent = f.arrive;
+  document.getElementById('nextTerminal').textContent = f.terminal;
+  document.getElementById('nextStatus').textContent = '🟡 Live check nodig';
+  let advice = 'Ruim op tijd aanwezig zijn en terminal/gate live checken.';
+  if (hrs <= 4 && hrs >= 0) advice = 'Binnen 4 uur: vertrekhal, gate en status nu actief checken.';
+  else if (hrs <= 24 && hrs >= 0) advice = 'Binnen 24 uur: online inchecken en status volgen.';
+  else if (hrs > 24) advice = 'Nog ' + hrs + ' uur: gegevens bewaren en later live checken.';
+  document.getElementById('nextAdvice').textContent = advice;
+  const statusQ = encodeURIComponent('flight status ' + f.airportFrom + ' to ' + f.airportTo + ' ' + f.date);
+  const airportQ = encodeURIComponent(f.airportFrom + ' airport departures ' + f.date);
+  document.getElementById('nextStatusLink').href = 'https://www.google.com/search?q=' + statusQ;
+  document.getElementById('nextAirportLink').href = 'https://www.google.com/search?q=' + airportQ;
+
+  document.querySelectorAll('.flight-card').forEach(card => {
+    const isNext = card.dataset.flightDate === f.date && card.dataset.flightTime === f.depart;
+    card.classList.toggle('is-next', isNext);
+  });
+}
+
+renderNextFlight();
+setInterval(renderNextFlight, 60 * 1000);
+</script>
 <script src="app.js"></script>
-</body></html>
+</div></body></html>
