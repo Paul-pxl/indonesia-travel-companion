@@ -1,16 +1,16 @@
 <!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Weer</title>
 <link rel="stylesheet" href="styles.css">
-</head><body><div class="app">
+</head><body class="weather-page"><div class="app weather-shell">
 
 <section class="weather-hero">
   <a class="back" href="index.html">‹ Route</a>
-  <h2>Weer</h2>
-  <p>Live weersverwachting per bestemming. Bron: Open-Meteo, wanneer je online bent.</p>
+  <h2>Weerbericht</h2>
+  <p>Live weersverwachting per bestemming, inclusief komende 24 uur en regenindicatie.</p>
 </section>
 
 <section class="weather-card">
-  <h3>Bestemming</h3>
+  <h3>Kies bestemming</h3>
   <select class="weather-select" id="locationSelect"><option value="0">Jakarta</option>
 <option value="1">Bukit Lawang</option>
 <option value="2">Berastagi</option>
@@ -34,11 +34,11 @@
     <button id="refreshWeather">Ververs weer</button>
     <button id="useMyLocation">Gebruik mijn locatie</button>
   </div>
-  <div class="weather-note" id="weatherStatus">Kies een bestemming of gebruik je huidige locatie.</div>
+  <div class="weather-note" id="weatherStatus">Kies een bestemming of gebruik je huidige locatie.</div><p class="weather-source">Bron: Open-Meteo forecast API. Live data werkt wanneer je online bent.</p>
 </section>
 
 <section class="weather-card">
-  <h3>Nu</h3>
+  <h3>Actueel weer</h3>
   <div class="weather-now">
     <div><b id="nowLocation">—</b><small id="nowDesc">Weer laden...</small></div>
     <div class="weather-temp" id="nowTemp">—°</div>
