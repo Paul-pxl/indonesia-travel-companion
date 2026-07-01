@@ -53,8 +53,8 @@
 
 
 <section class="weather-card">
-  <h3>Vandaag · weerbericht per uur</h3>
-  <p class="weather-source">Bron: <b>Open-Meteo</b>. Uurlijkse data: temperatuur, neerslag, neerslagkans, bewolking, wind en luchtvochtigheid.</p>
+  <h3>Komende 24 uur · weerbericht per uur</h3>
+  <p class="weather-source">Bron: <b>Open-Meteo</b>. Uurlijkse data vanaf het huidige uur: temperatuur, neerslag, neerslagkans, bewolking, wind en luchtvochtigheid.</p>
   <div class="hourly-scroll">
     <table class="hourly-table">
       <thead><tr><th>Tijd</th><th>Weer</th><th>Temp</th><th>Bewolking</th><th>Regen</th><th>Regenkans</th><th>Wind</th><th>Vocht</th></tr></thead>
@@ -64,7 +64,7 @@
 </section>
 
 <section class="weather-card">
-  <h3>Regen per uur</h3>
+  <h3>Regen komende 24 uur</h3>
   <div class="rain-bars" id="rainBars"></div>
   <div class="weather-advice" id="weatherAdvice">Advies wordt geladen...</div>
 </section>
@@ -95,9 +95,21 @@ function weatherIcon(code, rain, cloud) {
 function hourLabel(s) {
   return new Date(s).toLocaleTimeString('nl-NL', {hour:'2-digit', minute:'2-digit'});
 }
-function todayHourlyIndexes(times) {
+function hourLabelLong(s) {
+  const d = new Date(s);
   const today = new Date().toLocaleDateString('sv-SE');
-  return times.map((t,i)=>[t,i]).filter(([t])=>t.slice(0,10)===today).map(([,i])=>i);
+  const day = d.toLocaleDateString('sv-SE');
+  const time = d.toLocaleTimeString('nl-NL', {hour:'2-digit', minute:'2-digit'});
+  if (day === today) return time;
+  return 'Morgen ' + time;
+}
+function next24HourlyIndexes(times) {
+  const now = new Date();
+  return times
+    .map((t,i)=>[new Date(t),i])
+    .filter(([dt])=>dt >= now)
+    .slice(0,24)
+    .map(([,i])=>i);
 }
 
 function fmtDate(s) {
@@ -119,15 +131,15 @@ async function loadWeather(lat, lon, name) {
     document.getElementById('rainChance').textContent = d.daily.precipitation_probability_max[0] + '%';
     document.getElementById('wind').textContent = Math.round(d.current.wind_speed_10m) + ' km/u';
     document.getElementById('uv').textContent = Math.round(d.daily.uv_index_max[0]);
-    const hourlyIdx = todayHourlyIndexes(d.hourly.time).slice(0, 24);
+    const hourlyIdx = next24HourlyIndexes(d.hourly.time);
     const hourlyRows = hourlyIdx.map(i => {
       const code = d.hourly.weather_code[i];
       const rain = d.hourly.precipitation[i];
       const cloud = d.hourly.cloud_cover[i];
       const icon = weatherIcon(code, rain, cloud);
-      return `<tr><td>${hourLabel(d.hourly.time[i])}</td><td>${icon} ${weatherCodes[code] || 'Weer'}</td><td>${Math.round(d.hourly.temperature_2m[i])}°</td><td>${cloud}%</td><td>${rain.toFixed(1)} mm</td><td>${d.hourly.precipitation_probability[i]}%</td><td>${Math.round(d.hourly.wind_speed_10m[i])} km/u</td><td>${d.hourly.relative_humidity_2m[i]}%</td></tr>`;
+      return `<tr><td>${hourLabelLong(d.hourly.time[i])}</td><td>${icon} ${weatherCodes[code] || 'Weer'}</td><td>${Math.round(d.hourly.temperature_2m[i])}°</td><td>${cloud}%</td><td>${rain.toFixed(1)} mm</td><td>${d.hourly.precipitation_probability[i]}%</td><td>${Math.round(d.hourly.wind_speed_10m[i])} km/u</td><td>${d.hourly.relative_humidity_2m[i]}%</td></tr>`;
     }).join('');
-    document.getElementById('hourlyTable').innerHTML = hourlyRows || '<tr><td colspan="8">Geen uurlijkse data beschikbaar voor vandaag.</td></tr>';
+    document.getElementById('hourlyTable').innerHTML = hourlyRows || '<tr><td colspan="8">Geen uurlijkse data beschikbaar voor de komende 24 uur.</td></tr>';
 
     const rainBars = hourlyIdx.filter((_,k)=>k%2===0).map(i => {
       const rain = d.hourly.precipitation[i];
@@ -141,7 +153,7 @@ async function loadWeather(lat, lon, name) {
     const maxRain = Math.max(...hourlyIdx.map(i => d.hourly.precipitation[i]));
     const maxCloud = Math.max(...hourlyIdx.map(i => d.hourly.cloud_cover[i]));
     let advice = 'Prima dag om flexibel te plannen.';
-    if (maxRainProb >= 70 || maxRain >= 2) advice = '🌧️ Grote kans op regen vandaag. Plan hikes/bootmomenten vroeg en neem regenbescherming mee.';
+    if (maxRainProb >= 70 || maxRain >= 2) advice = '🌧️ Grote kans op regen in de komende 24 uur. Plan hikes/bootmomenten slim en neem regenbescherming mee.';
     else if (maxRainProb >= 40) advice = '🌦️ Wisselvallig. Houd een drybag/regenkleding klaar en plan buitenactiviteiten vroeg.';
     else if (maxCloud >= 80) advice = '☁️ Veel bewolking. Goed voor wandelen, minder ideaal voor zonsondergangsfoto’s.';
     else advice = '☀️ Relatief gunstig weer. Let op zonkracht, hitte en hydratatie.';
