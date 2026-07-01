@@ -1,10 +1,5 @@
-<!doctype html>
-<html lang="nl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Route Atlas - Indonesië 2026</title>
-<style>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Routekaart</title><style>
+
 
 :root{--green:#005a45;--green2:#007a61;--mint:#e7f5ef;--text:#071226;--muted:#566278;--shadow:0 18px 50px rgba(0,90,69,.13)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#edf7f3;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}a{text-decoration:none;color:inherit}
@@ -58,407 +53,81 @@
 .hidden{display:none!important}
 @media(max-width:390px){.atlas-card{grid-template-columns:92px 1fr 18px}.atlas-card img{width:92px;height:86px}.atlas-copy h3{font-size:19px}.atlas-hero h2{font-size:36px}}
 
-</style>
-</head>
-<body>
-<div class="app atlas-page">
-<header class="sticky"><div class="sticky-top"><div class="brand"><div class="brand-icon">🌴</div><h1>Indonesië 2026</h1></div></div></header>
 
-<main>
-  <section class="atlas-hero">
-    <h2>Route Atlas</h2>
-    <p>Een rustigere, mooiere routeweergave. Geen technische kaart, maar een reisverhaal per regio.</p>
-  </section>
 
-  <section class="atlas-panel">
-    <div class="atlas-panel-inner">
-      <h3>Sumatra → Sulawesi</h3>
-      <p>Jungle, vulkanen, meren, karstlandschap, cultuur en drie sterke duikblokken aan het einde.</p>
-      <div class="atlas-stats">
-        <div class="atlas-stat"><b>21</b><span>stops</span></div>
-        <div class="atlas-stat"><b>47</b><span>dagen</span></div>
-        <div class="atlas-stat"><b>2</b><span>eilanden</span></div>
-      </div>
-    </div>
-  </section>
+.map-hero{margin:18px 22px;border-radius:28px;background:linear-gradient(135deg,#004832,#007a61);color:white;padding:22px;box-shadow:var(--shadow)}
+.map-hero h2{margin:0 0 8px;font-size:31px;letter-spacing:-.04em}
+.map-hero p{margin:0;color:rgba(255,255,255,.86);line-height:1.45}
+.route-map{margin:18px 22px;background:white;border-radius:26px;padding:18px;box-shadow:var(--shadow)}
+.route-line{position:relative;margin-left:18px;border-left:4px solid #d8efe5;padding-left:20px}
+.route-stop{position:relative;margin:0 0 16px;background:#f1faf6;border-radius:18px;padding:14px 14px 14px 16px;color:#243b35}
+.route-stop:before{content:attr(data-n);position:absolute;left:-42px;top:13px;width:28px;height:28px;border-radius:50%;background:var(--green);color:white;display:grid;place-items:center;font-weight:900;font-size:13px;box-shadow:0 5px 14px rgba(0,90,69,.25)}
+.route-stop b{display:block;color:var(--green);font-size:17px;margin-bottom:4px}
+.route-stop span{display:block;color:#667085;font-size:13px;font-weight:800;margin-bottom:6px}
+.route-stop p{margin:0;color:#3e4a5d;line-height:1.45;font-size:14px}
+.region-chip{display:inline-flex;align-items:center;gap:7px;background:#e7f5ef;color:var(--green);font-weight:900;border-radius:999px;padding:8px 11px;font-size:12px;margin:4px 4px 8px 0}
+.map-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.map-tile{background:#f1faf6;border-radius:17px;padding:13px;color:#163b32;line-height:1.35}
+.map-tile b{display:block;color:var(--green);margin-bottom:5px}
+.map-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 22px}
+.map-actions a{background:white;border-radius:18px;padding:14px;text-align:center;font-weight:900;color:var(--green);box-shadow:var(--shadow)}
 
-  <section class="region-tabs">
-    <button class="active" data-filter="all">Alles</button>
-    <button data-filter="Sumatra">Sumatra</button>
-    <button data-filter="Zuid-Sulawesi">Zuid-Sulawesi</button>
-    <button data-filter="Centraal-Sulawesi">Centraal</button>
-    <button data-filter="Togian Islands">Togian</button>
-    <button data-filter="Noord-Sulawesi">Noord-Sulawesi</button>
-  </section>
+</style></head><body><div class="app">
 
-  <section class="ribbon">
-    
-    <button class="ribbon-stop" data-region="Transit" data-target="amsterdam-jakarta">
-      <span>1</span>
-      <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1000&q=80" alt="">
-      <b>Heenreis</b>
-    </button>
-    <button class="ribbon-stop" data-region="Sumatra" data-target="bukit-lawang">
-      <span>2</span>
-      <img src="photo-01.jpg" alt="">
-      <b>Bukit Lawang</b>
-    </button>
-    <button class="ribbon-stop" data-region="Sumatra" data-target="berastagi">
-      <span>3</span>
-      <img src="photo-02.jpg" alt="">
-      <b>Berastagi</b>
-    </button>
-    <button class="ribbon-stop" data-region="Sumatra" data-target="ketambe">
-      <span>4</span>
-      <img src="photo-03.jpg" alt="">
-      <b>Ketambe</b>
-    </button>
-    <button class="ribbon-stop" data-region="Sumatra" data-target="lake-toba">
-      <span>5</span>
-      <img src="photo-04.jpg" alt="">
-      <b>Lake Toba</b>
-    </button>
-    <button class="ribbon-stop" data-region="Sumatra" data-target="sipirok">
-      <span>6</span>
-      <img src="photo-05.jpg" alt="">
-      <b>Sipirok</b>
-    </button>
-    <button class="ribbon-stop" data-region="Sumatra" data-target="bukittinggi">
-      <span>7</span>
-      <img src="photo-06.jpg" alt="">
-      <b>Bukittinggi</b>
-    </button>
-    <button class="ribbon-stop" data-region="Sumatra" data-target="harau-valley">
-      <span>8</span>
-      <img src="photo-07.jpg" alt="">
-      <b>Harau Valley</b>
-    </button>
-    <button class="ribbon-stop" data-region="Sumatra" data-target="kerinci">
-      <span>9</span>
-      <img src="photo-08.jpg" alt="">
-      <b>Kerinci</b>
-    </button>
-    <button class="ribbon-stop" data-region="Transit" data-target="jakarta">
-      <span>10</span>
-      <img src="photo-09.jpg" alt="">
-      <b>Jakarta</b>
-    </button>
-    <button class="ribbon-stop" data-region="Zuid-Sulawesi" data-target="rammang-rammang">
-      <span>11</span>
-      <img src="photo-10.jpg" alt="">
-      <b>Rammang Rammang</b>
-    </button>
-    <button class="ribbon-stop" data-region="Zuid-Sulawesi" data-target="tana-toraja">
-      <span>12</span>
-      <img src="photo-11.jpg" alt="">
-      <b>Tana Toraja</b>
-    </button>
-    <button class="ribbon-stop" data-region="Centraal-Sulawesi" data-target="danau-poso">
-      <span>13</span>
-      <img src="photo-12.jpg" alt="">
-      <b>Danau Poso</b>
-    </button>
-    <button class="ribbon-stop" data-region="Togian Islands" data-target="togian">
-      <span>14</span>
-      <img src="photo-13.jpg" alt="">
-      <b>Togian</b>
-    </button>
-    <button class="ribbon-stop" data-region="Noord-Sulawesi" data-target="gorontalo">
-      <span>15</span>
-      <img src="photo-14.jpg" alt="">
-      <b>Gorontalo</b>
-    </button>
-    <button class="ribbon-stop" data-region="Noord-Sulawesi" data-target="tomohon">
-      <span>16</span>
-      <img src="photo-15.jpg" alt="">
-      <b>Tomohon</b>
-    </button>
-    <button class="ribbon-stop" data-region="Noord-Sulawesi" data-target="bunaken">
-      <span>17</span>
-      <img src="photo-16.jpg" alt="">
-      <b>Bunaken</b>
-    </button>
-    <button class="ribbon-stop" data-region="Noord-Sulawesi" data-target="lembeh">
-      <span>18</span>
-      <img src="photo-17.jpg" alt="">
-      <b>Lembeh</b>
-    </button>
-    <button class="ribbon-stop" data-region="Noord-Sulawesi" data-target="tangkoko">
-      <span>19</span>
-      <img src="photo-18.jpg" alt="">
-      <b>Tangkoko</b>
-    </button>
-    <button class="ribbon-stop" data-region="Noord-Sulawesi" data-target="manado">
-      <span>20</span>
-      <img src="photo-19.jpg" alt="">
-      <b>Manado</b>
-    </button>
-    <button class="ribbon-stop" data-region="Terugreis" data-target="terugreis">
-      <span>21</span>
-      <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1000&q=80" alt="">
-      <b>Terugreis</b>
-    </button>
-  </section>
+<section class="map-hero">
+  <h2>Routekaart</h2>
+  <p>Een helder overzicht van jullie volledige Indonesië-route: van Sumatra naar Sulawesi, met transitdagen, natuurblokken, duikblokken en de terugreis.</p>
+</section>
 
-  <section class="route-summary">
-    <div class="route-block">
-      <h3>Route in één oogopslag</h3>
-      <p>Start met jungle en vulkanen op Sumatra, vlieg daarna naar Sulawesi en eindig met cultuur, eilanden, duiken en wildlife.</p>
-    </div>
-  </section>
+<section class="route-map">
+  <h3 style="margin:0 0 10px;color:var(--green);font-size:23px">Route in één oogopslag</h3>
+  <div>
+    <span class="region-chip">✈️ Transit</span>
+    <span class="region-chip">🌿 Sumatra</span>
+    <span class="region-chip">🌋 Sulawesi</span>
+    <span class="region-chip">🤿 Duiken</span>
+  </div>
+  <div class="map-grid">
+    <div class="map-tile"><b>Start</b>Jakarta → Bukit Lawang</div>
+    <div class="map-tile"><b>Midden</b>Sumatra overland → Jakarta</div>
+    <div class="map-tile"><b>Sulawesi</b>Rammang Rammang → Manado</div>
+    <div class="map-tile"><b>Einde</b>Manado → Shanghai → Amsterdam</div>
+  </div>
+</section>
 
-  <section class="atlas-list">
-    
-    <a class="atlas-card" href="amsterdam-jakarta.html" data-region="Transit">
-      <div class="atlas-num">1</div>
-      <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1000&q=80" alt="">
-      <div class="atlas-copy">
-        <small>✈️ 15–16 jul · Transit</small>
-        <h3>Heenreis</h3>
-        <p>Amsterdam → Mumbai → Jakarta</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
+<section class="route-map">
+  <h3 style="margin:0 0 14px;color:var(--green);font-size:23px">Chronologische route</h3>
+  <div class="route-line">
+    <div class="route-stop" data-n="1"><span>15–16 jul · Transit</span><b>Amsterdam → Mumbai → Jakarta</b><p>Internationale heenreis en eerste transitnacht.</p></div>
+<div class="route-stop" data-n="2"><span>17–18 jul · Sumatra</span><b>Bukit Lawang</b><p>Orang-oetans, rivier en eerste jungle-introductie.</p></div>
+<div class="route-stop" data-n="3"><span>19 jul · Sumatra</span><b>Berastagi</b><p>Koel hoogland, Karo-cultuur en vulkaanlandschap.</p></div>
+<div class="route-stop" data-n="4"><span>20–23 jul · Sumatra</span><b>Ketambe</b><p>Wildere Gunung Leuser-jungle en meerdaagse trek.</p></div>
+<div class="route-stop" data-n="5"><span>24–26 jul · Sumatra</span><b>Lake Toba</b><p>Rustblok aan het meer na de jungle.</p></div>
+<div class="route-stop" data-n="6"><span>27 jul · Sumatra</span><b>Sipirok</b><p>Strategische tussenstop richting West-Sumatra.</p></div>
+<div class="route-stop" data-n="7"><span>28–30 jul · Sumatra</span><b>Bukittinggi</b><p>Minangkabau-cultuur, Nasi Kapau en Sianok Canyon.</p></div>
+<div class="route-stop" data-n="8"><span>31 jul–1 aug · Sumatra</span><b>Harau Valley</b><p>Rijstvelden, kliffen, watervallen en vertraging.</p></div>
+<div class="route-stop" data-n="9"><span>2–4 aug · Sumatra</span><b>Kerinci</b><p>Theevelden en de zware vulkaan-hike.</p></div>
+<div class="route-stop" data-n="10"><span>5 aug · Transit</span><b>Jakarta</b><p>Reset tussen Sumatra en Sulawesi.</p></div>
+<div class="route-stop" data-n="11"><span>6 aug · Sulawesi</span><b>Rammang Rammang</b><p>Karstlandschap, boottocht en rustige Sulawesi-start.</p></div>
+<div class="route-stop" data-n="12"><span>7–10 aug · Sulawesi</span><b>Tana Toraja</b><p>Tongkonan, rotsgraven, ceremonies en rijstvelden.</p></div>
+<div class="route-stop" data-n="13"><span>11 aug · Sulawesi</span><b>Danau Poso</b><p>Rustige tussenstop richting Togians.</p></div>
+<div class="route-stop" data-n="14"><span>12–16 aug · Sulawesi</span><b>Togian Islands</b><p>Eilandtijd, snorkelen en duiken.</p></div>
+<div class="route-stop" data-n="15"><span>17 aug · Sulawesi</span><b>Gorontalo</b><p>Schakel tussen Togians en Noord-Sulawesi.</p></div>
+<div class="route-stop" data-n="16"><span>18 aug · Sulawesi</span><b>Tomohon</b><p>Vulkanen, hoogland en laatste landblok.</p></div>
+<div class="route-stop" data-n="17"><span>19–23 aug · Sulawesi</span><b>Bunaken</b><p>Wall dives, schildpadden en blauw water.</p></div>
+<div class="route-stop" data-n="18"><span>24–25 aug · Sulawesi</span><b>Lembeh</b><p>Macro en muck diving.</p></div>
+<div class="route-stop" data-n="19"><span>26 aug · Sulawesi</span><b>Tangkoko</b><p>Zwarte makaken, tarsiers en wildlife-afsluiter.</p></div>
+<div class="route-stop" data-n="20"><span>27–28 aug · Sulawesi</span><b>Manado</b><p>Comfortabele eindbuffer en terugreisvoorbereiding.</p></div>
+<div class="route-stop" data-n="21"><span>29–30 aug · Terugreis</span><b>Jakarta → Shanghai → Amsterdam</b><p>Internationale terugreis.</p></div>
+  </div>
+</section>
 
-    <a class="atlas-card" href="bukit-lawang.html" data-region="Sumatra">
-      <div class="atlas-num">2</div>
-      <img src="photo-01.jpg" alt="">
-      <div class="atlas-copy">
-        <small>🐒 17–19 jul · Sumatra</small>
-        <h3>Bukit Lawang</h3>
-        <p>Orang-oetans &amp; jungle</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
-
-    <a class="atlas-card" href="berastagi.html" data-region="Sumatra">
-      <div class="atlas-num">3</div>
-      <img src="photo-02.jpg" alt="">
-      <div class="atlas-copy">
-        <small>🌋 19–20 jul · Sumatra</small>
-        <h3>Berastagi</h3>
-        <p>Mount Sibayak</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
-
-    <a class="atlas-card" href="ketambe.html" data-region="Sumatra">
-      <div class="atlas-num">4</div>
-      <img src="photo-03.jpg" alt="">
-      <div class="atlas-copy">
-        <small>🌿 20–24 jul · Sumatra</small>
-        <h3>Ketambe</h3>
-        <p>Gunung Leuser</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
-
-    <a class="atlas-card" href="lake-toba.html" data-region="Sumatra">
-      <div class="atlas-num">5</div>
-      <img src="photo-04.jpg" alt="">
-      <div class="atlas-copy">
-        <small>🌊 24–27 jul · Sumatra</small>
-        <h3>Lake Toba</h3>
-        <p>Samosir &amp; rust</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
-
-    <a class="atlas-card" href="sipirok.html" data-region="Sumatra">
-      <div class="atlas-num">6</div>
-      <img src="photo-05.jpg" alt="">
-      <div class="atlas-copy">
-        <small>🚗 27–28 jul · Sumatra</small>
-        <h3>Sipirok</h3>
-        <p>Tussenstop</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
-
-    <a class="atlas-card" href="bukittinggi.html" data-region="Sumatra">
-      <div class="atlas-num">7</div>
-      <img src="photo-06.jpg" alt="">
-      <div class="atlas-copy">
-        <small>🏞️ 28–30 jul · Sumatra</small>
-        <h3>Bukittinggi</h3>
-        <p>Sianok Canyon</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
-
-    <a class="atlas-card" href="harau-valley.html" data-region="Sumatra">
-      <div class="atlas-num">8</div>
-      <img src="photo-07.jpg" alt="">
-      <div class="atlas-copy">
-        <small>🌾 30 jul–2 aug · Sumatra</small>
-        <h3>Harau Valley</h3>
-        <p>Kliffen &amp; rijstvelden</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
-
-    <a class="atlas-card" href="kerinci.html" data-region="Sumatra">
-      <div class="atlas-num">9</div>
-      <img src="photo-08.jpg" alt="">
-      <div class="atlas-copy">
-        <small>⛰️ 2–5 aug · Sumatra</small>
-        <h3>Kerinci</h3>
-        <p>Mount Kerinci</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
-
-    <a class="atlas-card" href="jakarta.html" data-region="Transit">
-      <div class="atlas-num">10</div>
-      <img src="photo-09.jpg" alt="">
-      <div class="atlas-copy">
-        <small>✈️ 5–6 aug · Transit</small>
-        <h3>Jakarta</h3>
-        <p>Reset naar Sulawesi</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
-
-    <a class="atlas-card" href="rammang-rammang.html" data-region="Zuid-Sulawesi">
-      <div class="atlas-num">11</div>
-      <img src="photo-10.jpg" alt="">
-      <div class="atlas-copy">
-        <small>🛶 6–7 aug · Zuid-Sulawesi</small>
-        <h3>Rammang Rammang</h3>
-        <p>Karst &amp; boottocht</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
-
-    <a class="atlas-card" href="tana-toraja.html" data-region="Zuid-Sulawesi">
-      <div class="atlas-num">12</div>
-      <img src="photo-11.jpg" alt="">
-      <div class="atlas-copy">
-        <small>🏡 7–11 aug · Zuid-Sulawesi</small>
-        <h3>Tana Toraja</h3>
-        <p>Tongkonan &amp; cultuur</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
-
-    <a class="atlas-card" href="danau-poso.html" data-region="Centraal-Sulawesi">
-      <div class="atlas-num">13</div>
-      <img src="photo-12.jpg" alt="">
-      <div class="atlas-copy">
-        <small>🌅 11–12 aug · Centraal-Sulawesi</small>
-        <h3>Danau Poso</h3>
-        <p>Rustige tussenstop</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
-
-    <a class="atlas-card" href="togian.html" data-region="Togian Islands">
-      <div class="atlas-num">14</div>
-      <img src="photo-13.jpg" alt="">
-      <div class="atlas-copy">
-        <small>🤿 12–17 aug · Togian Islands</small>
-        <h3>Togian</h3>
-        <p>Eilandrust &amp; duiken</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
-
-    <a class="atlas-card" href="gorontalo.html" data-region="Noord-Sulawesi">
-      <div class="atlas-num">15</div>
-      <img src="photo-14.jpg" alt="">
-      <div class="atlas-copy">
-        <small>⛴️ 17–18 aug · Noord-Sulawesi</small>
-        <h3>Gorontalo</h3>
-        <p>Nachtboot</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
-
-    <a class="atlas-card" href="tomohon.html" data-region="Noord-Sulawesi">
-      <div class="atlas-num">16</div>
-      <img src="photo-15.jpg" alt="">
-      <div class="atlas-copy">
-        <small>🌋 18–20 aug · Noord-Sulawesi</small>
-        <h3>Tomohon</h3>
-        <p>Mahawu</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
-
-    <a class="atlas-card" href="bunaken.html" data-region="Noord-Sulawesi">
-      <div class="atlas-num">17</div>
-      <img src="photo-16.jpg" alt="">
-      <div class="atlas-copy">
-        <small>🐢 20–25 aug · Noord-Sulawesi</small>
-        <h3>Bunaken</h3>
-        <p>Rifwanden</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
-
-    <a class="atlas-card" href="lembeh.html" data-region="Noord-Sulawesi">
-      <div class="atlas-num">18</div>
-      <img src="photo-17.jpg" alt="">
-      <div class="atlas-copy">
-        <small>🐙 25–27 aug · Noord-Sulawesi</small>
-        <h3>Lembeh</h3>
-        <p>Macro diving</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
-
-    <a class="atlas-card" href="tangkoko.html" data-region="Noord-Sulawesi">
-      <div class="atlas-num">19</div>
-      <img src="photo-18.jpg" alt="">
-      <div class="atlas-copy">
-        <small>🐒 27–28 aug · Noord-Sulawesi</small>
-        <h3>Tangkoko</h3>
-        <p>Tarsiers</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
-
-    <a class="atlas-card" href="manado.html" data-region="Noord-Sulawesi">
-      <div class="atlas-num">20</div>
-      <img src="photo-19.jpg" alt="">
-      <div class="atlas-copy">
-        <small>🏙️ 28–29 aug · Noord-Sulawesi</small>
-        <h3>Manado</h3>
-        <p>Laatste nacht</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
-
-    <a class="atlas-card" href="terugreis.html" data-region="Terugreis">
-      <div class="atlas-num">21</div>
-      <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1000&q=80" alt="">
-      <div class="atlas-copy">
-        <small>✈️ 29–30 aug · Terugreis</small>
-        <h3>Terugreis</h3>
-        <p>Via Jakarta &amp; Shanghai</p>
-      </div>
-      <div class="atlas-arrow">›</div>
-    </a>
-  </section>
-</main>
-
-<nav class="bottom"><a href="index.html">🏠<span>Home</span></a><a class="active" href="map.html">🗺️<span>Route</span></a><a href="vluchten.html">✈️<span>Vluchten</span></a><a href="verblijf.html">🏨<span>Verblijf</span></a><a href="terugreis.html">•••<span>Meer</span></a></nav>
+<div class="map-actions">
+  <a href="index.html">🏠 Naar route</a>
+  <a href="vluchten.html">✈️ Vluchten</a>
+  <a href="verblijf.html">🏨 Verblijf</a>
+  <a href="terugreis.html">••• Terugreis</a>
 </div>
 
-<script>
-const buttons=[...document.querySelectorAll('.region-tabs button')];
-const cards=[...document.querySelectorAll('.atlas-card')];
-const ribbon=[...document.querySelectorAll('.ribbon-stop')];
-
-function filter(region){
-  buttons.forEach(b=>b.classList.toggle('active',b.dataset.filter===region));
-  [...cards,...ribbon].forEach(el=>{
-    const show=region==='all'||el.dataset.region===region;
-    el.classList.toggle('hidden',!show);
-  });
-}
-buttons.forEach(b=>b.addEventListener('click',()=>filter(b.dataset.filter)));
-ribbon.forEach(b=>b.addEventListener('click',()=>location.href=b.dataset.target+'.html'));
-</script>
-</body>
-</html>
+<nav class="bottom"><a href="index.html">🏠<span>Home</span></a><a class="active" href="map.html">🗺️<span>Route</span></a><a href="vluchten.html">✈️<span>Vluchten</span></a><a href="verblijf.html">🏨<span>Verblijf</span></a><a href="terugreis.html">•••<span>Meer</span></a></nav>
+</div></body></html>
