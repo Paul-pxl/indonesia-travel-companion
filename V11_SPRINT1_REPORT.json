@@ -1,0 +1,20 @@
+{
+  "release": "v11 Sprint 1",
+  "base_file": "IndonesiaTravelCompanion_v11_Sprint1(1).zip",
+  "html_files": 25,
+  "central_css": "assets/styles.css",
+  "inline_style_tags_remaining": 0,
+  "bottom_nav_pages": 25,
+  "broken_local_references": [
+    [
+      "map.html",
+      "${s.href}"
+    ],
+    [
+      "map.html",
+      "${s.photo}"
+    ]
+  ],
+  "broken_local_references_count": 2,
+  "external_references_count": 143
+}
