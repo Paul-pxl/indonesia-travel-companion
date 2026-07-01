@@ -1,133 +1,41 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Routekaart</title><style>
-
-
-:root{--green:#005a45;--green2:#007a61;--mint:#e7f5ef;--text:#071226;--muted:#566278;--shadow:0 18px 50px rgba(0,90,69,.13)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#edf7f3;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}a{text-decoration:none;color:inherit}
-.app{max-width:430px;margin:0 auto;background:#f9fcfb;min-height:100vh;padding-bottom:92px;box-shadow:0 0 0 1px rgba(0,0,0,.04)}
-.sticky{position:sticky;top:0;z-index:50;background:linear-gradient(135deg,#004832,#006b50);color:white;padding:20px 22px 18px;border-radius:0 0 0 0;box-shadow:0 8px 26px rgba(0,72,50,.22)}
-.sticky-top{display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:12px}.brand-icon{font-size:31px}.brand h1{font-size:28px;letter-spacing:.02em;margin:0;text-transform:uppercase}.menu{font-size:34px;font-weight:900}.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}.tabs a{padding:11px 4px 14px;text-align:center;color:rgba(255,255,255,.86);font-size:13px;font-weight:800;border-bottom:4px solid transparent}.tabs a.active{color:white;border-bottom-color:white}
-.hero-card{margin:20px 24px 22px;border-radius:26px;overflow:hidden;min-height:306px;background-size:cover;background-position:center;box-shadow:var(--shadow);position:relative;color:white}.hero-card:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.25),rgba(0,0,0,.12))}.hero-inner{position:relative;padding:22px;height:100%;min-height:306px;display:flex;flex-direction:column;justify-content:space-between}.pill{align-self:flex-start;background:rgba(0,108,84,.92);padding:9px 14px;border-radius:999px;font-size:13px;text-transform:uppercase;font-weight:900;letter-spacing:.04em}.hero-card h2{font-size:44px;letter-spacing:-.05em;line-height:1;margin:0 0 18px}.hero-details{display:grid;gap:10px;font-size:17px;font-weight:650}.hero-go{position:absolute;right:22px;bottom:38px;width:58px;height:58px;border-radius:50%;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:42px}
-.progress{background:white;margin:0 24px 28px;border-radius:22px;padding:18px;box-shadow:var(--shadow)}.progress h3{margin:0 0 16px;font-size:19px}.progress-row{display:flex;justify-content:space-between;color:#465168;font-size:14px;margin-bottom:9px}.track{height:10px;background:#e4ebe8;border-radius:99px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,#006b50,#0da77f);border-radius:99px}
-.section-head{display:flex;align-items:center;justify-content:space-between;margin:26px 24px 14px}.section-head h2{font-size:28px;letter-spacing:-.04em;margin:0}.section-head a{color:var(--green);font-weight:900}
-.timeline{position:relative;margin:0 24px 20px;padding-left:38px}.timeline:before{content:"";position:absolute;left:15px;top:10px;bottom:20px;width:3px;background:var(--green);border-radius:99px}
-.stop{position:relative;display:grid;grid-template-columns:132px 1fr 20px;gap:14px;background:white;border-radius:23px;padding:12px;margin:14px 0;min-height:148px;box-shadow:0 14px 35px rgba(0,90,69,.10)}.num{position:absolute;left:-39px;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:var(--green);color:white;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900}.stop img{width:132px;height:120px;object-fit:cover;border-radius:18px}.stop small{display:block;color:#5d687c;font-size:14px;margin-bottom:8px}.stop h3{font-size:23px;letter-spacing:-.04em;margin:0 0 6px}.stop p{margin:0;color:#536176;font-size:15px;line-height:1.35}.arr{color:var(--green);font-size:32px;font-weight:900;align-self:center}.status{display:inline-block;background:#dff5ec;color:var(--green);font-weight:900;padding:3px 8px;border-radius:8px;margin-left:6px;font-size:12px}
-.stop.is-past{opacity:.68}.stop.is-past .num{font-size:0;background:#16a673}.stop.is-past .num:after{content:"✓";font-size:20px}.stop.is-current{outline:3px solid rgba(0,90,69,.18)}
-.detail-hero{height:330px;background-size:cover;background-position:center;position:relative;color:white;padding:20px;display:flex;flex-direction:column;justify-content:space-between}.detail-hero:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.68))}.detail-hero>*{position:relative}.back{align-self:flex-start;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:10px 14px;font-weight:900}.detail-hero h2{font-size:42px;line-height:1;letter-spacing:-.05em;margin:0}.detail-hero p{font-weight:800;margin:8px 0 0}.card{background:white;border-radius:24px;margin:18px 22px;padding:18px;box-shadow:var(--shadow)}.card h3{margin:0 0 10px;color:var(--green);font-size:22px}.card p{color:#3e4a5d;line-height:1.55}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mini{background:#f1faf6;border-radius:16px;padding:13px;color:var(--green);font-weight:900}.nav2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.nav2 a{background:var(--green);color:white;padding:14px;text-align:center;border-radius:16px;font-weight:900}
-.bottom{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:100%;max-width:430px;background:rgba(255,255,255,.96);backdrop-filter:blur(18px);border-top:1px solid rgba(0,0,0,.06);display:grid;grid-template-columns:repeat(5,1fr);padding:10px 8px 18px;z-index:60}.bottom a{text-align:center;color:#445066;font-size:22px;font-weight:900}.bottom span{display:block;font-size:11px;margin-top:3px}.bottom .active{color:var(--green)}
-@media(max-width:390px){.brand h1{font-size:23px}.tabs a{font-size:12px}.hero-card{margin-left:16px;margin-right:16px}.hero-card h2{font-size:38px}.timeline{margin-left:18px;margin-right:16px;padding-left:34px}.stop{grid-template-columns:110px 1fr 16px}.stop img{width:110px;height:105px}.stop h3{font-size:20px}.stop p{font-size:14px}.num{left:-35px}.progress{margin-left:16px;margin-right:16px}}
-
-
-.atlas-page{background:#f8fcfb;min-height:100vh;padding-bottom:105px}
-.atlas-hero{padding:24px 22px 12px}
-.atlas-hero h2{font-size:40px;line-height:.95;letter-spacing:-.06em;margin:0 0 10px;color:#071226}
-.atlas-hero p{margin:0;color:#536176;line-height:1.45}
-.atlas-panel{margin:12px 18px 18px;border-radius:32px;overflow:hidden;background:linear-gradient(135deg,#064e3b,#0b7f6f);box-shadow:0 24px 70px rgba(0,90,69,.18);color:white;position:relative}
-.atlas-panel:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 18% 25%,rgba(255,255,255,.22),transparent 25%),radial-gradient(circle at 82% 65%,rgba(255,255,255,.12),transparent 28%)}
-.atlas-panel-inner{position:relative;padding:22px}
-.atlas-panel h3{font-size:30px;line-height:1;margin:0 0 10px;letter-spacing:-.04em}
-.atlas-panel p{margin:0;color:rgba(255,255,255,.82);line-height:1.45}
-.atlas-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
-.atlas-stat{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);border-radius:19px;padding:13px 10px;text-align:center;backdrop-filter:blur(12px)}
-.atlas-stat b{display:block;font-size:24px}.atlas-stat span{font-size:12px;color:rgba(255,255,255,.78);font-weight:800}
-.region-tabs{display:flex;gap:8px;overflow-x:auto;padding:0 18px 8px;scrollbar-width:none}
-.region-tabs button{border:0;background:white;color:#005a45;border-radius:999px;padding:11px 14px;font-weight:900;box-shadow:0 8px 20px rgba(0,90,69,.08);white-space:nowrap}
-.region-tabs button.active{background:#005a45;color:white}
-.ribbon{margin:10px 0 18px;display:flex;gap:12px;overflow-x:auto;padding:0 18px 4px;scrollbar-width:none}
-.ribbon-stop{min-width:116px;border:0;background:white;border-radius:22px;padding:10px;text-align:left;box-shadow:0 12px 28px rgba(0,90,69,.09);position:relative}
-.ribbon-stop span{position:absolute;left:8px;top:8px;background:#005a45;color:white;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:950;border:2px solid white}
-.ribbon-stop img{width:100%;height:82px;object-fit:cover;border-radius:16px;background:#eaf4ef}
-.ribbon-stop b{display:block;font-size:13px;margin-top:8px;line-height:1.15;color:#071226}
-.route-summary{padding:0 18px}
-.route-block{background:white;border-radius:28px;padding:16px;box-shadow:0 14px 36px rgba(0,90,69,.10);margin-bottom:14px}
-.route-block h3{font-size:24px;letter-spacing:-.04em;margin:0 0 4px;color:#071226}
-.route-block p{margin:0;color:#536176;line-height:1.45}
-.atlas-list{padding:0 18px 18px;position:relative}
-.atlas-list:before{content:"";position:absolute;left:40px;top:12px;bottom:25px;width:3px;background:#005a45;border-radius:99px;opacity:.28}
-.atlas-card{position:relative;display:grid;grid-template-columns:104px 1fr 22px;gap:13px;align-items:center;background:white;border-radius:23px;padding:12px;margin:13px 0;box-shadow:0 12px 30px rgba(0,90,69,.09);color:inherit}
-.atlas-num{position:absolute;left:-3px;top:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;background:#005a45;color:white;display:flex;align-items:center;justify-content:center;font-weight:950;border:4px solid #f8fcfb;z-index:2}
-.atlas-card img{width:104px;height:94px;object-fit:cover;border-radius:18px;background:#edf5f2}
-.atlas-copy small{display:block;color:#536176;font-size:13px;margin-bottom:6px;font-weight:800}
-.atlas-copy h3{font-size:21px;letter-spacing:-.04em;margin:0 0 5px;color:#071226}
-.atlas-copy p{margin:0;color:#536176;font-size:14px;line-height:1.3}
-.atlas-arrow{font-size:30px;color:#005a45;font-weight:950}
-.hidden{display:none!important}
-@media(max-width:390px){.atlas-card{grid-template-columns:92px 1fr 18px}.atlas-card img{width:92px;height:86px}.atlas-copy h3{font-size:19px}.atlas-hero h2{font-size:36px}}
-
-
-
-.map-hero{margin:18px 22px;border-radius:28px;background:linear-gradient(135deg,#004832,#007a61);color:white;padding:22px;box-shadow:var(--shadow)}
-.map-hero h2{margin:0 0 8px;font-size:31px;letter-spacing:-.04em}
-.map-hero p{margin:0;color:rgba(255,255,255,.86);line-height:1.45}
-.route-map{margin:18px 22px;background:white;border-radius:26px;padding:18px;box-shadow:var(--shadow)}
-.route-line{position:relative;margin-left:18px;border-left:4px solid #d8efe5;padding-left:20px}
-.route-stop{position:relative;margin:0 0 16px;background:#f1faf6;border-radius:18px;padding:14px 14px 14px 16px;color:#243b35}
-.route-stop:before{content:attr(data-n);position:absolute;left:-42px;top:13px;width:28px;height:28px;border-radius:50%;background:var(--green);color:white;display:grid;place-items:center;font-weight:900;font-size:13px;box-shadow:0 5px 14px rgba(0,90,69,.25)}
-.route-stop b{display:block;color:var(--green);font-size:17px;margin-bottom:4px}
-.route-stop span{display:block;color:#667085;font-size:13px;font-weight:800;margin-bottom:6px}
-.route-stop p{margin:0;color:#3e4a5d;line-height:1.45;font-size:14px}
-.region-chip{display:inline-flex;align-items:center;gap:7px;background:#e7f5ef;color:var(--green);font-weight:900;border-radius:999px;padding:8px 11px;font-size:12px;margin:4px 4px 8px 0}
-.map-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-.map-tile{background:#f1faf6;border-radius:17px;padding:13px;color:#163b32;line-height:1.35}
-.map-tile b{display:block;color:var(--green);margin-bottom:5px}
-.map-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 22px}
-.map-actions a{background:white;border-radius:18px;padding:14px;text-align:center;font-weight:900;color:var(--green);box-shadow:var(--shadow)}
-
-</style></head><body><div class="app">
-
-<section class="map-hero">
-  <h2>Routekaart</h2>
-  <p>Een helder overzicht van jullie volledige Indonesië-route: van Sumatra naar Sulawesi, met transitdagen, natuurblokken, duikblokken en de terugreis.</p>
-</section>
-
-<section class="route-map">
-  <h3 style="margin:0 0 10px;color:var(--green);font-size:23px">Route in één oogopslag</h3>
-  <div>
-    <span class="region-chip">✈️ Transit</span>
-    <span class="region-chip">🌿 Sumatra</span>
-    <span class="region-chip">🌋 Sulawesi</span>
-    <span class="region-chip">🤿 Duiken</span>
-  </div>
-  <div class="map-grid">
-    <div class="map-tile"><b>Start</b>Jakarta → Bukit Lawang</div>
-    <div class="map-tile"><b>Midden</b>Sumatra overland → Jakarta</div>
-    <div class="map-tile"><b>Sulawesi</b>Rammang Rammang → Manado</div>
-    <div class="map-tile"><b>Einde</b>Manado → Shanghai → Amsterdam</div>
-  </div>
-</section>
-
-<section class="route-map">
-  <h3 style="margin:0 0 14px;color:var(--green);font-size:23px">Chronologische route</h3>
-  <div class="route-line">
-    <div class="route-stop" data-n="1"><span>15–16 jul · Transit</span><b>Amsterdam → Mumbai → Jakarta</b><p>Internationale heenreis en eerste transitnacht.</p></div>
-<div class="route-stop" data-n="2"><span>17–18 jul · Sumatra</span><b>Bukit Lawang</b><p>Orang-oetans, rivier en eerste jungle-introductie.</p></div>
-<div class="route-stop" data-n="3"><span>19 jul · Sumatra</span><b>Berastagi</b><p>Koel hoogland, Karo-cultuur en vulkaanlandschap.</p></div>
-<div class="route-stop" data-n="4"><span>20–23 jul · Sumatra</span><b>Ketambe</b><p>Wildere Gunung Leuser-jungle en meerdaagse trek.</p></div>
-<div class="route-stop" data-n="5"><span>24–26 jul · Sumatra</span><b>Lake Toba</b><p>Rustblok aan het meer na de jungle.</p></div>
-<div class="route-stop" data-n="6"><span>27 jul · Sumatra</span><b>Sipirok</b><p>Strategische tussenstop richting West-Sumatra.</p></div>
-<div class="route-stop" data-n="7"><span>28–30 jul · Sumatra</span><b>Bukittinggi</b><p>Minangkabau-cultuur, Nasi Kapau en Sianok Canyon.</p></div>
-<div class="route-stop" data-n="8"><span>31 jul–1 aug · Sumatra</span><b>Harau Valley</b><p>Rijstvelden, kliffen, watervallen en vertraging.</p></div>
-<div class="route-stop" data-n="9"><span>2–4 aug · Sumatra</span><b>Kerinci</b><p>Theevelden en de zware vulkaan-hike.</p></div>
-<div class="route-stop" data-n="10"><span>5 aug · Transit</span><b>Jakarta</b><p>Reset tussen Sumatra en Sulawesi.</p></div>
-<div class="route-stop" data-n="11"><span>6 aug · Sulawesi</span><b>Rammang Rammang</b><p>Karstlandschap, boottocht en rustige Sulawesi-start.</p></div>
-<div class="route-stop" data-n="12"><span>7–10 aug · Sulawesi</span><b>Tana Toraja</b><p>Tongkonan, rotsgraven, ceremonies en rijstvelden.</p></div>
-<div class="route-stop" data-n="13"><span>11 aug · Sulawesi</span><b>Danau Poso</b><p>Rustige tussenstop richting Togians.</p></div>
-<div class="route-stop" data-n="14"><span>12–16 aug · Sulawesi</span><b>Togian Islands</b><p>Eilandtijd, snorkelen en duiken.</p></div>
-<div class="route-stop" data-n="15"><span>17 aug · Sulawesi</span><b>Gorontalo</b><p>Schakel tussen Togians en Noord-Sulawesi.</p></div>
-<div class="route-stop" data-n="16"><span>18 aug · Sulawesi</span><b>Tomohon</b><p>Vulkanen, hoogland en laatste landblok.</p></div>
-<div class="route-stop" data-n="17"><span>19–23 aug · Sulawesi</span><b>Bunaken</b><p>Wall dives, schildpadden en blauw water.</p></div>
-<div class="route-stop" data-n="18"><span>24–25 aug · Sulawesi</span><b>Lembeh</b><p>Macro en muck diving.</p></div>
-<div class="route-stop" data-n="19"><span>26 aug · Sulawesi</span><b>Tangkoko</b><p>Zwarte makaken, tarsiers en wildlife-afsluiter.</p></div>
-<div class="route-stop" data-n="20"><span>27–28 aug · Sulawesi</span><b>Manado</b><p>Comfortabele eindbuffer en terugreisvoorbereiding.</p></div>
-<div class="route-stop" data-n="21"><span>29–30 aug · Terugreis</span><b>Jakarta → Shanghai → Amsterdam</b><p>Internationale terugreis.</p></div>
-  </div>
-</section>
-
-<div class="map-actions">
-  <a href="index.html">🏠 Naar route</a>
-  <a href="vluchten.html">✈️ Vluchten</a>
-  <a href="verblijf.html">🏨 Verblijf</a>
-  <a href="terugreis.html">••• Terugreis</a>
-</div>
-
-<nav class="bottom"><a href="index.html">🏠<span>Home</span></a><a class="active" href="map.html">🗺️<span>Route</span></a><a href="vluchten.html">✈️<span>Vluchten</span></a><a href="verblijf.html">🏨<span>Verblijf</span></a><a href="terugreis.html">•••<span>Meer</span></a></nav>
-</div></body></html>
+<!doctype html><html><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>html,body,#map{height:100%;margin:0}#map{height:100vh}.panel{position:absolute;z-index:999;background:#fff;padding:12px;border-radius:12px;left:10px;top:10px;max-height:85vh;overflow:auto;box-shadow:0 4px 20px #0003}.panel a{display:block;margin:6px 0;color:#065;text-decoration:none;font-weight:bold}</style>
+</head><body>
+<div class="panel"><h3>Route Indonesië</h3><div id=list></div></div><div id=map></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const pts=[
+{n:"Amsterdam",c:[52.3676,4.9041],u:"index.html"},
+{n:"Jakarta",c:[-6.2088,106.8456],u:"jakarta.html"},
+{n:"Bukit Lawang",c:[3.541,98.114],u:"bukit-lawang.html"},
+{n:"Berastagi",c:[3.194,98.504],u:"berastagi.html"},
+{n:"Ketambe",c:[3.684,97.658],u:"ketambe.html"},
+{n:"Lake Toba",c:[2.66,98.86],u:"lake-toba.html"},
+{n:"Sipirok",c:[1.638,99.272],u:"sipirok.html"},
+{n:"Bukittinggi",c:[-0.305,100.369],u:"bukittinggi.html"},
+{n:"Harau Valley",c:[-0.106,100.667],u:"harau-valley.html"},
+{n:"Kerinci",c:[-1.697,101.264],u:"kerinci.html"},
+{n:"Rammang Rammang",c:[-4.93,119.62],u:"rammang-rammang.html"},
+{n:"Tana Toraja",c:[-3.075,119.821],u:"tana-toraja.html"},
+{n:"Danau Poso",c:[-1.86,120.65],u:"danau-poso.html"},
+{n:"Togian",c:[-0.4,121.9],u:"togian.html"},
+{n:"Gorontalo",c:[0.5435,123.056],u:"gorontalo.html"},
+{n:"Tomohon",c:[1.329,124.839],u:"tomohon.html"},
+{n:"Bunaken",c:[1.62,124.76],u:"bunaken.html"},
+{n:"Lembeh",c:[1.47,125.24],u:"lembeh.html"},
+{n:"Tangkoko",c:[1.57,125.15],u:"tangkoko.html"},
+{n:"Manado",c:[1.4748,124.8421],u:"manado.html"}
+];
+const map=L.map('map');
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OSM'}).addTo(map);
+const latlngs=[]; const b=document.getElementById('list');
+pts.forEach((p,i)=>{
+ latlngs.push(p.c);
+ const m=L.marker(p.c).addTo(map).bindPopup(`<b>${i+1}. ${p.n}</b><br><a href='${p.u}'>Open bestemming</a>`);
+ const a=document.createElement('a');a.href='#';a.textContent=(i+1)+'. '+p.n;
+ a.onclick=(e)=>{e.preventDefault();map.flyTo(p.c,9);m.openPopup();};b.appendChild(a);
+});
+L.polyline(latlngs,{color:'#008060',weight:4}).addTo(map);
+map.fitBounds(L.polyline(latlngs).getBounds(),{padding:[30,30]});
+</script></body></html>
